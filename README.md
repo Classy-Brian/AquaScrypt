@@ -1,1 +1,1 @@
-# AquaScrypt-2D-Text-Based-Cardventure-game1
+# AquaScrypt-2D-Text-Based-Cardventure-game
