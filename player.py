@@ -42,12 +42,40 @@ class Player():
             count += 1
 
     def save_game(self, file_name):
+
+        deck_data = []
+        for card in self._deck:
+            # deck_data.append({"name": card._name})
+            # deck_data.append({"cost": card._cost})
+            # deck_data.append({"power": card._power})
+            # deck_data.append({"max_health": card._max_health})
+            # deck_data.append({"sigil": card._sigil})
+            # deck_data.append({"barrier": card.barrier})
+
+            data = {
+                "name": card._name,
+                "cost": card._cost,
+                "power": card._power,
+                "max_health": card._max_health,
+                "sigil": card._sigil,
+                "barrier": card.barrier
+            }
+            deck_data.append(data)
+        
+
+
         player_data = {
             "player_name": self._name,
             "items": self._items,
             "location": self._location,
-            "deck": [card.serialize() for card in self._deck]
+            # card.serialize() for card in self._deck
+            #"deck": deck
+            "deck": deck_data
         }
+        
+        with open(f"{file_name}.json", "w") as outfile:
+            json.dump(player_data, outfile)
+
 
     def shop_item(self):
         print("Welcome to meh shop! \nPick whichever tickles your fancy!\n")

@@ -25,11 +25,12 @@ def main():
         # name = input("Name: ")
         # welcome_message(name)
         #name = "Joe"
-        hero = player.Player(False)
+        hero = player.Player(load=False)
     elif choice == 2:
-        hero = player.Player(True)
+        hero = player.Player(load=True)
     else: 
         quit = True
+        exit()
 
     print(f"\nWell hello, {hero.name}")
     print("\nHere is your current items: ")
@@ -62,6 +63,8 @@ def main():
                 save_choice = check_input.range_int("Choice: ", 1, 3)
                 file_name = f"player{save_choice}"
                 hero.save_game(file_name)
+            else: 
+                print("Well alright ... Your funeral")
             quit = True 
 
         clear_terminal()
@@ -75,14 +78,6 @@ def main():
             battle.battle(hero, villian)
         elif move == 'A':
             hero._deck.sacrifice()
-
-        # print("Would you like to save your game?")
-        # if check_input.yes_no("Choice: "):
-        #     print("Would like to save in slot 1, 2, or 3")
-        #     num = check_input.range_int("Choice: ", 1, 3)
-        #     hero.save_game(num)
-        # else:
-        #     print("Well alright ... Your funeral")
         
         print()
 main()
