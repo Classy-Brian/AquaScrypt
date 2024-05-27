@@ -23,13 +23,18 @@ def choose_card(text, deck, return_index=False):
         while not valid:
             choice = check_input.range_int("Enter choice: ", 1, counter - 1)
 
-            if deck[choice - 1] is not None:
-                if return_index:
-                    return deck[choice - 1], choice - 1
+            choice_2= check_input.yes_no(f"Are you sure you want to chosse your {deck[choice - 1].name}?\n")
+
+            if choice_2 == True: 
+                if deck[choice - 1] is not None:
+                    if return_index:                 
+                        return deck[choice - 1], choice - 1
+                    else:
+                        return deck[choice - 1]
                 else:
-                    return deck[choice - 1]
+                    print("There's no card there, choose again. ")
             else:
-                print("There's no card there, choose again. ")
+                continue
 
 def random_card(deck):
     """ From a deck of cards, pick a random card """
@@ -165,8 +170,15 @@ def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, u
                 count = 1
                 for item in hero._items:
                     print(f"{count}. {item}")
-                item_choice = check_input.range_int("Choice: ", 1, count)
-                scale = use_item(hero_hand, play_deck, curr_hero, scale, hero._items[item_choice - 1])
+                valid = False
+                while not valid:
+                    item_choice = check_input.range_int("Choice: ", 1, count)
+                    choice_1= check_input.yes_no(f"Are you sure you want to chosse your {hero._items[item_choice - 1]} item?\n")
+                    if choice_1 == True:
+                        scale = use_item(hero_hand, play_deck, curr_hero, scale, hero._items[item_choice - 1])
+                        valid = True
+                    else:
+                        continue
         elif choice == 5:
             if sigil is False:
                 use_sigil(villian, hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale)
@@ -231,11 +243,15 @@ def placeCard(hero_hand, curr_hero):
     while not card_place:
         print("Where would you like to place the card? Slot 1, 2, 3, or 4")
         choice = check_input.range_int("Enter choice: ", 1, 4)
-        if curr_hero[choice - 1] is None:
-            curr_hero[choice - 1] = picked_card
-            card_place = True
+        choice_2= check_input.yes_no(f"Are you sure you want to place your card at slot {choice}?\n")
+        if choice_2 == True:
+            if curr_hero[choice - 1] is None:
+                curr_hero[choice - 1] = picked_card
+                card_place = True
+            else:
+                print("There is already a card in that slot, pick somewhere else.")
         else:
-            print("There is already a card in that slot, pick somewhere else.")
+            continue
 
 def heroAttack(curr_hero, curr_attack, scale):
     for index, card in enumerate(curr_hero):
@@ -254,6 +270,7 @@ def heroAttack(curr_hero, curr_attack, scale):
     return scale
 
 def use_item(hero_hand, play_deck, curr_hero, scale, item):
+    
     if item == "Dagger":
         scale += 1 
         print("Scale is now ", scale)
@@ -273,76 +290,80 @@ def use_sigil(villian, hidden_upcoming, upcoming_attack, curr_attack, curr_hero,
     while not end_sigil:
         print("Which card do you want to use Sigil? Slot 1, 2, 3, or 4")
         choice = check_input.range_int("Enter choice: ", 1, 4)
-        if curr_hero[choice - 1] is not None:
-            if curr_hero[choice - 1].sigil == "Bioluminescence":
-                for index, card in enumerate(curr_hero):
-                    if curr_hero[index] is not None:
-                        if curr_hero[index].name in ["Angler", "Jellyfish", "Kraken"] and curr_hero[index].name not in enhanced_cards:
-                            curr_hero[index].power += 1
-                            curr_hero[index].hp += 1
-                            enhanced_cards.add(curr_hero[index].name)
-                end_sigil = True
-                print(f"\n{curr_hero[choice - 1].name} use Bioluminescence and enhances its self, and other abyssal fish cards!")
-
-            elif curr_hero[choice - 1].sigil == "Swarm":
-                clone_limit = 0
-                card_copies = curr_hero[choice - 1]
-                for index, card in enumerate(curr_hero):
-                    if curr_hero[index] is None and clone_limit < 2:
-                        clone = copy.copy(card_copies)
-                        curr_hero[index] = clone
-                        clone_limit +=1 
-                print(f"\n{curr_hero[choice - 1].name} uses Swarm and summons additional copies of itself!")
-                end_sigil = True
-
-            elif curr_hero[choice - 1].sigil == "Frenzy":
-                if curr_hero[choice - 1].hp is not None and curr_hero[choice - 1].hp < (curr_hero[choice - 1].max_hp //2):
-                    curr_hero[choice - 1].power *= 2
-                    print(f"\n{curr_hero[choice - 1].name} use Frenzy and now will deals double damage!")
-                    end_sigil = True 
-                else: 
-                    print(f"\n{curr_hero[choice - 1].name} is not low yet, and cannot use Frenzy")
-
-            elif curr_hero[choice - 1].sigil == "Barrier":
-                if not curr_hero[choice - 1].barrier:
-                    print(f"\n{curr_hero[choice - 1].name} use Barrier and will blocks the next attack!")
-                    curr_hero[choice - 1].barrier = True
+        choice_2= check_input.yes_no(f"Are you sure you want to use {curr_hero[choice - 1].name} sigil?\n")
+        if choice_2 == True:
+            if curr_hero[choice - 1] is not None:
+                if curr_hero[choice - 1].sigil == "Bioluminescence":
+                    for index, card in enumerate(curr_hero):
+                        if curr_hero[index] is not None:
+                            if curr_hero[index].name in ["Angler", "Jellyfish", "Kraken"] and curr_hero[index].name not in enhanced_cards:
+                                curr_hero[index].power += 1
+                                curr_hero[index].hp += 1
+                                enhanced_cards.add(curr_hero[index].name)
                     end_sigil = True
-                else:
-                    print(f"\n{curr_hero[choice - 1].name} already has a Barrier active.")
+                    print(f"\n{curr_hero[choice - 1].name} use Bioluminescence and enhances its self, and other abyssal fish cards!")
 
-            elif curr_hero[choice - 1].sigil == "Echolocation":
-                print(f"\n{curr_hero[choice - 1].name} use Echolocation and see upcoming attack!")
-                print("Here is the upcoming attack: ")
-                for card in hidden_upcoming:
-                    if card is None:
-                        print(card, end=" ")
-                    else:
-                        print(card.name, end=" ")
-                print()
-                end_sigil = True
+                elif curr_hero[choice - 1].sigil == "Swarm":
+                    clone_limit = 0
+                    card_copies = curr_hero[choice - 1]
+                    for index, card in enumerate(curr_hero):
+                        if curr_hero[index] is None and clone_limit < 2:
+                            clone = copy.copy(card_copies)
+                            curr_hero[index] = clone
+                            clone_limit +=1 
+                    print(f"\n{curr_hero[choice - 1].name} uses Swarm and summons additional copies of itself!")
+                    end_sigil = True
 
-            elif curr_hero[choice - 1].sigil == "Swift":
-                print(f"\nYour {curr_hero[choice - 1].name} now has 50% chance to avoid attack")
-                if random.randint(0, 1) == 1:
-                    curr_hero[choice - 1].barrier = True   
-                end_sigil = True 
+                elif curr_hero[choice - 1].sigil == "Frenzy":
+                    if curr_hero[choice - 1].hp is not None and curr_hero[choice - 1].hp < (curr_hero[choice - 1].max_hp //2):
+                        curr_hero[choice - 1].power *= 2
+                        print(f"\n{curr_hero[choice - 1].name} use Frenzy and now will deals double damage!")
+                        end_sigil = True 
+                    else: 
+                        print(f"\n{curr_hero[choice - 1].name} is not low yet, and cannot use Frenzy")
 
-            elif curr_hero[choice - 1].sigil == "Shell":
-                while not end_sigil:
-                    print("Which current attack card do you want to pick to cut the damage in half? Slot 1, 2, 3, or 4")
-                    choice_2 = check_input.range_int("Enter choice: ", 1, 4)
-                    if curr_attack[choice_2 - 1] is not None:
-                        curr_attack[choice_2 - 1].power //= 2
-                        print(f"\n {curr_attack[choice_2 - 1].name} card has half the damage now")
+                elif curr_hero[choice - 1].sigil == "Barrier":
+                    if not curr_hero[choice - 1].barrier:
+                        print(f"\n{curr_hero[choice - 1].name} use Barrier and will blocks the next attack!")
+                        curr_hero[choice - 1].barrier = True
                         end_sigil = True
                     else:
-                        print("There are no card in that slot, pick somewhere else.")
+                        print(f"\n{curr_hero[choice - 1].name} already has a Barrier active.")
 
-            elif curr_hero[choice - 1].sigil == "None":
-                print("\nThis card has no sigil")
+                elif curr_hero[choice - 1].sigil == "Echolocation":
+                    print(f"\n{curr_hero[choice - 1].name} use Echolocation and see upcoming attack!")
+                    print("Here is the upcoming attack: ")
+                    for card in hidden_upcoming:
+                        if card is None:
+                            print(card, end=" ")
+                        else:
+                            print(card.name, end=" ")
+                    print()
+                    end_sigil = True
+
+                elif curr_hero[choice - 1].sigil == "Swift":
+                    print(f"\nYour {curr_hero[choice - 1].name} now has 50% chance to avoid attack")
+                    if random.randint(0, 1) == 1:
+                        curr_hero[choice - 1].barrier = True   
+                    end_sigil = True 
+
+                elif curr_hero[choice - 1].sigil == "Shell":
+                    while not end_sigil:
+                        print("Which current attack card do you want to pick to cut the damage in half? Slot 1, 2, 3, or 4")
+                        choice_3 = check_input.range_int("Enter choice: ", 1, 4)
+                        if curr_attack[choice_3 - 1] is not None:
+                            curr_attack[choice_3 - 1].power //= 2
+                            print(f"\n {curr_attack[choice_3 - 1].name} card has half the damage now")
+                            end_sigil = True
+                        else:
+                            print("There are no card in that slot, pick somewhere else.")
+
+                elif curr_hero[choice - 1].sigil == "None":
+                    print("\nThis card has no sigil")
+            else:
+                print("There are no card in that slot, pick somewhere else.")
         else:
-            print("There are no card in that slot, pick somewhere else.")
+            continue
 
 def battle(hero, villian):
     print("------------- Battle -------------")
@@ -369,6 +390,7 @@ def battle(hero, villian):
     Jellyfish = card.Card("Jellyfish", 2, 1, 2, "Swarm", False)
     Otter = card.Card("Otter", 1, 1, 2, "Swift", False)
     curr_hero =       [None, None, None, None]
+    
 
     # Puts card to upcoming attack first turn 
     # villian_draw_card(villian, upcoming_attack, upcoming_attack)
