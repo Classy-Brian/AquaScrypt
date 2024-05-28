@@ -179,15 +179,18 @@ def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, u
                 count = 1
                 for item in hero._items:
                     print(f"{count}. {item}")
+                    count += 1
                 valid = False
                 while not valid:
                     item_choice = check_input.range_int("Choice: ", 1, count)
-                    choice_1= check_input.yes_no(f"Are you sure you want to chosse your {hero._items[item_choice - 1]} item?\n")
-                    if choice_1 == True:
-                        scale = use_item(hero_hand, play_deck, curr_hero, scale, hero._items[item_choice - 1])
-                        valid = True
+                    item_choice -= 1
+                    if hero._items[item_choice - 1] is not None:
+                        choice_1= check_input.yes_no(f"Are you sure you want to chosse your {hero._items[item_choice - 1]} item?\n")
+                        if choice_1 is True:
+                            scale = use_item(hero_hand, play_deck, curr_hero, scale, hero._items[item_choice - 1])
+                            valid = True
                     else:
-                        continue
+                        print("Nothing there! try again")
         elif choice == 5:
             if sigil is False:
                 use_sigil(villian, hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale)
@@ -259,8 +262,7 @@ def placeCard(hero_hand, curr_hero):
                 card_place = True
             else:
                 print("There is already a card in that slot, pick somewhere else.")
-        else:
-            continue
+
 
 def heroAttack(curr_hero, curr_attack, scale):
     for index, card in enumerate(curr_hero):
@@ -299,9 +301,9 @@ def use_sigil(villian, hidden_upcoming, upcoming_attack, curr_attack, curr_hero,
     while not end_sigil:
         print("Which card do you want to use Sigil? Slot 1, 2, 3, or 4")
         choice = check_input.range_int("Enter choice: ", 1, 4)
-        choice_2= check_input.yes_no(f"Are you sure you want to use {curr_hero[choice - 1].name} sigil?\n")
-        if choice_2 == True:
-            if curr_hero[choice - 1] is not None:
+        if curr_hero[choice - 1] is not None:
+            choice_2= check_input.yes_no(f"Are you sure you want to use {curr_hero[choice - 1].name} sigil?\n")
+            if choice_2 == True:
                 if curr_hero[choice - 1].sigil == "Bioluminescence":
                     for index, card in enumerate(curr_hero):
                         if curr_hero[index] is not None:
@@ -369,10 +371,9 @@ def use_sigil(villian, hidden_upcoming, upcoming_attack, curr_attack, curr_hero,
 
                 elif curr_hero[choice - 1].sigil == "None":
                     print("\nThis card has no sigil")
-            else:
-                print("There are no card in that slot, pick somewhere else.")
+                    break  
         else:
-            continue
+            print("There are no card in that slot, pick somewhere else.")
 
 def battle(hero, villian):
     print("------------- Battle -------------")
