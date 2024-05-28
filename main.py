@@ -14,41 +14,57 @@ def welcome_message(name):
     delay(1.5)
     delay_print(f"\nWell {name}, good luck diving!\n")
 
-def How_to_play():
-    print("1. New game\n2. Load game\n3. How to play!\n4. Quit")
-    choice = check_input.range_int("Choice: ", 1, 4)
-    if choice == 1:
-        delay_print(f"\nWelcome to AquaScrypt\n")
-    elif choice == 2:
-       delay_print(f"\nWelcome to AquaScrypt\n")
-
-    elif choice == 3:
-        delay_print(f"\nWelcome to AquaScrypt\n")
-    else: 
-        exit()
+def How_to_play(file_txt):
+    with open(file_txt, "r") as file:
+        print(file.read)
     
 
 def main():
     clear_terminal()
     print("~~~ AquaScrypt ~~~")
-    print("1. New game\n2. Load game\n3. How to play!\n4. Quit")
-    quit = False 
-    choice = check_input.range_int("Choice: ", 1, 4)
-    if choice == 1:
-        # delay_print("What is your name, diver? ")
-        # name = input("Name: ")
-        # welcome_message(name)
-        #name = "Joe"
-        hero = player.Player(load=False)
-    elif choice == 2:
-        hero = player.Player(load=True)
+    quit = False
+    vaild = False 
+    while vaild is False:
+        print("1. New game\n2. Load game\n3. How to play!\n4. Quit")
+        choice = check_input.range_int("Choice: ", 1, 4)
+        if choice == 1:
+            # delay_print("What is your name, diver? ")
+            # name = input("Name: ")
+            # welcome_message(name)
+            #name = "Joe"
+            hero = player.Player(load=False)
+            vaild = True
+        elif choice == 2:
+            hero = player.Player(load=True)
+            vaild = True
 
-    elif choice == 3:
-        How_to_play()
+        elif choice == 3:
+            quit_2 = False
+            while quit_2 is False:
+                print("1. Battle Guide\n2. Map Guide\n3. Sigil Guide\n4. Shop Item Guide\n5. sacrifice Guide\n6. Upgrade Guide\n7. Quit")
+                choice = check_input.range_int("Choice: ",1,7)
+                if choice == 1:
+                    file = "guide.txt"
+                    print(How_to_play(file))
+                elif choice == 2:
+                    How_to_play()
+                elif choice == 2:
+                    How_to_play()
+                elif choice == 3:
+                    How_to_play()
+                elif choice == 4:
+                    How_to_play()
+                elif choice == 5:
+                    How_to_play()
+                elif choice == 6:
+                    How_to_play()
+                else:
+                    print("nothing")
+                    quit_2 = True 
 
-    else: 
-        quit = True
-        exit()
+        else: 
+            vaild = True
+            exit()
 
     print(f"\nWell hello, {hero.name}")
     print("\nHere is your current items: ")
