@@ -14,12 +14,26 @@ def welcome_message(name):
     delay(1.5)
     delay_print(f"\nWell {name}, good luck diving!\n")
 
+def How_to_play():
+    print("1. New game\n2. Load game\n3. How to play!\n4. Quit")
+    choice = check_input.range_int("Choice: ", 1, 4)
+    if choice == 1:
+        delay_print(f"\nWelcome to AquaScrypt\n")
+    elif choice == 2:
+       delay_print(f"\nWelcome to AquaScrypt\n")
+
+    elif choice == 3:
+        delay_print(f"\nWelcome to AquaScrypt\n")
+    else: 
+        exit()
+    
+
 def main():
     clear_terminal()
     print("~~~ AquaScrypt ~~~")
-    print("1. New game\n2. Load game\n3. Quit")
+    print("1. New game\n2. Load game\n3. How to play!\n4. Quit")
     quit = False 
-    choice = check_input.range_int("Choice: ", 1, 3)
+    choice = check_input.range_int("Choice: ", 1, 4)
     if choice == 1:
         # delay_print("What is your name, diver? ")
         # name = input("Name: ")
@@ -28,6 +42,10 @@ def main():
         hero = player.Player(load=False)
     elif choice == 2:
         hero = player.Player(load=True)
+
+    elif choice == 3:
+        How_to_play()
+
     else: 
         quit = True
         exit()
