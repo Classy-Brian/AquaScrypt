@@ -1,0 +1,21 @@
+
+Sigil Guide: 
+
+Sigils are special abilities that are attached to your cards, 
+enhancing their effectiveness in battle. Each sigil provides a unique 
+strategic advantage. Since you can only use one card sigil during your 
+turn, choosing the right one based on the situation is crucial.
+
+Available Sigils:
+
+Bioluminescence: Enhances itself and other abyssal fish cards, 
+giving them +1 to their stats.
+
+Swarm: Summons additional copies of itself.
+
+Frenzy: This sigil significantly increases your offensive power by 
+allowing a card to deal double its normal damage.
+
+Barrier: Blocks the next attack against the card that has this sigil.
+
+Echolocation: Allows you to see the upcoming attack.

@@ -1,0 +1,46 @@
+
+Map Guide:
+            
+Symbols:
+
+- - F - -   F: End Point(Goal)
+
+- - V - -   V: Boss Battle
+
+- - U - -   U: Upgrade
+
+- A - B -   A: Sacrifice
+
+- B - I -   B: Battle  I: Item Shop
+
+- - @ - -   @: Start Point
+
+
+Navigation Guide:
+
+Start Point (@): This is where you begin your journey. 
+From here, you can move to any adjacent space.
+
+Battle (B): Engaging in a battle. You will 
+encounter an enemy to fight.
+
+Item Shop (I): A place where you can purchase items 
+to aid you on your journey. These might include
+Dagger, Boulder, and Shrimp Bottle
+
+Upgrade (U): Here you can upgrade your character's abilities. 
+This action grants you either increased power or maximum HP, 
+making you stronger for future challenges.
+
+Sacrifice (A): At this location, you can sacrifice a card. 
+You have two choices: transfer the sacrificed card's sigil 
+(special ability) to another card, or transfer one of its stats 
+(like attack or health) to another card. 
+
+Boss Battle (V): This is a major battle against a powerful enemy. 
+Defeating the boss is essential to progress further 
+in your journey.
+
+End Point (F): The goal of your journey. Reaching this point 
+signifies the end of your adventure.
+

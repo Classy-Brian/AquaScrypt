@@ -6,6 +6,8 @@ import check_input
 from terminal_utils import clear_terminal, pause, delay_print, delay_input, delay
 from boss_file import boss
 
+
+
 def welcome_message(name):
     
     delay_print(f"\nWelcome to AquaScrypt {name}! \n")
@@ -14,9 +16,28 @@ def welcome_message(name):
     delay(1.5)
     delay_print(f"\nWell {name}, good luck diving!\n")
 
-def How_to_play(file_txt):
-    with open(file_txt, "r") as file:
-        print(file.read)
+def How_to_play():
+    print("1. Battle Guide\n2. Map Guide\n3. Sigil Guide\n4. Shop Item Guide\n5. Upgrade Guide\n6. Quit")
+    choice = check_input.range_int("Choice: ",1,6)
+    guide_files = {
+        1: 'guide_file/battle.txt',
+        2: 'guide_file/map_guide.txt',
+        3: 'guide_file/sigil_guide.txt',
+        4: 'guide_file/shop_item_guide.txt',
+        5: 'guide_file/upgrade_guide.txt'
+    }
+
+    if choice == 6:
+        print("Quitting the guide.")
+        return
+    
+    file = guide_files.get(choice)
+
+    if file:
+        with open(file, "r") as file:
+            print(file.read())
+            print()
+            pause()
     
 
 def main():
@@ -39,29 +60,7 @@ def main():
             vaild = True
 
         elif choice == 3:
-            quit_2 = False
-            while quit_2 is False:
-                print("1. Battle Guide\n2. Map Guide\n3. Sigil Guide\n4. Shop Item Guide\n5. sacrifice Guide\n6. Upgrade Guide\n7. Quit")
-                choice = check_input.range_int("Choice: ",1,7)
-                if choice == 1:
-                    file = "guide.txt"
-                    print(How_to_play(file))
-                elif choice == 2:
-                    How_to_play()
-                elif choice == 2:
-                    How_to_play()
-                elif choice == 3:
-                    How_to_play()
-                elif choice == 4:
-                    How_to_play()
-                elif choice == 5:
-                    How_to_play()
-                elif choice == 6:
-                    How_to_play()
-                else:
-                    print("nothing")
-                    quit_2 = True 
-
+            How_to_play()
         else: 
             vaild = True
             exit()

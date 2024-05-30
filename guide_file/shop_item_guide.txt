@@ -1,0 +1,17 @@
+
+Shop Item Guide: 
+
+In the Item Shop, you can choose one of three items to aid you on your journey. 
+Each item has a unique benefit, so choose wisely based on your strategy 
+and current needs.
+
+Available Items:
+
+Dagger: Cut out your eye and place it on the scale, 
+giving you one point toward victory.
+
+Boulder: Place a Boulder to block enemies' attacks, 
+absorbing up to 5 hit points.
+
+Shrimp Bottle: A shrimp card will go right into 
+your hand.
