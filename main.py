@@ -17,27 +17,29 @@ def welcome_message(name):
     delay_print(f"\nWell {name}, good luck diving!\n")
 
 def How_to_play():
-    print("1. Battle Guide\n2. Map Guide\n3. Sigil Guide\n4. Shop Item Guide\n5. Upgrade Guide\n6. Quit")
-    choice = check_input.range_int("Choice: ",1,6)
-    guide_files = {
-        1: 'guide_file/battle.txt',
-        2: 'guide_file/map_guide.txt',
-        3: 'guide_file/sigil_guide.txt',
-        4: 'guide_file/shop_item_guide.txt',
-        5: 'guide_file/upgrade_guide.txt'
-    }
+    quit = False 
+    while quit is False:
+        print("\n1. Battle Guide\n2. Map Guide\n3. Sigil Guide\n4. Shop Item Guide\n5. Upgrade Guide\n6. Quit")
+        choice = check_input.range_int("Choice: ",1,6)
+        guide_files = {
+            1: 'guide_file/battle.txt',
+            2: 'guide_file/map_guide.txt',
+            3: 'guide_file/sigil_guide.txt',
+            4: 'guide_file/shop_item_guide.txt',
+            5: 'guide_file/upgrade_guide.txt'
+        }
 
-    if choice == 6:
-        print("Quitting the guide.")
-        return
-    
-    file = guide_files.get(choice)
+        if choice == 6:
+            print("\nQuitting the guide.\n")
+            quit = True 
+        
+        file = guide_files.get(choice)
 
-    if file:
-        with open(file, "r") as file:
-            print(file.read())
-            print()
-            pause()
+        if file:
+            with open(file, "r") as file:
+                print(file.read())
+                print()
+                pause()
     
 
 def main():
