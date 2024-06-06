@@ -1,13 +1,14 @@
 import deck
 import card
 from boss_file import boss
-from battle import random_card, draw_card, show_hand, display_board, placeCard, use_item, use_sigil, villian_play_card, heroAttack
+from battle import random_card, draw_card, show_hand, display_board, placeCard, use_item, use_sigil, villian_play_card, heroAttack, villian_attack, villian_draw_card
 from cards import shrimp
 import check_input
 from terminal_utils import clear_terminal, pause, delay_print, delay_input, delay
 
 def boss_turn(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, scale):
-    print("hello")
+    villian_draw_card(boss, upcoming_attack, hidden_upcoming)
+    return villian_attack(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale) 
 
 def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack,boss, hero):
     """ Draws and sacerfices cards, and attacks villian """
@@ -69,7 +70,7 @@ def boss_battle(hero, boss):
     for _ in range(4):
         hero_hand.append(random_card(play_deck))
 
-    boss._deck.shuffle()
+    boss.deck.shuffle()
     
     scale = 0
     turn = 0
@@ -91,7 +92,7 @@ def boss_battle(hero, boss):
         
         # villian turn
         if turn == 0:
-            print("\n---- Villain Turn ----\n")
+            print("\n---- Boss Turn ----\n")
             scale = boss_turn(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, scale)
             pause()
             turn = 1

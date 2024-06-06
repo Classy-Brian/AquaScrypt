@@ -1,10 +1,11 @@
 import map
 import player
 import battle 
+
 import deck
 import check_input
 from terminal_utils import clear_terminal, pause, delay_print, delay_input, delay
-from boss_file import boss
+from boss_file import boss, boss_battle
 
 
 
@@ -75,6 +76,7 @@ def main():
     print()
     
     villian = boss.Boss("Jeff")
+    Boss = boss.Boss("Tom")
     game_map = map.Map()
 
     pause()
@@ -113,6 +115,14 @@ def main():
             battle.battle(hero, villian)
         elif move == 'A':
             hero._deck.sacrifice()
+        
+        elif move == "V":
+            boss_battle.boss_battle(hero, boss)
+        
+        else:
+            print("you beat the game!!! Yippie")
+            exit()
+            
         
         print()
 main()
