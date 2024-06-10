@@ -1,0 +1,21 @@
+
+Upgrade Guide:
+
+Upgrading your cards is an essential part of becoming stronger 
+and more resilient in your journey. When you visit the upgrade 
+point, you can improve a card’s power or health, giving you a 
+strategic edge in battles.
+
+
+
+Upgrade Process: You will be prompted to choose one of your cards 
+to upgrade. The selected card will receive either a power or health 
+boost.
+
+Guaranteed First Upgrade: After selecting a card, the type of upgrade 
+is determined randomly. The first upgrade is guaranteed to succeed
+
+Optional Additional Upgrades: After the initial guaranteed upgrade, 
+you have the option to attempt another upgrade. This decision is 
+risky and involves a halving success chance starting from 50% and 
+keep reduces the success chance by half for each upgrade.

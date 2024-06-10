@@ -1,0 +1,32 @@
+
+Battle Guide:
+
+Engaging in battle requires strategic planning and careful management 
+of resources. This guide explains the battle process, roles of the hero 
+and villain, and key mechanics.
+
+
+Battle Setup: The battle starts with player preparing their decks 
+and hands. The hero draws 4 random cards from their deck. The villain's 
+deck is shuffled.
+
+Battle State Initialization: Scale tracks the balance of the battle, 
+ranging from -5 to 5. Victory is determined by the scale reaching 
+either extreme.
+
+Card Summoning and Sacrificing: Shrimp Can be played for free but must 
+be sacrificed to summon other cards. You must sacrifice shrimp and other 
+cards to summon more powerful cards from your hand. The number of sacrifices 
+required depends on the card’s cost.
+
+
+Attack Board: 
+
+|None None None None| -> Upcoming attack  upcoming_attack: Attacks planned for the next turn.
+|
+|None None None None| -> Current attack   curr_attack: Current attacks for the turn.
+|
+|None None None None| -> Current hero     curr_hero represents the hero's cards in play.
+
+
+
