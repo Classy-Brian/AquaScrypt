@@ -1,5 +1,5 @@
 import deck
-import card
+from card import Card
 import map
 import random
 import json
@@ -21,8 +21,17 @@ class Player():
                 self._name = data["player_name"]
                 self._items = data["items"]
                 self._location = data["location"]
-                self._deck = [card.Card(**card_data) for card_data in data["deck"]]
-        
+                self._deck = [Card.from_dict(card) for card in data["deck"]]
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            player_name=data.get('player_name'),
+            items=data.get('items'),
+            location=data.get('location'),
+            deck=data.get('deck')
+        )
+    
     @property
     def name(self):
         return self._name
@@ -45,13 +54,6 @@ class Player():
 
         deck_data = []
         for card in self._deck:
-            # deck_data.append({"name": card._name})
-            # deck_data.append({"cost": card._cost})
-            # deck_data.append({"power": card._power})
-            # deck_data.append({"max_health": card._max_health})
-            # deck_data.append({"sigil": card._sigil})
-            # deck_data.append({"barrier": card.barrier})
-
             data = {
                 "name": card._name,
                 "cost": card._cost,
@@ -62,8 +64,6 @@ class Player():
             }
             deck_data.append(data)
         
-
-
         player_data = {
             "player_name": self._name,
             "items": self._items,

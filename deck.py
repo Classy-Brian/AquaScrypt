@@ -8,9 +8,9 @@ from terminal_utils import clear_terminal, pause, delay_print, delay_input, dela
 
 class Deck:
 
-    def __init__(self):
+    def __init__(self, load=False):
         self._cards = []
-                   
+                
         enemies = [dolphin.Dolphin(), otter.Otter(), turtle.Turtle(),
                     leviathan.Leviathan(), manta_ray.MantaRay(), shark.Shark(),
                     angler.Angler(), jellyfish.Jellyfish(), kraken.Kraken()]

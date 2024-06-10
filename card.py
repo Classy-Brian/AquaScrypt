@@ -18,6 +18,17 @@ class Card:
         self._hp = max_health
         self._sigil = sigil
         self.barrier = barrier
+    
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            name=data.get('name'),
+            cost=data.get('cost'),
+            power=data.get('power'),
+            max_health=data.get('max_health'),
+            sigil=data.get('sigil'),
+            barrier=data.get('barrier')
+        )
 
     @property
     def name(self):
