@@ -70,7 +70,7 @@ def boss_battle(hero, boss):
     for _ in range(4):
         hero_hand.append(random_card(play_deck))
 
-    boss.deck.shuffle()
+    boss._deck.shuffle()
     
     scale = 0
     turn = 0
