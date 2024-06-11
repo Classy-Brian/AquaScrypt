@@ -76,7 +76,7 @@ def main():
     print()
     
     villian = boss.Boss("Jeff")
-    Boss = boss.Boss("Tom")
+    bubble = boss.Boss("Bubble Bass")
     game_map = map.Map()
 
     pause()
@@ -117,7 +117,7 @@ def main():
             hero._deck.sacrifice()
         
         elif move == "V":
-            boss_battle.boss_battle(hero, Boss)
+            boss_battle.boss_battle(hero, bubble)
         
         else:
             print("you beat the game!!! Yippie")
