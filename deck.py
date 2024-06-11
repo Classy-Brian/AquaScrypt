@@ -195,7 +195,8 @@ class Deck:
     def upgrade_chance(self, random_num, card, chance, congrats_text, failed_text):
         if random_num <= 50:
             print(congrats_text)
-            if random_num <= 3:
+            random_num2 = random.randint(1,2)
+            if random_num2 == 1:
                 card._power += 1
                 print("Your power has been upgraded to " + str(card._power) + "\n")
             else:
