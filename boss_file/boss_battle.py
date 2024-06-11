@@ -102,3 +102,22 @@ def boss_battle(hero, boss):
             scale = hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack,boss, hero)
             pause()
             turn = 0
+
+"""
+Bubble Bass (Up to change)
+- Boss health is doubled than regular villans
+- Mechanic starts when scale reaches 3 and 8
+- Randomly places 2 bubbles in any slot
+- Clear boss playing card
+- Player must pop the bubbles if they wish to play on that slot
+- If card gets bubbled:
+    - puts into deck and to pop up, it must be played back in otherwise each round it loses health
+    - it trapped and cannot do any damage on the board and each round it takes damage, must be popped to continue fighting
+    - bubble zombie
+    - hallucination 
+
+Scuba Diver / fisherman
+
+Pollution / Mermaid (Ursula from Little Mermaid)
+
+"""
