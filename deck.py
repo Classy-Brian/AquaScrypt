@@ -191,7 +191,7 @@ class Deck:
         print()
         pause()
         clear_terminal()
-
+        
     def upgrade_chance(self, random_num, card, chance, congrats_text, failed_text):
         if random_num <= 50:
             print(congrats_text)

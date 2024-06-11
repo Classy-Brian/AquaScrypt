@@ -109,7 +109,7 @@ def main():
         if move == 'I':
             hero.shop_item()
         elif move == 'U':
-            clear_terminal()
+            # clear_terminal()
             hero._deck.upgrade()
         elif move == 'B':
             battle.battle(hero, villian)
@@ -117,9 +117,8 @@ def main():
             hero._deck.sacrifice()
         
         elif move == "V":
-            boss_battle.boss_battle(hero, bubble)
-        
-        else:
+            boss_battle.boss_battle(hero, Boss)
+        elif move == "F":
             print("you beat the game!!! Yippie")
             exit()
             
