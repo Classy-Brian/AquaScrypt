@@ -88,7 +88,7 @@ def boss_battle(hero, boss):
     # Puts card to upcoming attack first turn 
     # villian_draw_card(villian, upcoming_attack, upcoming_attack)
 
-    while scale > -5 and scale < 5:
+    while scale > -5 and scale < 10:
         
         # villian turn
         if turn == 0:

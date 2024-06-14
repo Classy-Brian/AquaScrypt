@@ -117,7 +117,7 @@ def main():
             hero._deck.sacrifice()
         
         elif move == "V":
-            boss_battle.boss_battle(hero, Boss)
+            boss_battle.boss_battle(hero, bubble)
         elif move == "F":
             print("you beat the game!!! Yippie")
             exit()

@@ -57,13 +57,25 @@ class Deck:
     def remove_card(self, index):
         return self._cards.pop(index)
 
-    def choose_card(self, text, return_index=False):
-        if all(card is None for card in self._cards):
+    def choose_card(self, text, remove_duplicates=False, return_index=False):
+        if remove_duplicates:
+            one_card = []
+            seen = set()
+            for card in self._cards:
+                if card not in seen:
+                    one_card.append(card)
+                    seen.add(card)
+            display_cards = one_card
+        else:
+            display_cards = self._cards
+        
+
+        if all(card is None for card in display_cards):
             return None
         else:
             print(text)
             counter = 1 
-            for card in self._cards:
+            for card in display_cards:
                 print(f"{counter}. {card}")
                 print()
                 counter += 1
@@ -72,11 +84,11 @@ class Deck:
             while not valid:
                 choice = check_input.range_int("Enter choice: ", 1, counter - 1)
 
-                if self._cards[choice - 1] is not None:
+                if display_cards[choice - 1] is not None:
                     if return_index:
-                        return self._cards[choice - 1], choice - 1
+                        return display_cards[choice - 1], choice - 1
                     else:
-                        return self._cards[choice - 1]
+                        return display_cards[choice - 1]
                 else:
                     print("There's no card there, choose again. ")
 
@@ -134,7 +146,7 @@ class Deck:
 
     def upgrade(self):
         print("------------- Upgrade -------------")
-        card = self.choose_card("Choose a card to upgrade ", return_index=False)
+        card = self.choose_card("Choose a card to upgrade ",remove_duplicates=True, return_index=False)
         print(f"\nYou chose the {card.name}\n")
         pause()
         clear_terminal()
@@ -146,8 +158,9 @@ class Deck:
             card._power += 1
         else:
             print("You came to visit Aquaman, and he grants you more ... HEALTH")
-            print("Your max health has upgrade to " + str(card._max_health) + "\n")
-            card._max_health += 1
+            print(f"Your max health has been upgraded from {str(card._max_health)} to {str(card._max_health + 2)}\n")
+            card._max_health += 2
+            card._hp +=2
 
         player_choice = check_input.yes_no(f"Aquaman is getting hangry\nWould you like to upgrade again? (50% chance) Y/N: ")
         chance = 50
@@ -201,6 +214,7 @@ class Deck:
                 print("Your power has been upgraded to " + str(card._power) + "\n")
             else:
                 card._max_health += 2
+                card._hp += 2
                 print("Your max health has been upgraded to " + str(card._max_health) + "\n")
             return True
         else:
