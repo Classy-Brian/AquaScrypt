@@ -58,8 +58,21 @@ def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, u
             done = True
     return heroAttack(curr_hero, curr_attack, scale)
 
+def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, scale):
+    
+
+    if boss._name == "Bubble Bass":
+        print("Bubble Bass")
+    
+    elif boss._name == "Scuba Diver":
+        print("hello")
+
+    elif boss._name == "Mermaid":
+        print("hello")
+
 def boss_battle(hero, boss):
-    print("------------- Boss Battle -------------")
+
+    print("------------- Boss Battle -------------\n")
     
     shrimp_count = 20
     my_shrimp = shrimp.Shrimp()
@@ -72,7 +85,7 @@ def boss_battle(hero, boss):
 
     boss._deck.shuffle()
     
-    scale = 0
+    scale = 3
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
@@ -87,21 +100,56 @@ def boss_battle(hero, boss):
 
     # Puts card to upcoming attack first turn 
     # villian_draw_card(villian, upcoming_attack, upcoming_attack)
+    active = False
+    count = 0  
+
+    print(str(boss))
 
     while scale > -5 and scale < 10:
         
-        # villian turn
+        
+        # villian turn 
         if turn == 0:
+            
             print("\n---- Boss Turn ----\n")
-            scale = boss_turn(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, scale)
-            pause()
-            turn = 1
+            if scale >= 3 and scale <=8:
+                if active is False:
+                    if count != 2:
+                        print(boss.power())
+                        scale = boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, scale) # mechanic part here 
+                        print(boss.power())
+                        count += 1
+                    else:
+                        active = True
+                        print(boss.attack()) 
+
+                scale = boss_turn(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, scale)
+                pause()
+                turn = 1
+
+            else:
+                scale = boss_turn(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, scale)
+                pause()
+                turn = 1
+
         # Hero turn
         else:
             print("\n---- Hero Turn ----\n")
-            scale = hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack,boss, hero)
-            pause()
-            turn = 0
+            if scale <= 0 and scale >= -3:
+                print(boss.attack())
+                scale = hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack,boss, hero)
+                pause()
+                turn = 0
+            
+            else:
+                scale = hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack,boss, hero)
+                pause()
+                turn = 0
+
+
+
+
+
 
 """
 Bubble Bass (Up to change)
