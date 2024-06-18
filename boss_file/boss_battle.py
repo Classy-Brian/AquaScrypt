@@ -71,7 +71,6 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
         print("hello")
 
 def boss_battle(hero, boss):
-
     print("------------- Boss Battle -------------\n")
     
     shrimp_count = 20
@@ -84,6 +83,8 @@ def boss_battle(hero, boss):
         hero_hand.append(random_card(play_deck))
 
     boss._deck.shuffle()
+
+    print(play_deck)
     
     scale = 0
     turn = 0
