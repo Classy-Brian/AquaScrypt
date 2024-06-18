@@ -45,10 +45,12 @@ class Player():
             print(item, end=" ")
 
     def display_deck(self):
-        count = 0
+        cards = set()
         for card in self._deck:
-            print(f"{count}. {card.name}")
-            count += 1
+            cards.add(card.name)
+        
+        for card in cards:
+            print(f"{card} (x3)")
 
     def save_game(self, file_name):
 

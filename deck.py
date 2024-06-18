@@ -146,8 +146,9 @@ class Deck:
 
     def upgrade(self):
         print("------------- Upgrade -------------")
-        card = self.choose_card("Choose a card to upgrade ",remove_duplicates=True, return_index=False)
+        card, idx = self.choose_card("Choose a card to upgrade ",remove_duplicates=True, return_index=True)
         print(f"\nYou chose the {card.name}\n")
+        print(f"index: {idx}")
         pause()
         clear_terminal()
 
@@ -167,32 +168,32 @@ class Deck:
         while player_choice and chance > 0 :
             random_num = random.randint(1,100)
             if chance == 50:
-                if not self.upgrade_chance(random_num, card, chance, 
+                if not self.upgrade_chance(idx, random_num, card, chance, 
                     "Aquaman is willing to answer your prayers!", 
                     "Aquaman is too hungry to care about you ... he ate your fish as a snack."):
                     chance = 0
             elif chance == 25:
-                if not self.upgrade_chance(random_num, card, chance, 
+                if not self.upgrade_chance(idx, random_num, card, chance, 
                     "Aquaman is surprisingly in a happy mood today!", 
                     "Your luck runs out, Aquaman sent your lil fish to fish jail."): 
                     chance = 0
             elif chance == 12:
-                if not self.upgrade_chance(random_num, card, chance, 
+                if not self.upgrade_chance(idx, random_num, card, chance, 
                     "It seems like Aquaman is starting to like you!", 
                     "You got way too greedy, Aquaman has stolen your fish and now the fish serves him."):
                     chance = 0
             elif chance == 6:
-                if not self.upgrade_chance(random_num, card, chance, 
+                if not self.upgrade_chance(idx, random_num, card, chance, 
                     "You're crazy! Aquaman is astonished!", 
                     "Your time has come to end"):
                     chance = 0
             elif chance == 3:
-                if not self.upgrade_chance(random_num, card, chance, 
+                if not self.upgrade_chance(idx, random_num, card, chance, 
                     "You won't do it again ... Aquaman challenges you ...", 
                     "Aquaman now wants the fish ... not you, go away."):
                     chance = 0
             elif chance == 1:
-                if not self.upgrade_chance(random_num, card, chance, 
+                if not self.upgrade_chance(idx, random_num, card, chance, 
                     "Congrants you did it!! You have bested Aquaman!", 
                     "so close ... yet so far ..."):
                     chance = 0
@@ -201,11 +202,12 @@ class Deck:
             if chance is not 0: 
                 player_choice = check_input.yes_no(f"Would you like to upgrade again? " + str(chance) + '%' " chance Y/N: ")
 
+        card = self.choose_card("Choose a card to upgrade ",remove_duplicates=False, return_index=False)
         print()
         pause()
         clear_terminal()
         
-    def upgrade_chance(self, random_num, card, chance, congrats_text, failed_text):
+    def upgrade_chance(self, idx, random_num, card, chance, congrats_text, failed_text):
         if random_num <= 50:
             print(congrats_text)
             random_num2 = random.randint(1,2)
@@ -218,9 +220,14 @@ class Deck:
                 print("Your max health has been upgraded to " + str(card._max_health) + "\n")
             return True
         else:
-            self.remove_card(0)
+            # self.remove_card(0)
+            idx *= 3 
+            self.remove_card(idx) # made by Brian
+            self.remove_card(idx) # made by Brian
+            self.remove_card(idx) # made by Brian
+
             print(failed_text)
             chance = 0 
             return False
-
+        
 
