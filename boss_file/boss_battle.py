@@ -85,7 +85,7 @@ def boss_battle(hero, boss):
 
     boss._deck.shuffle()
     
-    scale = 3
+    scale = 0
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
@@ -116,7 +116,7 @@ def boss_battle(hero, boss):
                 if active is False:
                     if count != 2:
                         print(boss.power())
-                        scale = boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, scale) # mechanic part here 
+                        boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, scale) # mechanic part here 
                         print(boss.power())
                         count += 1
                     else:
@@ -135,7 +135,7 @@ def boss_battle(hero, boss):
         # Hero turn
         else:
             print("\n---- Hero Turn ----\n")
-            if scale <= 0 and scale >= -3:
+            if scale <= -3:
                 print(boss.attack())
                 scale = hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack,boss, hero)
                 pause()
@@ -160,7 +160,7 @@ Bubble Bass (Up to change)
 - Player must pop the bubbles if they wish to play on that slot
 - If card gets bubbled:
     - puts into deck and to pop up, it must be played back in otherwise each round it loses health
-    - it trapped and cannot do any damage on the board and each round it takes damage, must be popped to continue fighting
+    - ipt traped and cannot do any damage on the board and each round it takes damage, must be popped to continue fighting
     - bubble zombie
     - hallucination 
 

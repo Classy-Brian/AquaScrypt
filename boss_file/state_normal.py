@@ -7,7 +7,7 @@ class StateNormal(boss_state.BossState):
         Returns a string describing
         the boss reaction.
         """
-        return "\n The Boss is attacking you, you're slowly falling apart\nhave you giving up?"
+        return "\n The Boss is attacking you, you're slowly falling apart\nhave you giving up?\n"
 
     def mechanic(self, boss):
         """
@@ -15,6 +15,6 @@ class StateNormal(boss_state.BossState):
         the boss reaction.
         """
         boss.change_state(state_power.StatePower())
-        return "\nYou made the Boss angry, its now using its power on you"
+        return "\nYou made the Boss angry, its now using its power on you\n"
     
         
