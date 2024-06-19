@@ -148,7 +148,6 @@ class Deck:
         print("------------- Upgrade -------------")
         card, idx = self.choose_card("Choose a card to upgrade ",remove_duplicates=True, return_index=True)
         print(f"\nYou chose the {card.name}\n")
-        print(f"index: {idx}")
         pause()
         clear_terminal()
 
@@ -220,9 +219,9 @@ class Deck:
             return True
         else:
             idx *= 3 
-            self.remove_card(idx) # made by Brian
-            self.remove_card(idx) # made by Brian
-            self.remove_card(idx) # made by Brian
+            self.remove_card(idx) # made by ME
+            self.remove_card(idx) # made by ME
+            self.remove_card(idx) # made by ME
 
             print(failed_text)
             chance = 0 
