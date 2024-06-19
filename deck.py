@@ -200,7 +200,7 @@ class Deck:
             chance //= 2
             if chance is not 0: 
                 player_choice = check_input.yes_no(f"Would you like to upgrade again? " + str(chance) + '%' " chance Y/N: ")
-                
+                         
         print()
         pause()
         clear_terminal()

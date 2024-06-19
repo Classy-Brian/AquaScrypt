@@ -85,7 +85,7 @@ def boss_battle(hero, boss):
     for _ in range(4):
         hero_hand.append(random_card(play_deck))
     
-    scale = 10
+    scale = 0
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
@@ -104,6 +104,7 @@ def boss_battle(hero, boss):
     count = 0  
 
     print(str(boss))
+    print(play_deck)
 
     while scale > -5 and scale < 10:
         
