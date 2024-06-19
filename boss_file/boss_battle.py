@@ -5,6 +5,7 @@ from battle import random_card, draw_card, show_hand, display_board, placeCard, 
 from cards import shrimp
 import check_input
 from terminal_utils import clear_terminal, pause, delay_print, delay_input, delay
+import copy
 
 def boss_turn(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, scale):
     villian_draw_card(boss, upcoming_attack, hidden_upcoming)
@@ -77,7 +78,7 @@ def boss_battle(hero, boss):
     my_shrimp = shrimp.Shrimp()
 
     hero_hand = []
-    play_deck = hero._deck 
+    play_deck = copy.deepcopy(hero._deck)
 
     play_deck.shuffle()
 

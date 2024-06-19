@@ -382,7 +382,7 @@ def battle(hero, villian):
     my_shrimp = shrimp.Shrimp()
 
     hero_hand = []
-    play_deck = hero._deck 
+    play_deck = copy.deepcopy(hero._deck)
 
     play_deck.shuffle()
 
