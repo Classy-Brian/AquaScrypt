@@ -148,7 +148,6 @@ class Deck:
         print("------------- Upgrade -------------")
         card, idx = self.choose_card("Choose a card to upgrade ",remove_duplicates=True, return_index=True)
         print(f"\nYou chose the {card.name}\n")
-        print(f"index: {idx}")
         pause()
         clear_terminal()
 
@@ -201,8 +200,6 @@ class Deck:
             chance //= 2
             if chance is not 0: 
                 player_choice = check_input.yes_no(f"Would you like to upgrade again? " + str(chance) + '%' " chance Y/N: ")
-
-        card = self.choose_card("Choose a card to upgrade ",remove_duplicates=False, return_index=False)
         print()
         pause()
         clear_terminal()
@@ -220,11 +217,11 @@ class Deck:
                 print("Your max health has been upgraded to " + str(card._max_health) + "\n")
             return True
         else:
-            # self.remove_card(0)
+            
             idx *= 3 
-            self.remove_card(idx) # made by Brian
-            self.remove_card(idx) # made by Brian
-            self.remove_card(idx) # made by Brian
+            self.remove_card(idx) # made by ME
+            self.remove_card(idx) # made by ME
+            self.remove_card(idx) # made by ME
 
             print(failed_text)
             chance = 0 

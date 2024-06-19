@@ -85,7 +85,7 @@ def boss_battle(hero, boss):
 
     boss._deck.shuffle()
     
-    scale = 0
+    scale = 10
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
@@ -145,6 +145,24 @@ def boss_battle(hero, boss):
                 scale = hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack,boss, hero)
                 pause()
                 turn = 0
+    if scale <= -5:
+        clear_terminal()
+        delay_print("Game Over You Drowned")
+        pause()
+        choice = check_input.yes_no("Try again? Y/N\n")
+        if choice is True:
+             if boss._name == "Bubble Bass":
+                bubble = boss("Bubble Bass") 
+                boss_battle.boss_battle(hero, bubble)
+        else:
+            exit()
+    elif scale >= 10:
+        clear_terminal()
+        delay_print(f"You have defeated the evil {boss._name}\n You can move forward!")
+        pause()
+        clear_terminal()
+
+
 
 
 
