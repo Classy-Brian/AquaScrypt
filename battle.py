@@ -383,7 +383,9 @@ def battle(hero, villian):
 
     hero_hand = []
     play_deck = hero._deck 
+
     play_deck.shuffle()
+
     for _ in range(4):
         hero_hand.append(random_card(play_deck))
 

@@ -78,13 +78,11 @@ def boss_battle(hero, boss):
 
     hero_hand = []
     play_deck = hero._deck 
+
     play_deck.shuffle()
+
     for _ in range(4):
         hero_hand.append(random_card(play_deck))
-
-    boss._deck.shuffle()
-
-    print(play_deck)
     
     scale = 0
     turn = 0
@@ -92,10 +90,10 @@ def boss_battle(hero, boss):
     upcoming_attack = [None, None, None, None]
     curr_attack =     [None, None, None, None]
 
-    dolhpin = card.Card("Dolphin", 2, 2, 2, "Echolocation", False)
-    Angler = card.Card("Angler", 1, 2, 1, "Bioluminescence", False)
-    Jellyfish = card.Card("Jellyfish", 2, 1, 2, "Swarm", False)
-    Otter = card.Card("Otter", 1, 1, 2, "Swift", False)
+    # dolhpin = card.Card("Dolphin", 2, 2, 2, "Echolocation", False)
+    # Angler = card.Card("Angler", 1, 2, 1, "Bioluminescence", False)
+    # Jellyfish = card.Card("Jellyfish", 2, 1, 2, "Swarm", False)
+    # Otter = card.Card("Otter", 1, 1, 2, "Swift", False)
     curr_hero =       [None, None, None, None]
     
 
