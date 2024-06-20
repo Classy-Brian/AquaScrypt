@@ -158,8 +158,8 @@ class Deck:
             card._power += 1
         else:
             print("You came to visit Aquaman, and he grants you more ... HEALTH")
-            print(f"Your max health has been upgraded from {str(card._max_health)} to {str(card._max_health + 2)}\n")
-            card._max_health += 2
+            print(f"Your max health has been upgraded from {str(card._max_hp)} to {str(card._max_hp + 2)}\n")
+            card._max_hp += 2
             card._hp +=2
 
         player_choice = check_input.yes_no(f"Aquaman is getting hangry\nWould you like to upgrade again? (50% chance) Y/N: ")
@@ -200,7 +200,7 @@ class Deck:
             chance //= 2
             if chance is not 0: 
                 player_choice = check_input.yes_no(f"Would you like to upgrade again? " + str(chance) + '%' " chance Y/N: ")
-                
+                         
         print()
         pause()
         clear_terminal()
@@ -213,9 +213,9 @@ class Deck:
                 card._power += 1
                 print("Your power has been upgraded to " + str(card._power) + "\n")
             else:
-                card._max_health += 2
+                card._max_hp += 2
                 card._hp += 2
-                print("Your max health has been upgraded to " + str(card._max_health) + "\n")
+                print("Your max health has been upgraded to " + str(card._max_hp) + "\n")
             return True
         else:
             idx *= 3 

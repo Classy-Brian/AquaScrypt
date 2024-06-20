@@ -71,6 +71,12 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
     elif boss._name == "Mermaid":
         print("hello")
 
+def death_messages(curr_attack):
+    for index, card in enumerate(curr_attack):
+        if card is not None:
+            print(f"The villian's {curr_attack[index].name}")  
+
+
 def boss_battle(hero, boss):
     print("------------- Boss Battle -------------\n")
     
@@ -84,15 +90,15 @@ def boss_battle(hero, boss):
 
     for _ in range(4):
         hero_hand.append(random_card(play_deck))
-    
-    scale = 10
+    Angler = card.Card("Angler", 1, 2, 1, "Bioluminescence", False)
+    scale = 0
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
-    curr_attack =     [None, None, None, None]
+    curr_attack =     [Angler, None, None, None]
 
-    # dolhpin = card.Card("Dolphin", 2, 2, 2, "Echolocation", False)
-    # Angler = card.Card("Angler", 1, 2, 1, "Bioluminescence", False)
+    #dolhpin = card.Card("Dolphin", 2, 2, 2, "Echolocation", False)
+    #Angler = card.Card("Angler", 1, 2, 1, "Bioluminescence", False)
     # Jellyfish = card.Card("Jellyfish", 2, 1, 2, "Swarm", False)
     # Otter = card.Card("Otter", 1, 1, 2, "Swift", False)
     curr_hero =       [None, None, None, None]
@@ -104,6 +110,7 @@ def boss_battle(hero, boss):
     count = 0  
 
     print(str(boss))
+    
 
     while scale > -5 and scale < 10:
         
@@ -147,13 +154,13 @@ def boss_battle(hero, boss):
                 turn = 0
     if scale <= -5:
         clear_terminal()
-        delay_print("Game Over You Drowned")
+        delay_print(f"Game Over You Drowned")
         pause()
         choice = check_input.yes_no("Try again? Y/N\n")
         if choice is True:
              if boss._name == "Bubble Bass":
                 bubble = boss("Bubble Bass") 
-                boss_battle.boss_battle(hero, bubble)
+                #boss_battle.boss_battle(hero, bubble)
         else:
             exit()
     elif scale >= 10:
