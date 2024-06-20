@@ -99,6 +99,10 @@ class Card:
         """ Description of the sigil """
         pass
 
+    def death_mess(self):
+        """ Card message when killing you """
+        pass
+
     def __str__(self):
         """ returns name, health, and sigil """
         print(self.name)

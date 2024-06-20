@@ -14,8 +14,12 @@ giving them +1 to their stats.
 Swarm: Summons additional copies of itself.
 
 Frenzy: This sigil significantly increases your offensive power by 
-allowing a card to deal double its normal damage.
+allowing a card to deal double its normal damage when low.
 
 Barrier: Blocks the next attack against the card that has this sigil.
 
 Echolocation: Allows you to see the upcoming attack.
+
+Swift: 50% chance to avoid attack.
+
+Shell: Choose a villian's card to cut the damage in half. 

@@ -16,3 +16,6 @@ class Shrimp(card.Card):
     
     def desc(self):
         return "It's a shrimp..."
+
+    def death_mess(self):
+        return "It's a shrimp..."

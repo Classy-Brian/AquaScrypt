@@ -16,4 +16,7 @@ class MantaRay(card.Card):
         return self._name + " attacks a " + entity._name + " for " + str(self._power) + " damage."
 
     def desc(self):
-        return f"{self.name} that costs {self.cost} with {self.max_hp}, and {self.power}. Sigil: {self.sigil}"
+        return f"Sigil: {self.sigil}\nBlocks the next attack against the card that has this sigil."
+    
+    def death_mess(self):
+        return

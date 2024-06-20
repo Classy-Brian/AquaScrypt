@@ -73,8 +73,11 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
 
 def death_messages(curr_attack):
     for index, card in enumerate(curr_attack):
-        if card is not None:
-            print(f"The villian's {curr_attack[index].name}")  
+        first = False 
+        if first is False:
+            print(f"The villian's {curr_attack[index].name}")
+            first = True 
+            
 
 
 def boss_battle(hero, boss):
@@ -88,14 +91,14 @@ def boss_battle(hero, boss):
 
     play_deck.shuffle()
 
-    for _ in range(4):
+    for _ in range(26):
         hero_hand.append(random_card(play_deck))
-    Angler = card.Card("Angler", 1, 2, 1, "Bioluminescence", False)
+    #Angler = card.Card("Angler", 1, 2, 1, "Bioluminescence", False)
     scale = 0
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
-    curr_attack =     [Angler, None, None, None]
+    curr_attack =     [None, None, None, None]
 
     #dolhpin = card.Card("Dolphin", 2, 2, 2, "Echolocation", False)
     #Angler = card.Card("Angler", 1, 2, 1, "Bioluminescence", False)
@@ -113,7 +116,8 @@ def boss_battle(hero, boss):
     
 
     while scale > -5 and scale < 10:
-        
+        if len(play_deck) -1 < 0:
+            scale == -5 
         
         # villian turn 
         if turn == 0:
