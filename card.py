@@ -9,13 +9,13 @@ class Card:
         _sigil (string): sigil of the card
     """
 
-    def __init__(self, name, cost, power, max_health, sigil, barrier):
+    def __init__(self, name, cost, power, max_hp, sigil, barrier):
         """ Initializes attributes """
         self._name = name
         self._cost = cost
         self._power = power
-        self._max_health = max_health
-        self._hp = max_health
+        self._max_hp = max_hp
+        self._hp = max_hp
         self._sigil = sigil
         self.barrier = barrier
     
@@ -25,7 +25,7 @@ class Card:
             name=data.get('name'),
             cost=data.get('cost'),
             power=data.get('power'),
-            max_health=data.get('max_health'),
+            max_hp=data.get('max_hp'),
             sigil=data.get('sigil'),
             barrier=data.get('barrier')
         )
@@ -36,12 +36,12 @@ class Card:
         return self._name
 
     @property
-    def max_health(self):
-        return self._max_health
+    def max_hp(self):
+        return self._max_hp
     
-    @max_health.setter
-    def max_health(self, value):
-        self._max_health = value
+    @max_hp.setter
+    def max_hp(self, value):
+        self._max_hp = value
 
     @property
     def hp(self):
@@ -101,4 +101,5 @@ class Card:
 
     def __str__(self):
         """ returns name, health, and sigil """
-        return f"{self.name} \n Cost: {self.cost} \n HP:{self._hp}/{self._max_health} \n Power: {self.power} \n Sigil: {self._sigil}"
+        print(self.name)
+        return f"{self.name} \n Cost: {self.cost} \n HP:{self._hp}/{self._max_hp} \n Power: {self.power} \n Sigil: {self._sigil}"

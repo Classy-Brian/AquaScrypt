@@ -60,7 +60,7 @@ class Player():
                 "name": card._name,
                 "cost": card._cost,
                 "power": card._power,
-                "max_health": card._max_health,
+                "max_hp": card._max_hp,
                 "sigil": card._sigil,
                 "barrier": card.barrier
             }
