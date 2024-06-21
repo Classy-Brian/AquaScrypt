@@ -72,11 +72,12 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
         print("hello")
 
 def death_messages(curr_attack):
-    for index, card in enumerate(curr_attack):
-        first = False 
-        if first is False:
-            print(f"The villian's {curr_attack[index].name}")
-            first = True 
+    first = False 
+    while not first:
+        for index, card in enumerate(curr_attack):
+            if card is not None:
+                print(f"The villian's {curr_attack[index].name} ")
+                first = True 
             
 
 
@@ -93,12 +94,12 @@ def boss_battle(hero, boss):
 
     for _ in range(26):
         hero_hand.append(random_card(play_deck))
-    #Angler = card.Card("Angler", 1, 2, 1, "Bioluminescence", False)
-    scale = 0
+    Angler = card.Card("Angler", 1, 2, 1, "Bioluminescence", False)
+    scale = -5
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
-    curr_attack =     [None, None, None, None]
+    curr_attack =     [None, Angler, None, None]
 
     #dolhpin = card.Card("Dolphin", 2, 2, 2, "Echolocation", False)
     #Angler = card.Card("Angler", 1, 2, 1, "Bioluminescence", False)
@@ -159,6 +160,7 @@ def boss_battle(hero, boss):
     if scale <= -5:
         clear_terminal()
         delay_print(f"Game Over You Drowned")
+        death_messages(curr_attack)
         pause()
         choice = check_input.yes_no("Try again? Y/N\n")
         if choice is True:
