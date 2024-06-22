@@ -19,4 +19,4 @@ class Kraken(card.Card):
         return f"Sigil: {self.sigil}\nDeals double damage when low"
     
     def death_mess(self):
-        return
+        return f"The villain's mighty Kraken ensnares you with its tentacles, dragging you into the abyss with a thunderous roar!"

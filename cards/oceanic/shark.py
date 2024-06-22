@@ -19,4 +19,4 @@ class Shark(card.Card):
         return f"Sigil: {self.sigil}"
     
     def death_mess(self):
-        return
+        return f"The villain's ferocious Shark devours you whole, leaving nothing but a lingering fear in the depths."

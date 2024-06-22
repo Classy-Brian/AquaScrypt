@@ -1,4 +1,6 @@
-class Card:
+import abc
+
+class Card(abc.ABC):
     """ Represents a single card
     Attributes:
         <<get>> _name (string): Name of the card
@@ -91,14 +93,17 @@ class Card:
             self._hp = 0
         return f"{self.name} takes {dmg} damage"
 
+    @abc.abstractmethod
     def attack(self, entity):
         """ Deals damage to opposing entity """
         pass
 
+    @abc.abstractmethod
     def desc(self):
         """ Description of the sigil """
         pass
 
+    @abc.abstractmethod
     def death_mess(self):
         """ Card message when killing you """
         pass

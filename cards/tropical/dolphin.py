@@ -19,4 +19,4 @@ class Dolphin(card.Card):
         return f"Sigil: {self.sigil}\nAllows you to see the upcoming attack."
     
     def death_mess(self):
-        return
+        return f"The villain's playful Dolphin gracefully nudges you into the eternal currents with a final splash of whimsy."

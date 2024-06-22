@@ -19,4 +19,4 @@ class Leviathan(card.Card):
         return f"Sigil: {self.sigil}\nDeals double damage when low"
     
     def death_mess(self):
-        return 
+        return f"The villain's Leviathan's relentless fury overwhelms you, its colossal form casting a shadow over your final moments."

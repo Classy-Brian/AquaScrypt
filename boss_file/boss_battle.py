@@ -1,5 +1,8 @@
 import deck
 import card
+from cards.abyssal import angler,jellyfish,kraken
+from cards.oceanic import leviathan, manta_ray, shark
+from cards.tropical import dolphin,otter, turtle
 from boss_file import boss
 from battle import random_card, draw_card, show_hand, display_board, placeCard, use_item, use_sigil, villian_play_card, heroAttack, villian_attack, villian_draw_card
 from cards import shrimp
@@ -72,12 +75,13 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
         print("hello")
 
 def death_messages(curr_attack):
-    first = False 
-    while not first:
-        for index, card in enumerate(curr_attack):
-            if card is not None:
-                print(f"The villian's {curr_attack[index].name} ")
-                first = True 
+    last_attack_card = None
+    for card in curr_attack:
+        if card is not None:
+            last_attack_card = card
+    
+    if last_attack_card is not None:
+        print(f"{last_attack_card.death_mess()}")
             
 
 
@@ -94,14 +98,14 @@ def boss_battle(hero, boss):
 
     for _ in range(26):
         hero_hand.append(random_card(play_deck))
-    Angler = card.Card("Angler", 1, 2, 1, "Bioluminescence", False)
-    scale = -5
+    Angler = angler.Angler()
+    dolhpin = dolphin.Dolphin()
+    scale = -3
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
-    curr_attack =     [None, Angler, None, None]
-
-    #dolhpin = card.Card("Dolphin", 2, 2, 2, "Echolocation", False)
+    curr_attack =     [Angler, None, dolhpin, None]
+    "dont do this anymore "
     #Angler = card.Card("Angler", 1, 2, 1, "Bioluminescence", False)
     # Jellyfish = card.Card("Jellyfish", 2, 1, 2, "Swarm", False)
     # Otter = card.Card("Otter", 1, 1, 2, "Swift", False)
@@ -159,7 +163,7 @@ def boss_battle(hero, boss):
                 turn = 0
     if scale <= -5:
         clear_terminal()
-        delay_print(f"Game Over You Drowned")
+        delay_print(f"Game Over You Drowned\n")
         death_messages(curr_attack)
         pause()
         choice = check_input.yes_no("Try again? Y/N\n")

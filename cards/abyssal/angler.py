@@ -19,4 +19,4 @@ class Angler(card.Card):
         return f"Sigil: {self.sigil}\nEnhances itself and other abyssal fish cards, giving them +1 to their stats."
     
     def death_mess(self):
-        return 
+        return f"The villain's Angler deceived you and has reeled you in! Better luck next time, suckerfish!"

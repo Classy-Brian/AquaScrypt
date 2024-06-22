@@ -15,7 +15,7 @@ class Shrimp(card.Card):
         return self._name + " attacks a " + entity._name + " for " + str(self._power) + " damage."
     
     def desc(self):
-        return "It's a shrimp..."
+        return f"It's a shrimp..."
 
     def death_mess(self):
-        return "It's a shrimp..."
+        return f"The Shrimp's final strike may be small, but it leaves a giant mark, toppling the player with an unexpected and humbling defeat."

@@ -19,4 +19,4 @@ class Otter(card.Card):
         return f"Sigil: {self.sigil}\n50% Chance to avoid attack."
     
     def death_mess(self):
-        return
+        return f"The villain's mischievous Otter bids farewell with a cheeky slap, leaving a mark in memory of its playful antics."

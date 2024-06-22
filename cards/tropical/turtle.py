@@ -19,4 +19,4 @@ class Turtle(card.Card):
         return f"Sigil: {self.sigil}\nChoose a villian's card to cut the damage in half."
     
     def death_mess(self):
-        return
+        return f"The villain's ancient Turtle withdraws into its shell, leaving a lasting legacy of resilience and wisdom."

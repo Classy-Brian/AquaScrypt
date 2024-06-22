@@ -19,4 +19,4 @@ class MantaRay(card.Card):
         return f"Sigil: {self.sigil}\nBlocks the next attack against the card that has this sigil."
     
     def death_mess(self):
-        return
+        return f"The villain's graceful Manta Ray glides past, leaving you to ponder its beauty as your vision fades into darkness."

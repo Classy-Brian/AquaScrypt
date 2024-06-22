@@ -19,4 +19,4 @@ class Jellyfish(card.Card):
         return f"Sigil: {self.sigil}\nSummons additional copies of itself."
     
     def death_mess(self):
-        return
+        return f"The villain's Jellyfish delivers a shocking farewell, leaving you stunned and defeated in its aquatic grasp!"
