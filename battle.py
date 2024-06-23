@@ -1,6 +1,9 @@
 import random
 import deck
 import card
+from cards.abyssal import angler,jellyfish,kraken
+from cards.oceanic import leviathan, manta_ray, shark
+from cards.tropical import dolphin,otter, turtle
 import player
 import copy 
 from boss_file import boss
@@ -255,13 +258,13 @@ def placeCard(hero_hand, curr_hero):
     while not card_place:
         print("Where would you like to place the card? Slot 1, 2, 3, or 4")
         choice = check_input.range_int("Enter choice: ", 1, 4)
-        choice_2= check_input.yes_no(f"Are you sure you want to place your card at slot {choice}?\n")
-        if choice_2 == True:
-            if curr_hero[choice - 1] is None:
-                curr_hero[choice - 1] = picked_card
-                card_place = True
-            else:
-                print("There is already a card in that slot, pick somewhere else.")
+        #choice_2= check_input.yes_no(f"Are you sure you want to place your card at slot {choice}?\n")
+        #if choice_2 == True:
+        if curr_hero[choice - 1] is None:
+            curr_hero[choice - 1] = picked_card
+            card_place = True
+        else:
+            print("There is already a card in that slot, pick somewhere else.")
 
 
 def heroAttack(curr_hero, curr_attack, scale):
@@ -302,6 +305,7 @@ def use_sigil(villian, hidden_upcoming, upcoming_attack, curr_attack, curr_hero,
         print("Which card do you want to use Sigil? Slot 1, 2, 3, or 4")
         choice = check_input.range_int("Enter choice: ", 1, 4)
         if curr_hero[choice - 1] is not None:
+            print(f"\n{curr_hero[choice - 1].desc()}")
             choice_2= check_input.yes_no(f"Are you sure you want to use {curr_hero[choice - 1].name} sigil?\n")
             if choice_2 == True:
                 if curr_hero[choice - 1].sigil == "Bioluminescence":
@@ -343,7 +347,7 @@ def use_sigil(villian, hidden_upcoming, upcoming_attack, curr_attack, curr_hero,
 
                 elif curr_hero[choice - 1].sigil == "Echolocation":
                     print(f"\n{curr_hero[choice - 1].name} use Echolocation and see upcoming attack!")
-                    print("Here is the upcoming attack: ")
+                    print("\nHere is the upcoming attack: ")
                     for card in hidden_upcoming:
                         if card is None:
                             print(card, end=" ")
@@ -390,17 +394,15 @@ def battle(hero, villian):
         hero_hand.append(random_card(play_deck))
 
     villian._deck.shuffle()
+
+    Angler = angler.Angler()
+    dolhpin = dolphin.Dolphin()
     
     scale = 0
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
     curr_attack =     [None, None, None, None]
-
-    dolhpin = card.Card("Dolphin", 2, 2, 2, "Echolocation", False)
-    Angler = card.Card("Angler", 1, 2, 1, "Bioluminescence", False)
-    Jellyfish = card.Card("Jellyfish", 2, 1, 2, "Swarm", False)
-    Otter = card.Card("Otter", 1, 1, 2, "Swift", False)
     curr_hero =       [None, None, None, None]
     
 

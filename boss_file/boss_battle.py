@@ -51,7 +51,6 @@ def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, u
                         print("Nothing there! try again")
         elif choice == 5:
             if sigil is False:
-                "might need to tweak this"
                 use_sigil(boss, hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale)
                 sigil = True
             else: 
@@ -96,20 +95,20 @@ def boss_battle(hero, boss):
 
     play_deck.shuffle()
 
-    for _ in range(26):
+    for _ in range(4):
         hero_hand.append(random_card(play_deck))
     Angler = angler.Angler()
-    dolhpin = dolphin.Dolphin()
-    scale = -3
+    Dolhpin = dolphin.Dolphin()
+    scale = -5
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
-    curr_attack =     [Angler, None, dolhpin, None]
+    curr_attack =     [None, None, None, None]
     "dont do this anymore "
     #Angler = card.Card("Angler", 1, 2, 1, "Bioluminescence", False)
     # Jellyfish = card.Card("Jellyfish", 2, 1, 2, "Swarm", False)
     # Otter = card.Card("Otter", 1, 1, 2, "Swift", False)
-    curr_hero =       [None, None, None, None]
+    curr_hero =       [Angler, None, Dolhpin, None]
     
 
     # Puts card to upcoming attack first turn 
@@ -169,8 +168,8 @@ def boss_battle(hero, boss):
         choice = check_input.yes_no("Try again? Y/N\n")
         if choice is True:
              if boss._name == "Bubble Bass":
-                bubble = boss("Bubble Bass") 
-                #boss_battle.boss_battle(hero, bubble)
+                bubble = boss.Boss("Bubble Bass") 
+                boss_battle.boss_battle(hero, bubble)
         else:
             exit()
     elif scale >= 10:
