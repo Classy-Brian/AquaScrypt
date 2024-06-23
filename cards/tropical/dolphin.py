@@ -13,7 +13,7 @@ class Dolphin(card.Card):
 
     def attack(self, entity):
         entity.take_damage(self._power)
-        return self._name + " attacks a " + entity._name + " for " + str(self._power) + " damage."
+        return f"Your {self._name} delt {str(self._power)} damage to villian {entity._name}"
 
     def desc(self):
         return f"Sigil: {self.sigil}\nAllows you to see the upcoming attack."

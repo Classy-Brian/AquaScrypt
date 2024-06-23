@@ -274,8 +274,10 @@ def heroAttack(curr_hero, curr_attack, scale):
                 scale += card.power
                 print(f"Your {card.name} have done {card.power} to the villian!")
             else:
-                curr_attack[index].take_damage(card.power)
-                print(f"Your {card.name} delt {card.power} damage to villian {curr_attack[index].name}")
+                #curr_attack[index].take_damage(card.power) old one 
+                #card.attack(curr_attack[index]) this did not print out the str 
+                print(card.attack(curr_attack[index]))
+                #print(f"Your {card.name} delt {card.power} damage to villian {curr_attack[index].name}") we can use attack instead of this in card
                 if curr_attack[index].hp == 0:
                     print(f"Your {card.name} has slayed villian {curr_attack[index].name} ")
                     curr_attack[index] = None 
@@ -399,11 +401,11 @@ def battle(hero, villian):
     dolhpin = dolphin.Dolphin()
     
     scale = 0
-    turn = 0
+    turn = 1
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
-    curr_attack =     [None, None, None, None]
-    curr_hero =       [None, None, None, None]
+    curr_attack =     [dolhpin, None, None, None]
+    curr_hero =       [dolhpin, None, None, None]
     
 
     # Puts card to upcoming attack first turn 
