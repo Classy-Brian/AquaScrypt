@@ -41,6 +41,10 @@ class Card(abc.ABC):
     def max_hp(self):
         return self._max_hp
     
+    @name.setter
+    def name(self, newName):
+        self._name = newName
+    
     @max_hp.setter
     def max_hp(self, value):
         self._max_hp = value

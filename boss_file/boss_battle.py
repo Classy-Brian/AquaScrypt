@@ -65,7 +65,28 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
     
 
     if boss._name == "Bubble Bass":
+        pause()
         print("Bubble Bass")
+
+        done = False
+
+        while not done:
+
+            """ A temporary board that will be shown to the user but their actual board remains untouched """
+            copy_curr_hero = copy.deepcopy(curr_hero)
+            for card in copy_curr_hero:
+                if card is not None:
+                    temp = "(" + card.name + ")"
+                    card.name = temp
+            
+            print("HAHAHAHAHAAAA....... I trapped your cards in my NASTY BUBBLE!")
+            print("You better pop em out before they become.... MINE!")
+            
+            display_board(hidden_upcoming, upcoming_attack, curr_attack, copy_curr_hero, scale)
+
+            done = True
+                
+
     
     elif boss._name == "Scuba Diver":
         print("hello")
@@ -99,17 +120,15 @@ def boss_battle(hero, boss):
         hero_hand.append(random_card(play_deck))
     Angler = angler.Angler()
     Dolhpin = dolphin.Dolphin()
-    scale = -5
+    scale = 0
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
     curr_attack =     [None, None, None, None]
     "dont do this anymore "
-    #Angler = card.Card("Angler", 1, 2, 1, "Bioluminescence", False)
-    # Jellyfish = card.Card("Jellyfish", 2, 1, 2, "Swarm", False)
-    # Otter = card.Card("Otter", 1, 1, 2, "Swift", False)
-    curr_hero =       [Angler, None, Dolhpin, None]
-    
+
+
+    curr_hero =       [Angler, None, Dolhpin, None] # 2 0 2 0
 
     # Puts card to upcoming attack first turn 
     # villian_draw_card(villian, upcoming_attack, upcoming_attack)
@@ -121,7 +140,7 @@ def boss_battle(hero, boss):
 
     while scale > -5 and scale < 10:
         if len(play_deck) -1 < 0:
-            scale == -5 
+            scale == -5
         
         # villian turn 
         if turn == 0:
@@ -160,6 +179,7 @@ def boss_battle(hero, boss):
                 scale = hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack,boss, hero)
                 pause()
                 turn = 0
+
     if scale <= -5:
         clear_terminal()
         delay_print(f"Game Over You Drowned\n")
