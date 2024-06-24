@@ -72,16 +72,36 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
 
         while not done:
 
+            """  bubble_damage is used to keep track of the idx of the card that are bubbled 
+
+                What I am thinking is where there is:
+                    0: no card, no damage 
+                    1: There is a card, -1 dmg to card
+                    2: Card's health is 0, now it is dead or turned into bubble zombie
+            """
+            bubble_damage = []
+
             """ A temporary board that will be shown to the user but their actual board remains untouched """
             copy_curr_hero = copy.deepcopy(curr_hero)
             for card in copy_curr_hero:
                 if card is not None:
                     temp = "(" + card.name + ")"
                     card.name = temp
+                    bubble_damage.append(1)
+                else:
+                    bubble_damage.append(0)
+
+            # Maybe we dont need a temp board and just adjust it? I dunno, Imma take a break :3
+            # for card in curr_hero:
+            #     if card is not None:
+            #         temp = "(" + card.name + ")"
+            #         card.name = temp
+            #         bubble_damage.append(1)
+            #     else:
+            #         bubble_damage.append(0)
             
             print("HAHAHAHAHAAAA....... I trapped your cards in my NASTY BUBBLE!")
             print("You better pop em out before they become.... MINE!")
-            
             display_board(hidden_upcoming, upcoming_attack, curr_attack, copy_curr_hero, scale)
 
             done = True
