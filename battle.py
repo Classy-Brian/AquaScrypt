@@ -401,11 +401,11 @@ def battle(hero, villian):
     dolhpin = dolphin.Dolphin()
     
     scale = 0
-    turn = 1
+    turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
-    curr_attack =     [dolhpin, None, None, None]
-    curr_hero =       [dolhpin, None, None, None]
+    curr_attack =     [None, None, None, None]
+    curr_hero =       [None, None, None, None]
     
 
     # Puts card to upcoming attack first turn 

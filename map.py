@@ -10,15 +10,22 @@ class Map:
     
     def __init__(self):
         if not Map._initialized:
-            self.load_map(1)
+            self._maps = {}
+            self._current_map = None
             Map._initialized = True 
 
-    def load_map(self, map_num):
-        self._map = []
-        map = f'map1.txt'
-        with open(map, "r") as f:
+    def load_map(self, map_name, file_path):
+        map_data = []
+        with open(file_path, "r") as f:
             for line in f:
-                self._map.append(list(line.strip()))
+                map_data.append(list(line.strip()))
+        self._maps[map_name] = map_data
+        if self._current_map is None:
+            self._current_map = map_name
+
+    def switch_map(self,map_name):
+        if map_name in self._maps:
+            self._current_map = map_name
                 
 
     def __getitem__(self, row):
@@ -35,6 +42,11 @@ class Map:
         characters where revealed locations are the characters from the map, unrevealed
         locations are ‘x’s, and the hero’s location is a ‘*’
         """
+        if not self._current_map:
+            return "No map is currently loaded."
+        
+        self._map = self._maps[self._current_map]
+        
         str_map = ""
         for i in range(len(self._map)):
             for j in range(len(self._map[i])):

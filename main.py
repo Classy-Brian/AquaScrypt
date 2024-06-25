@@ -77,7 +77,13 @@ def main():
     
     villian = boss.Boss("Jeff")
     bubble = boss.Boss("Bubble Bass")
+    #bubble = boss.Boss("Bubble Bass") new boss 
+    #bubble = boss.Boss("Bubble Bass") new boss 
     game_map = map.Map()
+    game_map.load_map("map1", "map1.txt")
+    game_map.load_map("map2", "map2.txt")
+    game_map.load_map("map3", "map3.txt")
+    
 
     pause()
     clear_terminal()
@@ -117,11 +123,29 @@ def main():
             hero._deck.sacrifice()
         
         elif move == "V":
-            boss_battle.boss_battle(hero, bubble)
+            count = 0
+            if count == 0:
+                boss_battle.boss_battle(hero, bubble)
+                count +=1
+            elif count == 1:
+                #boss_battle.boss_battle(hero, bubble)
+                count +=1
+            else:
+                #boss_battle.boss_battle(hero, bubble)
+                print()
+
+        elif move == "R":
+            clear_terminal()
+            next = 0
+            if next == 0:
+                game_map.switch_map("map2")
+                #new boss
+            else:
+                game_map.switch_map("map3")
+                #new boss
         elif move == "F":
             print("you beat the game!!! Yippie")
             exit()
-            
-        
+                   
         print()
 main()
