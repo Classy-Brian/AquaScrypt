@@ -136,12 +136,16 @@ def main():
 
         elif move == "R":
             clear_terminal()
+            delay_print("You may advance, but beware—you will soon approach the abyss.\nProceed with caution!")
+            pause()
+            clear_terminal()
             next = 0
             if next == 0:
-                game_map.switch_map("map2")
+                game_map.switch_map("map2",hero)
+                next +=1
                 #new boss
             else:
-                game_map.switch_map("map3")
+                game_map.switch_map("map3",hero)
                 #new boss
         elif move == "F":
             print("you beat the game!!! Yippie")

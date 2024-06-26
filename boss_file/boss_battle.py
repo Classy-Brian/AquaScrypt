@@ -140,11 +140,12 @@ def boss_battle(hero, boss):
         hero_hand.append(random_card(play_deck))
     Angler = angler.Angler()
     Dolhpin = dolphin.Dolphin()
-    scale = 0
+    Otter= otter.Otter()
+    scale = -5
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
-    curr_attack =     [None, None, None, None]
+    curr_attack =     [my_shrimp, Otter, Dolhpin, None]
     "dont do this anymore "
 
 

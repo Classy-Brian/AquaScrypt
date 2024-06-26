@@ -23,9 +23,18 @@ class Map:
         if self._current_map is None:
             self._current_map = map_name
 
-    def switch_map(self,map_name):
+    def switch_map(self, map_name, player):
         if map_name in self._maps:
             self._current_map = map_name
+            self._set_initial_player_position(player)
+
+    def _set_initial_player_position(self, player):
+        """Sets the player's initial position to 's' on the current map."""
+        for i, row in enumerate(self._maps[self._current_map]):
+            for j, char in enumerate(row):
+                if char == 'S':
+                    player._location = [i, j]
+                    return
                 
 
     def __getitem__(self, row):
