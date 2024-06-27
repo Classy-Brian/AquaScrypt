@@ -51,9 +51,7 @@ class Map:
         characters where revealed locations are the characters from the map, unrevealed
         locations are ‘x’s, and the hero’s location is a ‘*’
         """
-        if not self._current_map:
-            return "No map is currently loaded."
-        
+      
         self._map = self._maps[self._current_map]
         
         str_map = ""

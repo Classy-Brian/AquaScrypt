@@ -44,3 +44,14 @@ in your journey.
 End Point (F): The goal of your journey. Reaching this point 
 signifies the end of your adventure.
 
+
+-----R-R------
+----V-V-V------
+---A--B--U----
+---B--I--B----
+---U--A--A----
+---B--U--B----
+----A-B-U-----
+-----BBB------
+------U-------
+------S-------

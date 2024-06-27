@@ -83,10 +83,11 @@ def main():
     game_map.load_map("map1", "map1.txt")
     game_map.load_map("map2", "map2.txt")
     game_map.load_map("map3", "map3.txt")
-    
-
+    next_map = 0
+    boss_def = 0
     pause()
     clear_terminal()
+
     while not quit :
         print(game_map.show_map(hero.location))
         print("1. Go stright\n2. Go left\n3. Go right\n4. Quit")
@@ -123,30 +124,30 @@ def main():
             hero._deck.sacrifice()
         
         elif move == "V":
-            count = 0
-            if count == 0:
+            if boss_def == 0:
                 boss_battle.boss_battle(hero, bubble)
-                count +=1
-            elif count == 1:
+                boss_def +=1
+            elif boss_def == 1:
                 #boss_battle.boss_battle(hero, bubble)
-                count +=1
+                boss_def +=1
             else:
                 #boss_battle.boss_battle(hero, bubble)
                 print()
 
         elif move == "R":
             clear_terminal()
-            delay_print("You may advance, but beware—you will soon approach the abyss.\nProceed with caution!")
-            pause()
-            clear_terminal()
-            next = 0
-            if next == 0:
+            if next_map == 0:
+                delay_print("You may advance, but beware you will soon approach the abyss.\nProceed with caution!")
+                pause()
+                clear_terminal()
                 game_map.switch_map("map2",hero)
-                next +=1
-                #new boss
+                next_map +=1
             else:
+                delay_print("\nProceed with caution!")
+                pause()
+                clear_terminal()
                 game_map.switch_map("map3",hero)
-                #new boss
+
         elif move == "F":
             print("you beat the game!!! Yippie")
             exit()
