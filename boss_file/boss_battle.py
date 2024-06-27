@@ -142,11 +142,11 @@ def boss_battle(hero, boss):
     Angler = angler.Angler()
     Dolhpin = dolphin.Dolphin()
     Otter= otter.Otter()
-    scale = -5
+    scale = 0
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
-    curr_attack =     [my_shrimp, Otter, Dolhpin, None]
+    curr_attack =     [None, None, None, None]
     "dont do this anymore "
 
 
@@ -199,7 +199,7 @@ def boss_battle(hero, boss):
                     curr_hero[i].take_damage(1)
                     if curr_hero[i]._hp <= 0:
                         print(f"{curr_hero[i]._name} DROWNED, DEAD, GONEE!")
-                        # Problem, the card doesn't die 
+                        curr_hero[i] = None
 
             if scale <= -3:
                 print(boss.attack())
