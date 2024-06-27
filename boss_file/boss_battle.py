@@ -61,53 +61,40 @@ def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, u
             done = True
     return heroAttack(curr_hero, curr_attack, scale)
 
-def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, dmg_mech, scale):
+def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, dmg_mech, scale, bossNum, phase2=False):
     
-
     if boss._name == "Bubble Bass":
         pause()
         print("Bubble Bass")
+        bossNum = 1
 
-        done = False
+        """  dmg_mech is used to keep track of the idx of the card that are bubbled.
 
-        while not done:
+            What I am thinking is where there is:
+                0: no card, no damage 
+                1: There is a card, -1 dmg to card
+                2: Contaminated bubble, -2 dmg to card
+        """
 
-            """  bubble_damage is used to keep track of the idx of the card that are bubbled 
-
-                What I am thinking is where there is:
-                    0: no card, no damage 
-                    1: There is a card, -1 dmg to card
-                    2: Card's health is 0, now it is dead or turned into bubble zombie (Optional now)
-            """
-
-            """ A temporary board that will be shown to the user but their actual board remains untouched """
-            # copy_curr_hero = copy.deepcopy(curr_hero)
-            # for card in copy_curr_hero:
-            #     if card is not None:
-            #         temp = "(" + card.name + ")"
-            #         card.name = temp
-            #         bubble_damage.append(1)
-            #     else:
-            #         bubble_damage.append(0)
-
-            # Maybe we dont need a temp board and just adjust it? I dunno, Imma take a break :3
-            for i, card in enumerate(curr_hero):
-                if card is not None:
-                    temp = "(" + card.name + ")"
-                    card.name = temp
-                    # bubble_damage.append(1)
+        """ Adds a bubble to the curr_hero cards. """
+        for i, card in enumerate(curr_hero):
+            if card is not None:
+                temp = "(" + card.name + ")"
+                card.name = temp
+                if phase2 == False:
                     dmg_mech[i] = 1
+                    print("HAHAHAHAHAAAA....... I trapped your cards in my NASTY BUBBLE!")
+                    print("AIN'T NOTHIN YOU CAN DO ABOUT IT!")
                 else:
-                    # bubble_damage.append(0)
-                    dmg_mech[i] = 0
-            
-            print("HAHAHAHAHAAAA....... I trapped your cards in my NASTY BUBBLE!")
-            print("You better pop em out before they become.... MINE!")
-            # display_board(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale)
+                    dmg_mech[i] = 2
+                    print("Ooooooohhh alright ... NOW YOU ARE STARTING TO PISS ME OFF!")
+                    print("Have a taste of my CONTAMINATED BUBBLE!")
+            else:
+                dmg_mech[i] = 0
+        
+        # display_board(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale)
 
-            return dmg_mech
-
-            done = True
+        return dmg_mech, bossNum
     
     elif boss._name == "Scuba Diver":
         print("hello")
@@ -124,8 +111,6 @@ def death_messages(curr_attack):
     if last_attack_card is not None:
         print(f"{last_attack_card.death_mess()}")
             
-
-
 def boss_battle(hero, boss):
     print("------------- Boss Battle -------------\n")
     
@@ -159,7 +144,8 @@ def boss_battle(hero, boss):
 
     print(str(boss))
     
-    dmg_mech = [0,0,0,0]
+    dmg_mech = [0,0,0,0] # Index of cards that got inflicted by the mechanic
+    bossNum = -1 # Which boss the player is currently dealing with
 
     while scale > -5 and scale < 10:
         if len(play_deck) -1 < 0:
@@ -173,8 +159,12 @@ def boss_battle(hero, boss):
                 if active is False:
                     if count != 2:
                         print(boss.power())
-                        dmg_mech = boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, dmg_mech, scale) # mechanic part here // returns an array on indexs on what gets damage
+                        if count == 0:
+                            dmg_mech, bossNum = boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, dmg_mech, scale, bossNum, False) # mechanic part here // returns an array on indexs on what gets damage
+                        else:
+                            dmg_mech, bossNum = boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, dmg_mech, scale, bossNum, True)
                         print(boss.power())
+                        print(f"Boss number: {bossNum}")
                         count += 1
                     else:
                         active = True
@@ -195,11 +185,20 @@ def boss_battle(hero, boss):
 
             print(dmg_mech)
             for i, slot in enumerate(dmg_mech):
-                if slot == 1:
+
+                # Bubble Bass damage mechanic
+                if slot == 1 and bossNum == 1:
                     curr_hero[i].take_damage(1)
                     if curr_hero[i]._hp <= 0:
-                        print(f"{curr_hero[i]._name} DROWNED, DEAD, GONEE!")
+                        print(f"{curr_hero[i]._name} has suffocated from Bubble Bass's NASTY BUBBLE!")
                         curr_hero[i] = None
+                        dmg_mech[i] = 0
+                elif slot == 2 and bossNum == 1:
+                    curr_hero[i].take_damage(2)
+                    if curr_hero[i]._hp <= 0:
+                        print(f"{curr_hero[i]._name} has slowly ... painfully ... suffocated from Bubble Bass's CONTAMINATED BUBBLE!")
+                        curr_hero[i] = None
+                        dmg_mech[i] = 0
 
             if scale <= -3:
                 print(boss.attack())
@@ -211,7 +210,6 @@ def boss_battle(hero, boss):
                 scale = hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack,boss, hero)
                 pause()
                 turn = 0
-
 
     if scale <= -5:
         clear_terminal()
@@ -230,12 +228,6 @@ def boss_battle(hero, boss):
         delay_print(f"You have defeated the evil {boss._name}\n You can move forward!")
         pause()
         clear_terminal()
-
-
-
-
-
-
 
 
 """
