@@ -97,7 +97,36 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
         return dmg_mech, bossNum
     
     elif boss._name == "Scuba Diver":
-        print("hello")
+        pause()
+        print("Scuba Diver")
+        bossNum = 2
+
+        """  dmg_mech is used to keep track of the idx of the card that are bubbled.
+
+            What I am thinking is where there is:
+                0: no card, no damage 
+                1: Kill off all curr_hero cards
+                2: Kill off all curr_hero cards ... again
+        """
+
+        for i, card in enumerate(curr_hero):
+            if card is not None:
+                temp = "(" + card.name + ")"
+                card.name = temp
+                if phase2 == False:
+                    dmg_mech[i] = 1
+                    print("HAHAHAHAHAAAA....... I trapped your cards in my NASTY BUBBLE!")
+                    print("AIN'T NOTHIN YOU CAN DO ABOUT IT!")
+                else:
+                    dmg_mech[i] = 2
+                    print("Ooooooohhh alright ... NOW YOU ARE STARTING TO PISS ME OFF!")
+                    print("Have a taste of my CONTAMINATED BUBBLE!")
+            else:
+                dmg_mech[i] = 0
+
+
+
+
 
     elif boss._name == "Mermaid":
         print("hello")
