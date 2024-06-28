@@ -65,7 +65,7 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
     
     if boss._name == "Bubble Bass":
         pause()
-        print("Bubble Bass")
+        print("Bubble Bass Intro")
         bossNum = 1
 
         """  dmg_mech is used to keep track of the idx of the card that are bubbled.
@@ -98,7 +98,7 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
     
     elif boss._name == "Scuba Diver":
         pause()
-        print("Scuba Diver")
+        print("Scuba Diver Intro")
         bossNum = 2
 
         """  dmg_mech is used to keep track of the idx of the card that are bubbled.
@@ -106,27 +106,19 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
             What I am thinking is where there is:
                 0: no card, no damage 
                 1: Kill off all curr_hero cards
-                2: Kill off all curr_hero cards ... again
+                2: Kill off all curr_hero cards ... again (Maybe put a temp barrier where the platyer can't place any card in it for a round)
         """
 
         for i, card in enumerate(curr_hero):
             if card is not None:
-                temp = "(" + card.name + ")"
-                card.name = temp
                 if phase2 == False:
                     dmg_mech[i] = 1
-                    print("HAHAHAHAHAAAA....... I trapped your cards in my NASTY BUBBLE!")
-                    print("AIN'T NOTHIN YOU CAN DO ABOUT IT!")
+                    print("I have speared all your fishes! What chu gonna do bout it???")
                 else:
                     dmg_mech[i] = 2
-                    print("Ooooooohhh alright ... NOW YOU ARE STARTING TO PISS ME OFF!")
-                    print("Have a taste of my CONTAMINATED BUBBLE!")
-            else:
-                dmg_mech[i] = 0
-
-
-
-
+                    print("Aight aight, how about this!")
+        
+        return dmg_mech, bossNum
 
     elif boss._name == "Mermaid":
         print("hello")
@@ -228,7 +220,19 @@ def boss_battle(hero, boss):
                         print(f"{curr_hero[i]._name} has slowly ... painfully ... suffocated from Bubble Bass's CONTAMINATED BUBBLE!")
                         curr_hero[i] = None
                         dmg_mech[i] = 0
-
+                
+                # Scuba Diver damage mechanic
+                if slot == 1 and bossNum == 2:
+                    print(f"{curr_hero[i].name} has been shot by a SPEARGUN!")
+                    curr_hero[i] = None
+                    dmg_mech[i] = 0
+                elif slot == 2 and bossNum == 2:
+                    print(f"{curr_hero[i].name} has been shot and impaled! It's lifeless body floats back to the surface...")
+                    curr_hero[i] = None
+                    dmg_mech[i] = 0
+            
+            display_board(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale)
+            
             if scale <= -3:
                 print(boss.attack())
                 scale = hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack,boss, hero)
