@@ -71,7 +71,7 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
         """  dmg_mech is used to keep track of the idx of the card that are bubbled.
 
             What I am thinking is where there is:
-                0: no card, no damage 
+                0: No card, no damage 
                 1: There is a card, -1 dmg to card
                 2: Contaminated bubble, -2 dmg to card
         """
@@ -92,8 +92,6 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
             else:
                 dmg_mech[i] = 0
         
-        # display_board(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale)
-
         return dmg_mech, bossNum
     
     elif boss._name == "Scuba Diver":
@@ -101,10 +99,8 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
         print("Scuba Diver Intro")
         bossNum = 2
 
-        """  dmg_mech is used to keep track of the idx of the card that are bubbled.
-
-            What I am thinking is where there is:
-                0: no card, no damage 
+        """  dmg_mech 
+                0: No card, no damage 
                 1: Kill off all curr_hero cards
                 2: Kill off all curr_hero cards ... again (Maybe put a temp barrier where the platyer can't place any card in it for a round)
         """
@@ -121,7 +117,33 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
         return dmg_mech, bossNum
 
     elif boss._name == "Mermaid":
-        print("hello")
+        pause()
+        print("Mermaid Intro")
+        bossNum = 3
+
+        """  dmg_mech 
+                0: No card, no damage 
+                0: No card, no damage 
+                0: No card, no damage 
+        """
+
+        myShrimp = shrimp.Shrimp()
+        for i, card in enumerate(curr_attack):
+            if phase2 == False:
+                myShrimp._power = 1
+                myShrimp._max_hp = 2
+                myShrimp._hp = 2
+                curr_attack[i] = myShrimp
+                
+            else:
+                myShrimp._power = 1
+                myShrimp._max_hp = 1
+                myShrimp._hp = 1
+                curr_attack[i] = myShrimp
+                upcoming_attack[i] = myShrimp
+                hidden_upcoming[i] = myShrimp
+        
+        return dmg_mech, bossNum
 
 def death_messages(curr_attack):
     last_attack_card = None
@@ -230,6 +252,9 @@ def boss_battle(hero, boss):
                     print(f"{curr_hero[i].name} has been shot and impaled! It's lifeless body floats back to the surface...")
                     curr_hero[i] = None
                     dmg_mech[i] = 0
+                
+                if bossNum == 3:
+                    print("An army of shrimps is heading your way! ")
             
             display_board(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale)
             
