@@ -56,7 +56,7 @@ class Card(abc.ABC):
     
     @hp.setter
     def hp(self, value):
-        """ Getter for health """
+        """ Setter for health """
         self._hp = value
 
     @property
@@ -66,7 +66,7 @@ class Card(abc.ABC):
     
     @power.setter
     def power(self, value):
-        """ Getter for health """
+        """ Setter for health """
         self._power = value
 
     @property
@@ -76,7 +76,7 @@ class Card(abc.ABC):
 
     @cost.setter
     def cost(self, value):
-        """ Getter for health """
+        """ Setter for health """
         self._cost = value
 
     @property
@@ -86,7 +86,7 @@ class Card(abc.ABC):
 
     @sigil.setter
     def sigil(self, value):
-        """ Getter for health """
+        """ Setter for health """
         self._sigil = value
 
     def take_damage(self, dmg):

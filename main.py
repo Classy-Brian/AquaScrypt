@@ -77,14 +77,14 @@ def main():
     
     villian = boss.Boss("Jeff")
     bubble = boss.Boss("Bubble Bass")
-    #bubble = boss.Boss("Bubble Bass") new boss 
-    #bubble = boss.Boss("Bubble Bass") new boss 
+    scuba = boss.Boss("Scuba Diver") 
+    mermaid = boss.Boss("Mermaid") 
     game_map = map.Map()
     game_map.load_map("map1", "map1.txt")
     game_map.load_map("map2", "map2.txt")
     game_map.load_map("map3", "map3.txt")
     next_map = 0
-    boss_def = 0
+    boss_def = 2 # <- Changed to test Scuba boss from 0 -> 2
     pause()
     clear_terminal()
 
@@ -128,10 +128,10 @@ def main():
                 boss_battle.boss_battle(hero, bubble)
                 boss_def +=1
             elif boss_def == 1:
-                #boss_battle.boss_battle(hero, bubble)
+                boss_battle.boss_battle(hero, scuba)
                 boss_def +=1
             else:
-                #boss_battle.boss_battle(hero, bubble)
+                boss_battle.boss_battle(hero, mermaid)
                 print()
 
         elif move == "R":
