@@ -1,3 +1,4 @@
+import random
 
 class Map:
     _instance = None
@@ -22,11 +23,21 @@ class Map:
         self._maps[map_name] = map_data
         if self._current_map is None:
             self._current_map = map_name
+        self._place_random_elements(map_name)
 
     def switch_map(self, map_name, player):
         if map_name in self._maps:
             self._current_map = map_name
             self._set_initial_player_position(player)
+    
+    def _place_random_elements(self, map_name):
+        elements = ['B', 'U', 'A', 'I']
+        map_data = self._maps[map_name]
+
+        for i in range(len(map_data)):
+            for j in range(len(map_data[i])):
+                if map_data[i][j] == '*':
+                    map_data[i][j] = random.choice(elements)
 
     def _set_initial_player_position(self, player):
         """Sets the player's initial position to 's' on the current map."""
