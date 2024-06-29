@@ -445,7 +445,7 @@ def battle(hero, villian):
         pause()
         choice = check_input.yes_no("Try again? Y/N\n")
         if choice is True:
-            battle.battle(hero, villian)
+            battle(hero, villian)
         else:
             exit()
     elif scale >= 5:
