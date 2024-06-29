@@ -5,13 +5,13 @@ Symbols:
 
 - - F - -   F: End Point(Goal)
 
-- - V - -   V: Boss Battle
+- - B - -   B: Boss Battle
 
 - - U - -   U: Upgrade
 
-- A - B -   A: Sacrifice
+- A - V -   A: Sacrifice
 
-- B - I -   B: Battle  I: Item Shop
+- V - I -   V: Battle  I: Item Shop
 
 - - @ - -   @: Start Point
 
@@ -43,15 +43,3 @@ in your journey.
 
 End Point (F): The goal of your journey. Reaching this point 
 signifies the end of your adventure.
-
-
------R-R------
-----V-V-V------
----A--B--U----
----B--I--B----
----U--A--A----
----B--U--B----
-----A-B-U-----
------BBB------
-------U-------
-------S-------

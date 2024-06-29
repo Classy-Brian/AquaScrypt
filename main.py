@@ -1,7 +1,7 @@
 import map
 import player
 import battle 
-
+import random
 import deck
 import check_input
 from terminal_utils import clear_terminal, pause, delay_print, delay_input, delay
@@ -116,14 +116,13 @@ def main():
         if move == 'I':
             hero.shop_item()
         elif move == 'U':
-            # clear_terminal()
             hero._deck.upgrade()
-        elif move == 'B':
+        elif move == 'V':
             battle.battle(hero, villian)
         elif move == 'A':
             hero._deck.sacrifice()
         
-        elif move == "V":
+        elif move == 'B':
             if boss_def == 0:
                 boss_battle.boss_battle(hero, bubble)
                 boss_def +=1
@@ -133,8 +132,21 @@ def main():
             else:
                 boss_battle.boss_battle(hero, mermaid)
                 print()
+        
+        elif move == '?':
+            random_num = random.randint(1,5)
+            if random_num == 1:
+                hero.shop_item()
+            elif random_num == 2:
+                hero._deck.upgrade()
+            elif random_num == 3:
+                battle.battle(hero, villian)
+            elif random_num == 4:  
+                hero._deck.sacrifice()
+            else:
+                print("Nothing happens. You may proceed.\n")
 
-        elif move == "R":
+        elif move == 'D':
             clear_terminal()
             if next_map == 0:
                 delay_print("You may advance, but beware you will soon approach the abyss.\nProceed with caution!")
@@ -143,13 +155,13 @@ def main():
                 game_map.switch_map("map2",hero)
                 next_map +=1
             else:
-                delay_print("\nProceed with caution!")
+                delay_print("As you drew closer to the abyss, a haunting noise grew louder.\nYou have reached the abyss. Brace yourself, for the true trials begin now.")
                 pause()
                 clear_terminal()
                 game_map.switch_map("map3",hero)
 
         elif move == "F":
-            print("you beat the game!!! Yippie")
+            print("You have reached the end and defeated the boss. Your journey has come to a victorious close. Well done, hero.")
             exit()
                    
         print()

@@ -122,7 +122,7 @@ class Player():
     def go_right(self):
         m = map.Map()
         if len(self._location) - 1 < len(m) - 1:
-            if self._location[1] < 4 and self._location[0] > 0 and m[self.location[0] - 1][self.location[1] + 1] != "-":
+            if self._location[1] < 12 and self._location[0] > 0 and m[self.location[0] - 1][self.location[1] + 1] != "-":
                 self._location[1] += 1
                 self._location[0] -= 1 
                 return m[self.location[0]][self.location[1]]

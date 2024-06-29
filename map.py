@@ -31,7 +31,7 @@ class Map:
             self._set_initial_player_position(player)
     
     def _place_random_elements(self, map_name):
-        elements = ['B', 'U', 'A', 'I']
+        elements = ['V', 'U', 'A', 'I', '?']
         map_data = self._maps[map_name]
 
         for i in range(len(map_data)):
