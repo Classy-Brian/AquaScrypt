@@ -19,7 +19,6 @@ be sacrificed to summon other cards. You must sacrifice shrimp and other
 cards to summon more powerful cards from your hand. The number of sacrifices 
 required depends on the card’s cost.
 
-
 Attack Board: 
 
 |None None None None| -> Upcoming attack  upcoming_attack: Attacks planned for the next turn.

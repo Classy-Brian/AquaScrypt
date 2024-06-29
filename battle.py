@@ -11,6 +11,7 @@ from cards import shrimp
 import check_input
 from terminal_utils import clear_terminal, pause, delay_print, delay_input, delay
 
+
 def choose_card(text, deck, return_index=False):
     if all(card is None for card in deck):
         return None
@@ -65,6 +66,15 @@ def show_hand(hand):
         print()
 
     print("~~~~~~~~~~~~~~~~~~~~\n")
+
+def death_messages(curr_attack):
+    last_attack_card = None
+    for card in curr_attack:
+        if card is not None:
+            last_attack_card = card
+    
+    if last_attack_card is not None:
+        print(f"{last_attack_card.death_mess()}")
 
 def display_board(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale):
     """ hows current board """
@@ -412,6 +422,8 @@ def battle(hero, villian):
     # villian_draw_card(villian, upcoming_attack, upcoming_attack)
 
     while scale > -5 and scale < 5:
+        if len(play_deck) -1 < 0:
+            scale == -5
         
         # villian turn
         if turn == 0:
@@ -426,25 +438,18 @@ def battle(hero, villian):
             pause()
             turn = 0
 
-        
-        
-
-
-    # To-do
-    """
-        add a loop to every input checking if the user input what we expect or make a check_input
-        player sacerficing a card to gain a cost, cost is per turn meaning the cost gets reset to 0 every turn (If we want to follow how the actual game works)
-            - Each card sacerficed in play doesn't return to deck (Unless we want to add it) but gets added back after battle
-            - Each card will equal to 1 sacerfice, doesn't matter how much power or health it does 
-        placing a card in the currPlayer where the card is now in play and will take and deal damage
-            - checking if a card is already there (don't want to overwrite)
-            - If currPlayer is full, player can only either sacerfice, draw a squirrel, or end turn 
-        At each end turn, whoever turn is it, their card deals damage to the opposing entity 
-            - Add/Subtract to scale if there is no card blocking or the card attack is airborne and the card opposing can't block it 
-        add the villian turn
-            - Randomly choose an enemy card and place it in it's upcoming_attack where the player can see what is comming next
-            - Move the upcoming_attack to curr_attack and replace upcoming_attack if we want it to continue, so we can have 2 - 3 rounds where the villian has a chance to places a card 
-            - Deals damage to player or player's card 
-        Once everything works (so just simple health, power, and cost), work on sigil, and items
-        Maybe add a put down card, if the user chooses a card but then changes their mind
-    """
+    if scale <= -5:
+        clear_terminal()
+        delay_print(f"Game Over You Drowned\n")
+        death_messages(curr_attack)
+        pause()
+        choice = check_input.yes_no("Try again? Y/N\n")
+        if choice is True:
+            battle.battle(hero, villian)
+        else:
+            exit()
+    elif scale >= 5:
+        clear_terminal()
+        delay_print(f"You have defeated the evil {villian._name}\n You can move forward!")
+        pause()
+        clear_terminal()

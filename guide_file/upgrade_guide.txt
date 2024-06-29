@@ -6,8 +6,6 @@ and more resilient in your journey. When you visit the upgrade
 point, you can improve a card’s power or health, giving you a 
 strategic edge in battles.
 
-
-
 Upgrade Process: You will be prompted to choose one of your cards 
 to upgrade. The selected card, and other card with the same name
 will receive either a power or health boost.

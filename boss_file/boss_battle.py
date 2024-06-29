@@ -276,9 +276,16 @@ def boss_battle(hero, boss):
         pause()
         choice = check_input.yes_no("Try again? Y/N\n")
         if choice is True:
-             if boss._name == "Bubble Bass":
+            if boss._name == "Bubble Bass":
                 bubble = boss.Boss("Bubble Bass") 
                 boss_battle.boss_battle(hero, bubble)
+            elif boss._name == "Scuba Diver":
+                scuba = boss.Boss("Bubble Bass") 
+                boss_battle.boss_battle(hero, scuba)
+            else:
+                mermaid = boss.Boss("Bubble Bass") 
+                boss_battle.boss_battle(hero, mermaid)
+
         else:
             exit()
     elif scale >= 10:
@@ -286,23 +293,3 @@ def boss_battle(hero, boss):
         delay_print(f"You have defeated the evil {boss._name}\n You can move forward!")
         pause()
         clear_terminal()
-
-
-"""
-Bubble Bass (Up to change)
-- Boss health is doubled than regular villans
-- Mechanic starts when scale reaches 3 and 8
-- Randomly places 2 bubbles in any slot
-- Clear boss playing card
-- Player must pop the bubbles if they wish to play on that slot
-- If card gets bubbled:
-    - puts into deck and to pop up, it must be played back in otherwise each round it loses health
-    - ipt traped and cannot do any damage on the board and each round it takes damage, must be popped to continue fighting
-    - bubble zombie
-    - hallucination 
-
-Scuba Diver / fisherman
-
-Pollution / Mermaid (Ursula from Little Mermaid)
-
-"""

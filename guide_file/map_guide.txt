@@ -5,11 +5,13 @@ Symbols:
 
 - - F - -   F: End Point(Goal)
 
+- - D - -   D: Descend
+
 - - B - -   B: Boss Battle
 
-- - U - -   U: Upgrade
+- - U - -   U: Upgrade 
 
-- A - V -   A: Sacrifice
+- A - ? -   A: Sacrifice ?: Mystery
 
 - V - I -   V: Battle  I: Item Shop
 
@@ -21,7 +23,7 @@ Navigation Guide:
 Start Point (@): This is where you begin your journey. 
 From here, you can move to any adjacent space.
 
-Battle (B): Engaging in a battle. You will 
+Battle (V): Engaging in a battle. You will 
 encounter an enemy to fight.
 
 Item Shop (I): A place where you can purchase items 
@@ -37,9 +39,13 @@ You have two choices: transfer the sacrificed card's sigil
 (special ability) to another card, or transfer one of its stats 
 (like attack or health) to another card. 
 
-Boss Battle (V): This is a major battle against a powerful enemy. 
+Boss Battle (B): This is a major battle against a powerful enemy. 
 Defeating the boss is essential to progress further 
 in your journey.
+
+Descend (D): Descend down to the next map, continuing your adventure.
+
+Mystery (?): This location means you might get a random symbol or nothing at all.
 
 End Point (F): The goal of your journey. Reaching this point 
 signifies the end of your adventure.

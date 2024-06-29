@@ -75,7 +75,7 @@ def main():
     hero.display_deck()
     print()
     
-    villian = boss.Boss("Jeff")
+    villian = boss.Boss("Abyssal Soldier")
     bubble = boss.Boss("Bubble Bass")
     scuba = boss.Boss("Scuba Diver") 
     mermaid = boss.Boss("Mermaid") 
