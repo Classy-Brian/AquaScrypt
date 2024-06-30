@@ -98,15 +98,9 @@ class Deck:
         pause()
         clear_terminal()
 
-        print("Choose a card to sacerfice (You will lose this card)")
-        counter = 1
-        for index, card in enumerate(self._cards):
-            print(f"{counter}. {self._cards[index].name}")
-            counter += 1
-        
-        choice = check_input.range_int("\nEnter choice: ", 1, counter)
-        sac_card = self._cards[choice - 1]
-        self.remove_card(choice - 1)
+        card, idx = self.choose_card("Choose a card to sacerfice (You will lose one of this card)",remove_duplicates=True, return_index=True)
+        sac_card = self._cards[idx]
+        self.remove_card(idx)
         print(f"You have chosen the {sac_card.name}\n")
         pause()
         clear_terminal()
@@ -116,7 +110,6 @@ class Deck:
         pause()
         clear_terminal()
             
-        #print("Now choose a card to gain its new stat or sigil")
         card, idx = self.choose_card("Now choose a card to gain its new stat or sigil",remove_duplicates=True, return_index=True)
         gain_card = self._cards[idx]
         print()
@@ -158,7 +151,7 @@ class Deck:
             card._max_hp += 2
             card._hp +=2
 
-        player_choice = check_input.yes_no(f"Aquaman is getting hangry\nWould you like to upgrade again? (50% chance) Y/N: ")
+        player_choice = check_input.yes_no(f"Aquaman is getting angry\nWould you like to upgrade again? (50% chance)\nIf you're unlucky then you will loss all you cards with the same name. Y/N: ")
         chance = 50
         while player_choice and chance > 0 :
             random_num = random.randint(1,100)
@@ -195,7 +188,7 @@ class Deck:
 
             chance //= 2
             if chance is not 0: 
-                player_choice = check_input.yes_no(f"Would you like to upgrade again? " + str(chance) + '%' " chance Y/N: ")
+                player_choice = check_input.yes_no(f"Would you like to upgrade again? (" + str(chance) + '%' " chance) Y/N: ")
                          
         print()
         pause()

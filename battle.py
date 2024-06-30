@@ -396,6 +396,8 @@ def battle(hero, villian):
     curr_attack =     [None, None, None, None]
     curr_hero =       [None, None, None, None]
 
+
+
     while scale > -5 and scale < 5:
         if len(play_deck) -1 < 0:
             scale == -5
