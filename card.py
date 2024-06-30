@@ -114,7 +114,6 @@ class Card(abc.ABC):
 
     def __str__(self):
         """ returns name, health, and sigil """
-        print(self.name)
         return f"{self.name} \n Cost: {self.cost} \n HP:{self._hp}/{self._max_hp} \n Power: {self.power} \n Sigil: {self._sigil}"
 
 class AttackCard(Card):

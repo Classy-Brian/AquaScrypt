@@ -116,13 +116,9 @@ class Deck:
         pause()
         clear_terminal()
             
-        print("Now choose a card to gain its new stat or sigil")
-        counter = 1
-        for index, card in enumerate(self._cards):
-            print(f"{counter}. {self._cards[index].name}")
-            counter += 1
-        choice = check_input.range_int("\nEnter choice: ", 1, counter)
-        gain_card = self._cards[choice - 1]
+        #print("Now choose a card to gain its new stat or sigil")
+        card, idx = self.choose_card("Now choose a card to gain its new stat or sigil",remove_duplicates=True, return_index=True)
+        gain_card = self._cards[idx]
         print()
         clear_terminal()
 
@@ -218,7 +214,6 @@ class Deck:
                 print("Your max health has been upgraded to " + str(card._max_hp) + "\n")
             return True
         else:
-            not_card = False
             idx *= 3
             while idx < len(self._cards):
                 if self._cards[idx].name == card.name:

@@ -229,10 +229,10 @@ def placeCard(hero_hand, curr_hero):
             hero_hand[index] = None
             done_choosing = True
         else:
-            print("This card requires more creatures to sacerfice then what you currently have on the board.")
+            print("This card requires more creatures to sacerfice then what you currently have on the board.\n")
             has_enough = 0
 
-            choice = check_input.yes_no("Do you want to go back to your turn? (y/n): ")
+            choice = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
             if choice is True:
                 return
             
