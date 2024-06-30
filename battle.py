@@ -28,7 +28,7 @@ def choose_card(text, deck, return_index=False):
             
 
             if deck[choice - 1] is not None:
-                choice_2= check_input.yes_no(f"Are you sure you want to chosse your {deck[choice - 1].name}?\n")
+                choice_2= check_input.yes_no(f"Are you sure you want to choose your {deck[choice - 1].name}?\n")
                 if choice_2 == True:
                     if return_index:                 
                         return deck[choice - 1], choice - 1

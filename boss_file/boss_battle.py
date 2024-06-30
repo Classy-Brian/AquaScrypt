@@ -168,12 +168,13 @@ def boss_battle(hero, boss):
     for _ in range(4):
         hero_hand.append(random_card(play_deck))
 
+    dolphins = dolphin.Dolphin()
     scale = 0
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
     curr_attack =     [None, None, None, None]
-    curr_hero =       [None, None, None, None] # 2 0 2 0
+    curr_hero =       [dolphins, None, None, None] # 2 0 2 0
 
     active = False
     count = 0  
