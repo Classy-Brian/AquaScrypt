@@ -99,6 +99,7 @@ class Deck:
         clear_terminal()
 
         card, idx = self.choose_card("Choose a card to sacerfice (You will lose one of this card)",remove_duplicates=True, return_index=True)
+        idx *=3
         sac_card = self._cards[idx]
         self.remove_card(idx)
         print(f"You have chosen the {sac_card.name}\n")
@@ -111,7 +112,7 @@ class Deck:
         clear_terminal()
             
         card, idx = self.choose_card("Now choose a card to gain its new stat or sigil",remove_duplicates=True, return_index=True)
-        gain_card = self._cards[idx]
+        gain_card = card
         print()
         clear_terminal()
 
