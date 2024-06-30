@@ -170,7 +170,7 @@ def boss_battle(hero, boss):
     Angler = angler.Angler()
     Dolhpin = dolphin.Dolphin()
     Otter= otter.Otter()
-    scale = 0
+    scale = -5
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
@@ -185,8 +185,6 @@ def boss_battle(hero, boss):
     active = False
     count = 0  
 
-    print(str(boss))
-    
     dmg_mech = [0,0,0,0] # Index of cards that got inflicted by the mechanic
     bossNum = -1 # Which boss the player is currently dealing with
 
@@ -276,15 +274,7 @@ def boss_battle(hero, boss):
         pause()
         choice = check_input.yes_no("Try again? Y/N\n")
         if choice is True:
-            if boss._name == "Bubble Bass":
-                bubble = boss.Boss("Bubble Bass") 
-                boss_battle.boss_battle(hero, bubble)
-            elif boss._name == "Scuba Diver":
-                scuba = boss.Boss("Bubble Bass") 
-                boss_battle.boss_battle(hero, scuba)
-            else:
-                mermaid = boss.Boss("Bubble Bass") 
-                boss_battle.boss_battle(hero, mermaid)
+            boss_battle(hero, boss)
 
         else:
             exit()

@@ -2,12 +2,10 @@ import map
 import player
 import battle 
 import random
-import deck
+#import deck
 import check_input
-from terminal_utils import clear_terminal, pause, delay_print, delay_input, delay
+from terminal_utils import clear_terminal, pause, delay_print, delay
 from boss_file import boss, boss_battle
-
-
 
 def welcome_message(name):
     
@@ -42,7 +40,6 @@ def How_to_play():
                 print()
                 pause()
     
-
 def main():
     clear_terminal()
     print("~~~ AquaScrypt ~~~")
@@ -76,15 +73,11 @@ def main():
     print()
     
     villian = boss.Boss("Abyssal Soldier")
-    bubble = boss.Boss("Bubble Bass")
-    scuba = boss.Boss("Scuba Diver") 
-    mermaid = boss.Boss("Mermaid") 
     game_map = map.Map()
     game_map.load_map("map1", "map1.txt")
-    game_map.load_map("map2", "map2.txt")
-    game_map.load_map("map3", "map3.txt")
     next_map = 0
-    boss_def = 2 # <- Changed to test Scuba boss from 0 -> 2
+    boss_def = 0
+
     pause()
     clear_terminal()
 
@@ -96,10 +89,13 @@ def main():
         move = ''
         if menu_choice == "1":
             move = hero.go_forward()
+
         elif menu_choice == "2":
             move = hero.go_left()
+
         elif menu_choice == "3":
             move = hero.go_right()
+
         elif menu_choice == "4":
             print("Would you like to save your progress?")
             if check_input.yes_no("Y/N: "):
@@ -115,46 +111,60 @@ def main():
 
         if move == 'I':
             hero.shop_item()
+
         elif move == 'U':
             hero._deck.upgrade()
+
         elif move == 'V':
             battle.battle(hero, villian)
+
         elif move == 'A':
             hero._deck.sacrifice()
-        
+
         elif move == 'B':
             if boss_def == 0:
+                bubble = boss.Boss("Bubble Bass")
                 boss_battle.boss_battle(hero, bubble)
                 boss_def +=1
+
             elif boss_def == 1:
+                scuba = boss.Boss("Scuba Diver")
                 boss_battle.boss_battle(hero, scuba)
                 boss_def +=1
+
             else:
+                mermaid = boss.Boss("Seraphina, Empress of the Abyss")
                 boss_battle.boss_battle(hero, mermaid)
-                print()
         
         elif move == '?':
             random_num = random.randint(1,5)
             if random_num == 1:
                 hero.shop_item()
+
             elif random_num == 2:
                 hero._deck.upgrade()
+
             elif random_num == 3:
                 battle.battle(hero, villian)
+
             elif random_num == 4:  
                 hero._deck.sacrifice()
+
             else:
                 print("Nothing happens. You may proceed.\n")
 
         elif move == 'D':
             clear_terminal()
             if next_map == 0:
+                game_map.load_map("map2", "map2.txt")
                 delay_print("You may advance, but beware you will soon approach the abyss.\nProceed with caution!")
                 pause()
                 clear_terminal()
                 game_map.switch_map("map2",hero)
                 next_map +=1
+
             else:
+                game_map.load_map("map3", "map3.txt")
                 delay_print("As you drew closer to the abyss, a haunting noise grew louder.\nYou have reached the abyss. Brace yourself, for the true trials begin now.")
                 pause()
                 clear_terminal()

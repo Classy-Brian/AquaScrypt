@@ -1,16 +1,15 @@
 import random
 import deck
 import card
-from cards.abyssal import angler,jellyfish,kraken
-from cards.oceanic import leviathan, manta_ray, shark
-from cards.tropical import dolphin,otter, turtle
+#from cards.abyssal import angler,jellyfish,kraken <- Test
+#from cards.oceanic import leviathan, manta_ray, shark <- Test
+#from cards.tropical import dolphin,otter, turtle <- Test
 import player
 import copy 
 from boss_file import boss
 from cards import shrimp
 import check_input
 from terminal_utils import clear_terminal, pause, delay_print, delay_input, delay
-
 
 def choose_card(text, deck, return_index=False):
     if all(card is None for card in deck):
@@ -37,17 +36,6 @@ def choose_card(text, deck, return_index=False):
                         return deck[choice - 1]
             else:
                 print("There's no card there, choose again. ")
-  
-            # if choice_2 == True: 
-            #     if deck[choice - 1] is not None:
-            #         if return_index:                 
-            #             return deck[choice - 1], choice - 1
-            #         else:
-            #             return deck[choice - 1]
-            #     else:
-            #         print("There's no card there, choose again. ")
-            # else:
-            #     continue
 
 def random_card(deck):
     """ From a deck of cards, pick a random card """
@@ -119,11 +107,6 @@ def villian_draw_card(villian, upcoming_attack, hidden_upcoming):
     for index, card in enumerate(hidden_upcoming):
         if random.randint(0, 1) == 1 and hidden_upcoming[index] is None:  
             hidden_upcoming[index] = villian._deck.draw_card()
-
-    
-    # for index, card in enumerate(upcoming_attack):
-    #     if random.randint(0, 1) == 1 and upcoming_attack[index] is None:  
-    #         upcoming_attack[index] = villian._deck.draw_card()
 
 def villian_play_card(upcoming_attack, curr_attack, hidden_upcoming):
     """ Pushes it to curr_attack"""
@@ -237,7 +220,6 @@ def placeCard(hero_hand, curr_hero):
     has_enough = 0
     picked_card = None
     while not done_choosing:
-        #picked_card, index = check_input.choose_card("\nChoose a card from your hand", hero_hand, return_index=True)
         picked_card, index = choose_card("\nChoose a card from your hand", hero_hand, return_index=True)
         if picked_card.cost > 0: 
             for card in curr_hero:
@@ -255,7 +237,6 @@ def placeCard(hero_hand, curr_hero):
         print(f"\nThis card needs {picked_card.cost} sacerfices. Choose wisely.")
         while curr_sac < picked_card.cost:
             print("Which card would you like to sacerfice?")
-            #choice_card, index= check_input.choose_card("", curr_hero, return_index=True)
             choice_card, index = choose_card("", curr_hero, return_index=True)
             if choice_card.name == "Boulder":
                 print("You cannot sacerfice a boulder ... dummy")
@@ -268,14 +249,11 @@ def placeCard(hero_hand, curr_hero):
     while not card_place:
         print("Where would you like to place the card? Slot 1, 2, 3, or 4")
         choice = check_input.range_int("Enter choice: ", 1, 4)
-        #choice_2= check_input.yes_no(f"Are you sure you want to place your card at slot {choice}?\n")
-        #if choice_2 == True:
         if curr_hero[choice - 1] is None:
             curr_hero[choice - 1] = picked_card
             card_place = True
         else:
             print("There is already a card in that slot, pick somewhere else.")
-
 
 def heroAttack(curr_hero, curr_attack, scale):
     for index, card in enumerate(curr_hero):
@@ -284,10 +262,7 @@ def heroAttack(curr_hero, curr_attack, scale):
                 scale += card.power
                 print(f"Your {card.name} have done {card.power} to the villian!")
             else:
-                #curr_attack[index].take_damage(card.power) old one 
-                #card.attack(curr_attack[index]) this did not print out the str 
                 print(card.attack(curr_attack[index]))
-                #print(f"Your {card.name} delt {card.power} damage to villian {curr_attack[index].name}") we can use attack instead of this in card
                 if curr_attack[index].hp == 0:
                     print(f"Your {card.name} has slayed villian {curr_attack[index].name} ")
                     curr_attack[index] = None 
@@ -407,8 +382,8 @@ def battle(hero, villian):
 
     villian._deck.shuffle()
 
-    Angler = angler.Angler()
-    dolhpin = dolphin.Dolphin()
+    #Angler = angler.Angler()
+    #dolhpin = dolphin.Dolphin()
     
     scale = 0
     turn = 0
@@ -416,10 +391,6 @@ def battle(hero, villian):
     upcoming_attack = [None, None, None, None]
     curr_attack =     [None, None, None, None]
     curr_hero =       [None, None, None, None]
-    
-
-    # Puts card to upcoming attack first turn 
-    # villian_draw_card(villian, upcoming_attack, upcoming_attack)
 
     while scale > -5 and scale < 5:
         if len(play_deck) -1 < 0:

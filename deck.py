@@ -219,9 +219,9 @@ class Deck:
             return True
         else:
             idx *= 3 
-            self.remove_card(idx) # made by ME
-            self.remove_card(idx) # made by ME
-            self.remove_card(idx) # made by ME
+            self.remove_card(idx) 
+            self.remove_card(idx) 
+            self.remove_card(idx) 
 
             print(failed_text)
             chance = 0 
