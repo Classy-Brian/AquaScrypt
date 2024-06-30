@@ -116,7 +116,7 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
         
         return dmg_mech, bossNum
 
-    elif boss._name == "Mermaid":
+    elif boss._name == "Seraphina, Empress of the Abyss":
         pause()
         print("Mermaid Intro")
         bossNum = 3
@@ -162,31 +162,27 @@ def boss_battle(hero, boss):
 
     hero_hand = []
     play_deck = copy.deepcopy(hero._deck)
+    #play_deck = deck.Deck()
 
     play_deck.shuffle()
 
     for _ in range(4):
         hero_hand.append(random_card(play_deck))
-    Angler = angler.Angler()
-    Dolhpin = dolphin.Dolphin()
-    Otter= otter.Otter()
-    scale = -5
+
+    scale = 0
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
     curr_attack =     [None, None, None, None]
-    "dont do this anymore "
+    curr_hero =       [None, None, None, None] # 2 0 2 0
 
-
-    curr_hero =       [Angler, None, Dolhpin, None] # 2 0 2 0
-
-    # Puts card to upcoming attack first turn 
-    # villian_draw_card(villian, upcoming_attack, upcoming_attack)
     active = False
     count = 0  
 
     dmg_mech = [0,0,0,0] # Index of cards that got inflicted by the mechanic
     bossNum = -1 # Which boss the player is currently dealing with
+
+    print(str(boss))
 
     while scale > -5 and scale < 10:
         if len(play_deck) -1 < 0:

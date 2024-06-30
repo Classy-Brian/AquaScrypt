@@ -116,3 +116,36 @@ class Card(abc.ABC):
         """ returns name, health, and sigil """
         print(self.name)
         return f"{self.name} \n Cost: {self.cost} \n HP:{self._hp}/{self._max_hp} \n Power: {self.power} \n Sigil: {self._sigil}"
+
+class AttackCard(Card):
+    def __init__(self, name, cost, power, max_hp, sigil, barrier, attack_message, death_message, description):
+        super().__init__(name, cost, power, max_hp, sigil, barrier)
+        self.attack_message = attack_message
+        self.death_message = death_message
+        self.description = description
+
+    def attack(self):
+        # Implementation of attack method
+        pass
+
+    def death_mess(self):
+        # Implementation of death_mess method
+        pass
+
+    def desc(self):
+        # Implementation of desc method
+        pass
+
+    @staticmethod
+    def from_dict(data):
+        return AttackCard(
+            name=data.get('name'),
+            cost=data.get('cost'),
+            power=data.get('power'),
+            max_hp=data.get('max_hp'),
+            sigil=data.get('sigil'),
+            barrier=data.get('barrier'),
+            attack_message=data.get('attack_message'),
+            death_message=data.get('death_message'),
+            description=data.get('description')
+        )

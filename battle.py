@@ -3,7 +3,7 @@ import deck
 import card
 #from cards.abyssal import angler,jellyfish,kraken <- Test
 #from cards.oceanic import leviathan, manta_ray, shark <- Test
-#from cards.tropical import dolphin,otter, turtle <- Test
+from cards.tropical import dolphin,otter, turtle 
 import player
 import copy 
 from boss_file import boss
@@ -70,13 +70,13 @@ def display_board(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scal
     print("~~~~~~~~ The Board ~~~~~~~~")
 
     #Delete once done test
-    for index, card in enumerate(hidden_upcoming):
-        if card is None:
-            print("None", end=" ")
-        else:
-            print(card.name, end=" ")
-    print("-> Hidden attack")
-    print()
+    #for index, card in enumerate(hidden_upcoming):
+    #    if card is None:
+    #        print("None", end=" ")
+    #    else:
+    #        print(card.name, end=" ")
+    #print("-> Hidden attack")
+    #print()
 
     for index, card in enumerate(upcoming_attack):
         if card is None:
@@ -335,11 +335,12 @@ def use_sigil(villian, hidden_upcoming, upcoming_attack, curr_attack, curr_hero,
                 elif curr_hero[choice - 1].sigil == "Echolocation":
                     print(f"\n{curr_hero[choice - 1].name} use Echolocation and see upcoming attack!")
                     print("\nHere is the upcoming attack: ")
-                    for card in hidden_upcoming:
+                    for index, card in enumerate(hidden_upcoming):
                         if card is None:
-                            print(card, end=" ")
+                            print("None", end=" ")
                         else:
                             print(card.name, end=" ")
+                    print("-> Hidden attack")
                     print()
                     end_sigil = True
 
@@ -374,6 +375,7 @@ def battle(hero, villian):
 
     hero_hand = []
     play_deck = copy.deepcopy(hero._deck)
+    #play_deck = deck.Deck()
 
     play_deck.shuffle()
 
@@ -381,9 +383,6 @@ def battle(hero, villian):
         hero_hand.append(random_card(play_deck))
 
     villian._deck.shuffle()
-
-    #Angler = angler.Angler()
-    #dolhpin = dolphin.Dolphin()
     
     scale = 0
     turn = 0

@@ -1,5 +1,5 @@
 import deck
-from card import Card
+from card import Card, AttackCard
 import map
 import random
 import json
@@ -21,16 +21,16 @@ class Player():
                 self._name = data["player_name"]
                 self._items = data["items"]
                 self._location = data["location"]
-                self._deck = [Card.from_dict(card) for card in data["deck"]]
+                self._deck = [AttackCard.from_dict(card) for card in data["deck"]]
 
-    @classmethod
-    def from_dict(cls, data):
-        return cls(
-            player_name=data.get('player_name'),
-            items=data.get('items'),
-            location=data.get('location'),
-            deck=data.get('deck')
-        )
+    @staticmethod
+    def from_dict(data):
+        return {
+            "player_name": data.get('player_name'),
+            "items": data.get('items'),
+            "location": data.get('location'),
+            "deck": data.get('deck')
+        }
     
     @property
     def name(self):
@@ -54,29 +54,41 @@ class Player():
 
     def save_game(self, file_name):
 
-        deck_data = []
-        for card in self._deck:
-            data = {
-                "name": card._name,
-                "cost": card._cost,
-                "power": card._power,
-                "max_hp": card._max_hp,
-                "sigil": card._sigil,
-                "barrier": card.barrier
-            }
-            deck_data.append(data)
-        
+        deck_data = [card.__dict__ for card in self._deck]
+
         player_data = {
             "player_name": self._name,
             "items": self._items,
             "location": self._location,
-            # card.serialize() for card in self._deck
-            #"deck": deck
             "deck": deck_data
         }
         
         with open(f"{file_name}.json", "w") as outfile:
             json.dump(player_data, outfile)
+
+        #deck_data = []
+        #for card in self._deck:
+        #    data = {
+        #        "name": card._name,
+        #        "cost": card._cost,
+        #        "power": card._power,
+        #        "max_hp": card._max_hp,
+        #        "sigil": card._sigil,
+        #        "barrier": card.barrier
+        #    }
+        #    deck_data.append(data)
+        #
+        #player_data = {
+        #    "player_name": self._name,
+        #    "items": self._items,
+        #    "location": self._location,
+        #    # card.serialize() for card in self._deck
+        #    #"deck": deck
+        #    "deck": deck_data
+        #}
+        #
+        #with open(f"{file_name}.json", "w") as outfile:
+        #    json.dump(player_data, outfile)
 
 
     def shop_item(self):

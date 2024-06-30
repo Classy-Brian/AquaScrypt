@@ -2,7 +2,7 @@ import map
 import player
 import battle 
 import random
-#import deck
+import deck
 import check_input
 from terminal_utils import clear_terminal, pause, delay_print, delay
 from boss_file import boss, boss_battle
