@@ -220,11 +220,11 @@ class Deck:
         else:
             not_card = False
             idx *= 3
-            while not not_card:
+            while idx < len(self._cards):
                 if self._cards[idx].name == card.name:
                     self.remove_card(idx)
                 else:
-                    not_card = True 
+                    break  
 
             print(failed_text)
             chance = 0 

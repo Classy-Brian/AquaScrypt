@@ -232,6 +232,11 @@ def placeCard(hero_hand, curr_hero):
             print("This card requires more creatures to sacerfice then what you currently have on the board.")
             has_enough = 0
 
+            choice = check_input.yes_no("Do you want to go back to your turn? (y/n): ")
+            if choice is True:
+                return
+            
+
     curr_sac = 0
     if curr_sac < picked_card.cost:
         print(f"\nThis card needs {picked_card.cost} sacerfices. Choose wisely.")

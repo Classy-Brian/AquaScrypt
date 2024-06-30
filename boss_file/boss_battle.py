@@ -163,9 +163,8 @@ def boss_battle(hero, boss):
     hero_hand = []
     play_deck = copy.deepcopy(hero._deck)
     #play_deck = deck.Deck()
-    print(play_deck)
     play_deck.shuffle()
-    #print(play_deck)
+
     for _ in range(4):
         hero_hand.append(random_card(play_deck))
 
