@@ -25,7 +25,7 @@ def choose_card(text, deck, return_index=False):
         valid = False
         while not valid:
             choice = check_input.range_int("Enter choice: ", 1, counter - 1)
-            # choice_2= check_input.yes_no(f"Are you sure you want to chosse your {deck[choice - 1].name}?\n")
+            
 
             if deck[choice - 1] is not None:
                 choice_2= check_input.yes_no(f"Are you sure you want to chosse your {deck[choice - 1].name}?\n")

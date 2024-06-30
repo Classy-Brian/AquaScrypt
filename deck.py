@@ -137,7 +137,7 @@ class Deck:
             gain_card.power = sac_card.power
         else:
             gain_card.hp = sac_card.hp
-            gain_card.max_health = sac_card.max_health
+            gain_card.max_hp = sac_card.max_hp
         
         print(gain_card)
         print()
@@ -218,10 +218,13 @@ class Deck:
                 print("Your max health has been upgraded to " + str(card._max_hp) + "\n")
             return True
         else:
-            idx *= 3 
-            self.remove_card(idx) 
-            self.remove_card(idx) 
-            self.remove_card(idx) 
+            not_card = False
+            idx *= 3
+            while not not_card:
+                if self._cards[idx].name == card.name:
+                    self.remove_card(idx)
+                else:
+                    not_card = True 
 
             print(failed_text)
             chance = 0 

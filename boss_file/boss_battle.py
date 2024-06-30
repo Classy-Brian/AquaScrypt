@@ -1,4 +1,4 @@
-import deck
+from deck import Deck
 import card
 from cards.abyssal import angler,jellyfish,kraken
 from cards.oceanic import leviathan, manta_ray, shark
@@ -163,9 +163,9 @@ def boss_battle(hero, boss):
     hero_hand = []
     play_deck = copy.deepcopy(hero._deck)
     #play_deck = deck.Deck()
-
+    print(play_deck)
     play_deck.shuffle()
-
+    #print(play_deck)
     for _ in range(4):
         hero_hand.append(random_card(play_deck))
 
