@@ -217,7 +217,6 @@ class Deck:
                     self.remove_card(idx)
                 else:
                     print(failed_text)
-                    chance = 0 
                     return False 
 
         
