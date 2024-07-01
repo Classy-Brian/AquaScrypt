@@ -1,0 +1,34 @@
+
+Sacrifice Guide:
+
+Sacrificing a card allows you to transfer one of its attributes 
+(sigil, cost, power, or health) to another card, enhancing your 
+deck’s capabilities.
+
+Select a card from your deck to sacrifice. Note that you will 
+lose one of this card permanently. Decide which attribute of the sacrificed 
+card you want to transfer to another card.
+
+Example:
+
+What would you like to transfer the:
+1. ['Swift'] sigil
+2. Cost (1)
+3. Power (1)
+4. Health (2)
+
+Dolphin
+ Cost: 2
+ HP:2/2
+ Power: 2
+ Sigil: ['Echolocation']
+
+turned to
+
+Dolphin
+ Cost: 2
+ HP:2/2
+ Power: 2
+ Sigil: ['Echolocation', 'Swift']
+
+
