@@ -299,7 +299,7 @@ def use_sigil(villian, hidden_upcoming, upcoming_attack, curr_attack, curr_hero,
         if curr_hero[choice - 1] is not None:
             print(f"\n{curr_hero[choice - 1].desc()}")
             if len(curr_hero[choice - 1].sigil) > 1:
-                sigil_choice = check_input.range_int(f"Choose a sigil to use ({(curr_hero[choice - 1].sigil)}): ", 1, len(curr_hero[choice - 1].sigil))
+                sigil_choice = check_input.range_int(f"Choose a sigil to use {(curr_hero[choice - 1].sigil)}: ", 1, len(curr_hero[choice - 1].sigil))
                 selected_sigil = curr_hero[choice - 1].sigil[sigil_choice - 1]
             else:
                 selected_sigil = curr_hero[choice - 1].sigil[0]       

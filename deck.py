@@ -120,7 +120,10 @@ class Deck:
         print("\nturned to\n")
 
         if gain_choice == 1:
-            gain_card.sigil = [gain_card.sigil, sac_card.sigil]
+            if isinstance(gain_card.sigil, list):
+                gain_card.sigil.extend(sac_card.sigil)
+            else:
+                gain_card.sigil = [gain_card.sigil, sac_card.sigil]
         elif gain_choice == 2:
             gain_card.cost = sac_card.cost
         elif gain_choice == 3:
