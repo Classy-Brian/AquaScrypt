@@ -124,21 +124,22 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
                 0: No card, no damage 
         """
 
-        myShrimp = shrimp.Shrimp()
+        shrimpArmy = shrimp.Shrimp()
+        shrimpArmy._power = 1
+        shrimpArmy._max_hp = 2
+        shrimpArmy._hp = 2
+
+        kingShrimp = shrimp.Shrimp()
+        kingShrimp._power = 10
+        shrimpArmy._max_hp = 1
+        shrimpArmy._hp = 1
+
+
         for i, card in enumerate(curr_attack):
             if phase2 == False:
-                myShrimp._power = 1
-                myShrimp._max_hp = 2
-                myShrimp._hp = 2
-                curr_attack[i] = myShrimp
-                
+                curr_attack[i] = shrimpArmy
             else:
-                myShrimp._power = 1
-                myShrimp._max_hp = 1
-                myShrimp._hp = 1
-                curr_attack[i] = myShrimp
-                upcoming_attack[i] = myShrimp
-                hidden_upcoming[i] = myShrimp
+                hidden_upcoming[i] = kingShrimp
         
         return dmg_mech, bossNum
 
@@ -171,7 +172,7 @@ def boss_battle(hero, boss):
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
     curr_attack =     [None, None, None, None]
-    curr_hero =       [None, None, None, None] # 2 0 2 0
+    curr_hero =       [None, None, None, None] 
 
     active = False
     count = 0  
