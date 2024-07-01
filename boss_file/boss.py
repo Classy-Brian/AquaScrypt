@@ -1,5 +1,4 @@
-import deck 
-import player 
+import deck  
 from boss_file import state_normal
 
 class Boss:

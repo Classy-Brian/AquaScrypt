@@ -58,7 +58,7 @@ def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, u
             done = True
     return heroAttack(curr_hero, curr_attack, scale)
 
-def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, dmg_mech, scale, bossNum, phase2=False):
+def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, dmg_mech,bossNum, phase2=False):
     
     if boss._name == "Bubble Bass":
         pause()
@@ -194,9 +194,9 @@ def boss_battle(hero, boss):
                     if count != 2:
                         print(boss.power())
                         if count == 0:
-                            dmg_mech, bossNum = boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, dmg_mech, scale, bossNum, False) # mechanic part here // returns an array on indexs on what gets damage
+                            dmg_mech, bossNum = boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, dmg_mech, bossNum, False) # mechanic part here // returns an array on indexs on what gets damage
                         else:
-                            dmg_mech, bossNum = boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, dmg_mech, scale, bossNum, True)
+                            dmg_mech, bossNum = boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, dmg_mech, bossNum, True)
                         print(boss.power())
                         print(f"Boss number: {bossNum}")
                         count += 1
