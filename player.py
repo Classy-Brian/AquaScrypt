@@ -1,10 +1,9 @@
 import deck
-from card import Card, AttackCard
+from card import AttackCard
 import map
-import random
 import json
 import check_input
-from terminal_utils import clear_terminal, pause, delay_print, delay_input, delay
+from terminal_utils import clear_terminal, pause
 
 class Player():
     def __init__(self, load=False):

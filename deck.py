@@ -216,10 +216,8 @@ class Deck:
                 if self._cards[idx].name == card.name:
                     self.remove_card(idx)
                 else:
-                    break  
-
-            print(failed_text)
-            chance = 0 
-            return False
+                    print(failed_text)
+                    chance = 0 
+                    return False
         
 

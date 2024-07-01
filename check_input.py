@@ -1,4 +1,3 @@
-import card
 
 def range_int(text, min, max):
     num = 0 
