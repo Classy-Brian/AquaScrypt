@@ -8,10 +8,10 @@ import copy
 #from cards.tropical import dolphin,otter, turtle
 
 def boss_turn(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, scale):
-    villian_draw_card(boss, upcoming_attack, hidden_upcoming)
+    villian_draw_card(boss, hidden_upcoming)
     return villian_attack(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale) 
 
-def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack,boss, hero):
+def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack, hero):
     """ Draws and sacerfices cards, and attacks villian """
     draw_card(hero_hand, play_deck, shrimp_count, my_shrimp)
     sigil = False 
@@ -48,7 +48,7 @@ def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, u
                         print("Nothing there! try again")
         elif choice == 5:
             if sigil is False:
-                use_sigil(boss, hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale)
+                use_sigil(hidden_upcoming, curr_attack, curr_hero)
                 sigil = True
             else: 
                 print("\nYou can only use one sigil per turn, good luck!")
@@ -251,12 +251,12 @@ def boss_battle(hero, boss):
             
             if scale <= -3:
                 print(boss.attack())
-                scale = hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack,boss, hero)
+                scale = hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack, hero)
                 pause()
                 turn = 0
             
             else:
-                scale = hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack,boss, hero)
+                scale = hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack, hero)
                 pause()
                 turn = 0
 
