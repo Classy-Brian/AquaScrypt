@@ -43,9 +43,11 @@ Boss Battle (B): This is a major battle against a powerful enemy.
 Defeating the boss is essential to progress further 
 in your journey.
 
-Descend (D): Descend down to the next map, continuing your adventure.
+Descend (D): Descend (D): Descend down to the next map, continuing 
+your adventure. Each time you descend, you encounter a random item.
 
-Mystery (?): This location means you might get a random symbol or nothing at all.
+Mystery (?): This location means you might get a random symbol or 
+nothing at all.
 
 End Point (F): The goal of your journey. Reaching this point 
 signifies the end of your adventure.

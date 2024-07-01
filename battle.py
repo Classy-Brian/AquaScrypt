@@ -1,7 +1,7 @@
 import random
 import card 
 import copy 
-from cards import shrimp
+from cards import shrimp, boulder
 import check_input
 from terminal_utils import clear_terminal, pause, delay_print
 #from cards.abyssal import angler,jellyfish,kraken <- Test
@@ -175,8 +175,7 @@ def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, u
                     count += 1
                 valid = False
                 while not valid:
-                    item_choice = check_input.range_int("Choice: ", 1, count)
-                    item_choice -= 1
+                    item_choice = check_input.range_int("Choice: ", 1, len(hero._items))
                     if hero._items[item_choice - 1] is not None:
                         choice_1= check_input.yes_no(f"Are you sure you want to chosse your {hero._items[item_choice - 1]} item?\n")
                         if choice_1 is True:
@@ -278,11 +277,11 @@ def use_item(hero_hand, scale, item):
         scale += 1 
         print("Scale is now ", scale)
     elif item == "Boulder":
-        boulder = card.Card("Boulder", 0, 0, 5, None, False)
-        hero_hand.append(boulder)
+        Boulder = boulder.Boulder()
+        hero_hand.append(Boulder)
     elif item == "Shrimp Bottle":
-        shrimp = card.Card("Shrimp", 0, 0, 0, None, False)
-        hero_hand.append(shrimp)
+        Shrimp = shrimp.Shrimp()
+        hero_hand.append(Shrimp)
     else:
         print("Item is not used")
     return scale
