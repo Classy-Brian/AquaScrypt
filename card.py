@@ -18,7 +18,7 @@ class Card(abc.ABC):
         self._power = power
         self._max_hp = max_hp
         self._hp = max_hp
-        self._sigil = sigil
+        self._sigil = sigil if sigil is not None else []
         self.barrier = barrier
     
     @classmethod

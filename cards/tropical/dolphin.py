@@ -7,7 +7,7 @@ class Dolphin(card.Card):
         cost = 2
         power = 2
         max_hp = 2
-        sigil = "Echolocation" # See upcoming attack
+        sigil = ["Echolocation"] # See upcoming attack
         barrier = False
         super().__init__(name, cost, power, max_hp, sigil, barrier)
 

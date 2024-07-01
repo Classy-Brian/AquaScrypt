@@ -298,9 +298,14 @@ def use_sigil(villian, hidden_upcoming, upcoming_attack, curr_attack, curr_hero,
         choice = check_input.range_int("Enter choice: ", 1, 4)
         if curr_hero[choice - 1] is not None:
             print(f"\n{curr_hero[choice - 1].desc()}")
+            if len(curr_hero[choice - 1].sigil) > 1:
+                sigil_choice = check_input.range_int(f"Choose a sigil to use ({(curr_hero[choice - 1].sigil)}): ", 1, len(curr_hero[choice - 1].sigil))
+                selected_sigil = curr_hero[choice - 1].sigil[sigil_choice - 1]
+            else:
+                selected_sigil = curr_hero[choice - 1].sigil[0]       
             choice_2= check_input.yes_no(f"Are you sure you want to use {curr_hero[choice - 1].name} sigil?\n")
             if choice_2 == True:
-                if curr_hero[choice - 1].sigil == "Bioluminescence":
+                if selected_sigil == "Bioluminescence":
                     for index, card in enumerate(curr_hero):
                         if curr_hero[index] is not None:
                             if curr_hero[index].name in ["Angler", "Jellyfish", "Kraken"] and curr_hero[index].name not in enhanced_cards:
@@ -310,7 +315,7 @@ def use_sigil(villian, hidden_upcoming, upcoming_attack, curr_attack, curr_hero,
                     end_sigil = True
                     print(f"\n{curr_hero[choice - 1].name} use Bioluminescence and enhances its self, and other abyssal fish cards!")
 
-                elif curr_hero[choice - 1].sigil == "Swarm":
+                elif selected_sigil == "Swarm":
                     clone_limit = 0
                     card_copies = curr_hero[choice - 1]
                     for index, card in enumerate(curr_hero):
@@ -321,7 +326,7 @@ def use_sigil(villian, hidden_upcoming, upcoming_attack, curr_attack, curr_hero,
                     print(f"\n{curr_hero[choice - 1].name} uses Swarm and summons additional copies of itself!")
                     end_sigil = True
 
-                elif curr_hero[choice - 1].sigil == "Frenzy":
+                elif selected_sigil == "Frenzy":
                     if curr_hero[choice - 1].hp is not None and curr_hero[choice - 1].hp < (curr_hero[choice - 1].max_hp //2):
                         curr_hero[choice - 1].power *= 2
                         print(f"\n{curr_hero[choice - 1].name} use Frenzy and now will deals double damage!")
@@ -329,7 +334,7 @@ def use_sigil(villian, hidden_upcoming, upcoming_attack, curr_attack, curr_hero,
                     else: 
                         print(f"\n{curr_hero[choice - 1].name} is not low yet, and cannot use Frenzy")
 
-                elif curr_hero[choice - 1].sigil == "Barrier":
+                elif selected_sigil == "Barrier":
                     if not curr_hero[choice - 1].barrier:
                         print(f"\n{curr_hero[choice - 1].name} use Barrier and will blocks the next attack!")
                         curr_hero[choice - 1].barrier = True
@@ -337,7 +342,7 @@ def use_sigil(villian, hidden_upcoming, upcoming_attack, curr_attack, curr_hero,
                     else:
                         print(f"\n{curr_hero[choice - 1].name} already has a Barrier active.")
 
-                elif curr_hero[choice - 1].sigil == "Echolocation":
+                elif selected_sigil == "Echolocation":
                     print(f"\n{curr_hero[choice - 1].name} use Echolocation and see upcoming attack!")
                     print("\nHere is the upcoming attack: ")
                     for index, card in enumerate(hidden_upcoming):
@@ -349,13 +354,13 @@ def use_sigil(villian, hidden_upcoming, upcoming_attack, curr_attack, curr_hero,
                     print()
                     end_sigil = True
 
-                elif curr_hero[choice - 1].sigil == "Swift":
+                elif selected_sigil == "Swift":
                     print(f"\nYour {curr_hero[choice - 1].name} now has 50% chance to avoid attack")
                     if random.randint(0, 1) == 1:
                         curr_hero[choice - 1].barrier = True   
                     end_sigil = True 
 
-                elif curr_hero[choice - 1].sigil == "Shell":
+                elif selected_sigil == "Shell":
                     while not end_sigil:
                         print("Which current attack card do you want to pick to cut the damage in half? Slot 1, 2, 3, or 4")
                         choice_3 = check_input.range_int("Enter choice: ", 1, 4)
@@ -366,7 +371,7 @@ def use_sigil(villian, hidden_upcoming, upcoming_attack, curr_attack, curr_hero,
                         else:
                             print("There are no card in that slot, pick somewhere else.")
 
-                elif curr_hero[choice - 1].sigil == "None":
+                elif selected_sigil == "None":
                     print("\nThis card has no sigil")
                     break  
         else:

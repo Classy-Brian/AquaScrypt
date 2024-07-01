@@ -7,7 +7,7 @@ class Leviathan(card.Card):
         cost = 3
         power = 4
         max_hp = 4
-        sigil = "Frenzy" # Deals double damage when low
+        sigil = ["Frenzy"] # Deals double damage when low
         barrier = False
         super().__init__(name, cost, power, max_hp, sigil, barrier)
 

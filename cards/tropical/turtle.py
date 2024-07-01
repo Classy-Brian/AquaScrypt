@@ -7,7 +7,7 @@ class Turtle(card.Card):
         cost = 1
         power = 1
         max_hp = 4
-        sigil = "Shell" # Halfs damage
+        sigil = ["Shell"] # Halfs damage
         barrier = False
         super().__init__(name, cost, power, max_hp, sigil, barrier)
 

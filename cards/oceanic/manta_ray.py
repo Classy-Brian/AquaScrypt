@@ -7,7 +7,7 @@ class MantaRay(card.Card):
         cost = 2
         power = 1
         max_hp = 3
-        sigil = "Barrier" # Blocks the next attack against it
+        sigil = ["Barrier"] # Blocks the next attack against it
         barrier = False
         super().__init__(name, cost, power, max_hp, sigil, barrier)
 
