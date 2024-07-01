@@ -199,7 +199,7 @@ class Deck:
         clear_terminal()
         
     def upgrade_chance(self, idx, random_num, card, chance, congrats_text, failed_text):
-        if random_num <= 50:
+        if random_num <= chance:
             print(congrats_text)
             random_num2 = random.randint(1,2)
             if random_num2 == 1:
@@ -218,6 +218,7 @@ class Deck:
                 else:
                     print(failed_text)
                     chance = 0 
-                    return False
+                    return False 
+
         
 

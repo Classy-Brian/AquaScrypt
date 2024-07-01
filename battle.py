@@ -186,7 +186,7 @@ def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, u
                         print("Nothing there! try again")
         elif choice == 5:
             if sigil is False:
-                use_sigil(villian, hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale)
+                use_sigil(hidden_upcoming, curr_attack, curr_hero)
                 sigil = True
             else: 
                 print("\nYou can only use one sigil per turn, good luck!")
@@ -287,7 +287,7 @@ def use_item(hero_hand, play_deck, curr_hero, scale, item):
         print("Item is not used")
     return scale
 
-def use_sigil(villian, hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale): 
+def use_sigil(hidden_upcoming, curr_attack, curr_hero): 
     end_sigil = False
     enhanced_cards = set()
     while not end_sigil:
