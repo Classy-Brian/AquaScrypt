@@ -94,11 +94,11 @@ class Deck:
 
     def sacrifice(self):
         print("------------- Sacrifice -------------")
-        print("Here you will sacerfice a card and either transfer its sigil or one of the its stats to another ...\n")
+        print("Here you will sacrifice a card and either transfer its sigil or one of the its stats to another ...\n")
         pause()
         clear_terminal()
 
-        card, idx = self.choose_card("Choose a card to sacerfice (You will lose one of this card)",remove_duplicates=True, return_index=True)
+        card, idx = self.choose_card("Choose a card to sacrifice (You will lose one of this card)",remove_duplicates=True, return_index=True)
         idx *=3
         sac_card = self._cards[idx]
         self.remove_card(idx)
