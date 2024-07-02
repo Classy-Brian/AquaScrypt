@@ -13,6 +13,7 @@ def welcome_message(name):
     delay_print("or will the sea consume you...")
     delay(1.5)
     delay_print(f"\nWell {name}, good luck diving!\n")
+    print("Made by Brian and Jorge")
 
 def How_to_play():
     quit = False 
