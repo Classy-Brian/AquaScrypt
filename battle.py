@@ -9,31 +9,34 @@ from terminal_utils import clear_terminal, pause, delay_print
 #from cards.tropical import dolphin,otter, turtle
 
 def choose_card(text, deck, return_index=False, cardhand=False):
-    deck = [card for card in deck if card is not None]
+    filtered_deck = [card for card in deck if card is not None]
 
-    if not deck:
+    if not filtered_deck:
+        print("No cards available.")
         return None
 
     print(text)
-    for counter, card in enumerate(deck, start=1):
+    for counter, card in enumerate(filtered_deck, start=1):
         print(f"{counter}. {card}")
         print()
 
-    valid = False
-    while not valid:
-        choice = check_input.range_int("Enter choice: ", 1, len(deck))
-        if deck[choice - 1] is not None:
-            choice_2 = check_input.yes_no(f"Are you sure you want to choose your {deck[choice - 1].name}?\n")
-            if choice_2:
+    while True:
+        choice = check_input.range_int("Enter choice: ", 1, len(filtered_deck))
+        chosen_card = filtered_deck[choice - 1]
+        
+        if chosen_card is not None:
+            choice_confirm = check_input.yes_no(f"Are you sure you want to choose your {chosen_card.name}? (y/n):\n")
+            if choice_confirm:
                 if return_index:
-                    return deck[choice - 1], choice - 1
+                    return chosen_card, deck.index(chosen_card)
                 else:
-                    return deck[choice - 1]
+                    return chosen_card
         else:
-            print("There's no card there, choose again.")
-            choice_3 = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
-            if choice_3:
-                return
+            print("Invalid choice. Please try again.")
+
+        go_back = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
+        if go_back:
+            return
 
 def random_card(deck):
     """ From a deck of cards, pick a random card """
