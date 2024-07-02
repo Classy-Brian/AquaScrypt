@@ -111,7 +111,7 @@ class Player():
             else:
                 print("Invalid input - between 1 - 3")
             
-        print("\nYour current items:", " ".join(self._items))
+        print("\nYour current items:", ", ".join(self._items))
         print()
         pause()
         clear_terminal()

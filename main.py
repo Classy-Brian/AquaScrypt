@@ -17,17 +17,18 @@ def welcome_message(name):
 def How_to_play():
     quit = False 
     while quit is False:
-        print("\n1. Battle Guide\n2. Map Guide\n3. Sigil Guide\n4. Shop Item Guide\n5. Upgrade Guide\n6. Quit")
-        choice = check_input.range_int("Choice: ",1,6)
+        print("\n1. Battle Guide\n2. Map Guide\n3. Sigil Guide\n4. Shop Item Guide\n5. Upgrade Guide\n6. Sacrifice Guide\n7. Quit")
+        choice = check_input.range_int("Choice: ",1,7)
         guide_files = {
             1: 'guide_file/battle.txt',
             2: 'guide_file/map_guide.txt',
             3: 'guide_file/sigil_guide.txt',
             4: 'guide_file/shop_item_guide.txt',
-            5: 'guide_file/upgrade_guide.txt'
+            5: 'guide_file/upgrade_guide.txt',
+            6: 'guide_file/sacrifice_guide.txt'
         }
 
-        if choice == 6:
+        if choice == 7:
             print("\nQuitting the guide.\n")
             quit = True 
         
@@ -154,6 +155,17 @@ def main():
 
         elif move == 'D':
             clear_terminal()
+
+            rand = random.randint(1, 3)
+            if rand == 1:
+                item = "Dagger"
+            elif rand == 2:
+                item = "Boulder"
+            elif rand == 3:
+                item = "Shrimp Bottle"
+            hero._items.append(item)
+            delay_print(f"You encounter a {item} while heading down to the abyss....\n")
+
             if next_map == 0:
                 game_map.load_map("map2", "map2.txt")
                 delay_print("You may advance, but beware you will soon approach the abyss.\nProceed with caution!")

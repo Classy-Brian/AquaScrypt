@@ -1,7 +1,7 @@
 import random
 import card 
 import copy 
-from cards import shrimp
+from cards import shrimp, boulder
 import check_input
 from terminal_utils import clear_terminal, pause, delay_print
 #from cards.abyssal import angler,jellyfish,kraken <- Test
@@ -99,7 +99,7 @@ def display_board(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scal
     print("-> Current hero")
     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 
-def villian_draw_card(villian, upcoming_attack, hidden_upcoming):
+def villian_draw_card(villian, hidden_upcoming):
     """ Randomly add cards to upcoming_attack and hidden_upcoming """
     for index, card in enumerate(hidden_upcoming):
         if random.randint(0, 1) == 1 and hidden_upcoming[index] is None:  
@@ -146,10 +146,10 @@ def villian_attack(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, sca
 
 def villian_turn(villian, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, scale):
     """ Pushes it to curr_attack and attacks hero """
-    villian_draw_card(villian, upcoming_attack, hidden_upcoming)
+    villian_draw_card(villian, hidden_upcoming)
     return villian_attack(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale) 
  
-def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack,villian, hero):
+def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack, hero):
     """ Draws and sacerfices cards, and attacks villian """
     draw_card(hero_hand, play_deck, shrimp_count, my_shrimp)
     sigil = False 
@@ -175,12 +175,11 @@ def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, u
                     count += 1
                 valid = False
                 while not valid:
-                    item_choice = check_input.range_int("Choice: ", 1, count)
-                    item_choice -= 1
+                    item_choice = check_input.range_int("Choice: ", 1, len(hero._items))
                     if hero._items[item_choice - 1] is not None:
                         choice_1= check_input.yes_no(f"Are you sure you want to chosse your {hero._items[item_choice - 1]} item?\n")
                         if choice_1 is True:
-                            scale = use_item(hero_hand, play_deck, curr_hero, scale, hero._items[item_choice - 1])
+                            scale = use_item(hero_hand, scale, hero._items[item_choice - 1])
                             valid = True
                     else:
                         print("Nothing there! try again")
@@ -272,17 +271,17 @@ def heroAttack(curr_hero, curr_attack, scale):
             print(f"No cards placed in slot {index + 1}")
     return scale
 
-def use_item(hero_hand, play_deck, curr_hero, scale, item):
+def use_item(hero_hand, scale, item):
     
     if item == "Dagger":
         scale += 1 
         print("Scale is now ", scale)
     elif item == "Boulder":
-        boulder = card.Card("Boulder", 0, 0, 5, None, False)
-        hero_hand.append(boulder)
+        Boulder = boulder.Boulder()
+        hero_hand.append(Boulder)
     elif item == "Shrimp Bottle":
-        shrimp = card.Card("Shrimp", 0, 0, 0, None, False)
-        hero_hand.append(shrimp)
+        Shrimp = shrimp.Shrimp()
+        hero_hand.append(Shrimp)
     else:
         print("Item is not used")
     return scale
@@ -413,7 +412,7 @@ def battle(hero, villian):
         # Hero turn
         else:
             print("\n---- Hero Turn ----\n")
-            scale = hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack,villian, hero)
+            scale = hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack, hero)
             pause()
             turn = 0
 
