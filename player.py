@@ -20,7 +20,8 @@ class Player():
                 self._name = data["player_name"]
                 self._items = data["items"]
                 self._location = data["location"]
-                self._deck = [AttackCard.from_dict(card) for card in data["deck"]]
+                # self._deck = [AttackCard.from_dict(card) for card in data["deck"]]
+                self._deck = ["deck"]
 
     @staticmethod
     def from_dict(data):
@@ -61,12 +62,24 @@ class Player():
             "location": self._location,
             "deck": deck_data
         }
-        
-        with open(f"{file_name}.json", "w") as outfile:
-            json.dump(player_data, outfile)
 
-        #deck_data = []
-        #for card in self._deck:
+
+        deck_data = []
+        for card in self._deck:
+            blank = card.Card("blank", 0, 0, 0, ["None"], False)
+            blank._name = card._name
+            blank._cost = card._cost
+            blank._power = card._power
+            blank._max_hp = card._max_hp
+            blank._sigil = card._sigil
+            blank.barrier = card.barrier
+
+            blank.attack_message = card.attack_message
+            blank.death_message = card.death_message
+            blank.description = card.description
+
+            deck_data.append(blank)
+
         #    data = {
         #        "name": card._name,
         #        "cost": card._cost,
@@ -75,8 +88,12 @@ class Player():
         #        "sigil": card._sigil,
         #        "barrier": card.barrier
         #    }
-        #    deck_data.append(data)
-        #
+
+        
+        with open(f"{file_name}.json", "w") as outfile:
+            json.dump(player_data, outfile)
+
+        
         #player_data = {
         #    "player_name": self._name,
         #    "items": self._items,
