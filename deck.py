@@ -10,14 +10,18 @@ class Deck:
 
     def __init__(self, load=False):
         self._cards = []
-                
-        enemies = [dolphin.Dolphin(), otter.Otter(), turtle.Turtle(),
-                    leviathan.Leviathan(), manta_ray.MantaRay(), shark.Shark(),
-                    angler.Angler(), jellyfish.Jellyfish(), kraken.Kraken()]
 
-        for i in enemies:
-            for j in range(3):
-                self._cards.append(i)
+        if load == True:
+            print("Using loaded deck")
+        
+        else:      
+            enemies = [dolphin.Dolphin(), otter.Otter(), turtle.Turtle(),
+                        leviathan.Leviathan(), manta_ray.MantaRay(), shark.Shark(),
+                        angler.Angler(), jellyfish.Jellyfish(), kraken.Kraken()]
+
+            for i in enemies:
+                for j in range(3):
+                    self._cards.append(i)
 
     def __iter__(self):
         self._i = 0
