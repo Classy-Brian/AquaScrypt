@@ -131,16 +131,15 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
 
         kingShrimp = shrimp.Shrimp()
         kingShrimp._power = 10
-        shrimpArmy._max_hp = 1
-        shrimpArmy._hp = 1
-
+        kingShrimp._max_hp = 1
+        kingShrimp._hp = 1
 
         for i, card in enumerate(curr_attack):
-            if phase2 == False:
-                curr_attack[i] = shrimpArmy
-            else:
-                hidden_upcoming[i] = kingShrimp
+            upcoming_attack[i] = shrimpArmy
         
+        if phase2 == True:
+            upcoming_attack[0] = kingShrimp
+
         return dmg_mech, bossNum
 
 def death_messages(curr_attack):
