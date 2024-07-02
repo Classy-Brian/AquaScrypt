@@ -183,7 +183,7 @@ def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, u
                         choice_1= check_input.yes_no(f"Are you sure you want to chosse your {hero._items[item_choice - 1]} item?\n")
                         if choice_1 is True:
                             scale = use_item(hero_hand, scale, hero._items[item_choice - 1])
-                            hero._items.pop([item_choice - 1])
+                            hero._items.remove([item_choice - 1])
                             valid = True
                     else:
                         print("Nothing there! try again")
