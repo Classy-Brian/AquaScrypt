@@ -42,10 +42,13 @@ def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, u
                     if hero._items[item_choice - 1] is not None:
                         choice_1= check_input.yes_no(f"Are you sure you want to chosse your {hero._items[item_choice - 1]} item?\n")
                         if choice_1 is True:
-                            scale = use_item(hero_hand, play_deck, curr_hero, scale, hero._items[item_choice - 1])
+                            scale = use_item(hero_hand, scale, hero._items[item_choice - 1])
                             valid = True
                     else:
                         print("Nothing there! try again")
+                        choice_2 = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
+                        if choice_2 is True:
+                            return
         elif choice == 5:
             if sigil is False:
                 use_sigil(hidden_upcoming, curr_attack, curr_hero)
