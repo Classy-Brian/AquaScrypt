@@ -8,34 +8,32 @@ from terminal_utils import clear_terminal, pause, delay_print
 #from cards.oceanic import leviathan, manta_ray, shark <- Test
 #from cards.tropical import dolphin,otter, turtle
 
-def choose_card(text, deck, return_index=False):
-    if all(card is None for card in deck):
+def choose_card(text, deck, return_index=False, cardhand=False):
+    deck = [card for card in deck if card is not None]
+
+    if not deck:
         return None
-    else:
-        print(text)
-        counter = 1 
-        for card in deck:
-            print(f"{counter}. {card}")
-            print()
-            counter += 1
 
-        valid = False
-        while not valid:
-            choice = check_input.range_int("Enter choice: ", 1, counter - 1)
-            
+    print(text)
+    for counter, card in enumerate(deck, start=1):
+        print(f"{counter}. {card}")
+        print()
 
-            if deck[choice - 1] is not None:
-                choice_2= check_input.yes_no(f"Are you sure you want to choose your {deck[choice - 1].name}?\n")
-                if choice_2 == True:
-                    if return_index:                 
-                        return deck[choice - 1], choice - 1
-                    else:
-                        return deck[choice - 1]
-            else:
-                print("There's no card there, choose again. ")
-                choice_3 = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
-                if choice_3 is True:
-                    return
+    valid = False
+    while not valid:
+        choice = check_input.range_int("Enter choice: ", 1, len(deck))
+        if deck[choice - 1] is not None:
+            choice_2 = check_input.yes_no(f"Are you sure you want to choose your {deck[choice - 1].name}?\n")
+            if choice_2:
+                if return_index:
+                    return deck[choice - 1], choice - 1
+                else:
+                    return deck[choice - 1]
+        else:
+            print("There's no card there, choose again.")
+            choice_3 = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
+            if choice_3:
+                return
 
 def random_card(deck):
     """ From a deck of cards, pick a random card """
@@ -49,9 +47,15 @@ def random_card(deck):
 def show_hand(hand):
     """ Display current hand """
     print("\n~~~ Current Hand ~~~")
-    for card in hand:
+    hand = [card for card in hand if card is not None]
+    for idx, card in enumerate(hand):
         print(card)
         print()
+    #for card in hand:
+        #print(card)
+        #print()
+            
+
 
     print("~~~~~~~~~~~~~~~~~~~~\n")
 
@@ -95,7 +99,7 @@ def display_board(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scal
     print()        
     
     for index, card in enumerate(curr_hero):
-        if card is None:
+        if curr_hero[index] is None:
             print("None", end=" ")
         else:
             print(card.name, end=" ")
@@ -183,7 +187,7 @@ def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, u
                         choice_1= check_input.yes_no(f"Are you sure you want to chosse your {hero._items[item_choice - 1]} item?\n")
                         if choice_1 is True:
                             scale = use_item(hero_hand, scale, hero._items[item_choice - 1])
-                            hero._items.remove([item_choice - 1])
+                            hero._items.pop(item_choice - 1)
                             valid = True
                     else:
                         print("Nothing there! try again")
@@ -223,7 +227,7 @@ def placeCard(hero_hand, curr_hero):
     has_enough = 0
     picked_card = None
     while not done_choosing:
-        picked_card, index = choose_card("\nChoose a card from your hand", hero_hand, return_index=True)
+        picked_card, index = choose_card("\nChoose a card from your hand", hero_hand, return_index=True, cardhand=True)
         if picked_card.cost > 0: 
             for card in curr_hero:
                 if card is not None:
@@ -245,7 +249,7 @@ def placeCard(hero_hand, curr_hero):
         print(f"\nThis card needs {picked_card.cost} sacerfices. Choose wisely.")
         while curr_sac < picked_card.cost:
             print("Which card would you like to sacerfice?")
-            choice_card, index = choose_card("", curr_hero, return_index=True)
+            choice_card, index = choose_card("", curr_hero, return_index=True, cardhand=False)
             if choice_card.name == "Boulder":
                 print("You cannot sacerfice a boulder ... dummy")
             else:
