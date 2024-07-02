@@ -33,6 +33,9 @@ def choose_card(text, deck, return_index=False):
                         return deck[choice - 1]
             else:
                 print("There's no card there, choose again. ")
+                choice_3 = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
+                if choice_3 is True:
+                    return
 
 def random_card(deck):
     """ From a deck of cards, pick a random card """
@@ -180,9 +183,13 @@ def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, u
                         choice_1= check_input.yes_no(f"Are you sure you want to chosse your {hero._items[item_choice - 1]} item?\n")
                         if choice_1 is True:
                             scale = use_item(hero_hand, scale, hero._items[item_choice - 1])
+                            hero._items.pop([item_choice - 1])
                             valid = True
                     else:
                         print("Nothing there! try again")
+                        choice_2 = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
+                        if choice_2 is True:
+                            return
         elif choice == 5:
             if sigil is False:
                 use_sigil(hidden_upcoming, curr_attack, curr_hero)
@@ -329,6 +336,9 @@ def use_sigil(hidden_upcoming, curr_attack, curr_hero):
                         end_sigil = True 
                     else: 
                         print(f"\n{curr_hero[choice - 1].name} is not low yet, and cannot use Frenzy")
+                        choice_4 = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
+                        if choice_4 is True:
+                            return
 
                 elif selected_sigil == "Barrier":
                     if not curr_hero[choice - 1].barrier:
@@ -337,6 +347,9 @@ def use_sigil(hidden_upcoming, curr_attack, curr_hero):
                         end_sigil = True
                     else:
                         print(f"\n{curr_hero[choice - 1].name} already has a Barrier active.")
+                        choice_5 = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
+                        if choice_5 is True:
+                            return
 
                 elif selected_sigil == "Echolocation":
                     print(f"\n{curr_hero[choice - 1].name} use Echolocation and see upcoming attack!")
@@ -366,6 +379,9 @@ def use_sigil(hidden_upcoming, curr_attack, curr_hero):
                             end_sigil = True
                         else:
                             print("There are no card in that slot, pick somewhere else.")
+                            choice_6 = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
+                            if choice_6 is True:
+                                return
 
                 elif selected_sigil == "None":
                     print("\nThis card has no sigil")

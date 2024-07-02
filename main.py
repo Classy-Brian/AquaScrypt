@@ -39,6 +39,7 @@ def How_to_play():
                 print(file.read())
                 print()
                 pause()
+                clear_terminal()
     
 def main():
     clear_terminal()
