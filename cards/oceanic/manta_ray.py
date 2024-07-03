@@ -1,6 +1,7 @@
 import card
 
 class MantaRay(card.Card):
+    id_counter = 1
 
     def __init__(self):
         name = "Manta Ray"
@@ -10,6 +11,9 @@ class MantaRay(card.Card):
         sigil = ["Barrier"] # Blocks the next attack against it
         barrier = False
         super().__init__(name, cost, power, max_hp, sigil, barrier)
+
+        self.id = MantaRay.id_counter
+        MantaRay.id_counter += 1
 
     def attack(self, entity):
         entity.take_damage(self._power)

@@ -1,6 +1,7 @@
 import card
 
 class Turtle(card.Card):
+    id_counter = 1
 
     def __init__(self):
         name = "Turtle"
@@ -10,6 +11,9 @@ class Turtle(card.Card):
         sigil = ["Shell"] # Halfs damage
         barrier = False
         super().__init__(name, cost, power, max_hp, sigil, barrier)
+
+        self.id = Turtle.id_counter
+        Turtle.id_counter += 1
 
     def attack(self, entity):
         entity.take_damage(self._power)
