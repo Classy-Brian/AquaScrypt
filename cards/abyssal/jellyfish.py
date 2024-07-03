@@ -1,6 +1,7 @@
 import card
 
 class Jellyfish(card.Card):
+    id_counter = 1
 
     def __init__(self):
         name = "Jellyfish"
@@ -10,6 +11,11 @@ class Jellyfish(card.Card):
         sigil = ["Swarm"] # Summons additional coppies of itself when played
         barrier = False
         super().__init__(name, cost, power, max_hp, sigil, barrier)
+
+        self.id = Jellyfish.id_counter
+        Jellyfish.id_counter += 1
+
+        
 
     def attack(self, entity):
         entity.take_damage(self._power)

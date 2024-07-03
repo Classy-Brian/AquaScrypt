@@ -159,9 +159,9 @@ def villian_turn(villian, upcoming_attack, curr_attack, curr_hero, hidden_upcomi
     villian_draw_card(villian, hidden_upcoming)
     return villian_attack(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale) 
  
-def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack, hero):
+def hero_turn(hero_hand, play_deck, shrimp_count, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack, hero):
     """ Draws and sacerfices cards, and attacks villian """
-    draw_card(hero_hand, play_deck, shrimp_count, my_shrimp)
+    draw_card(hero_hand, play_deck, shrimp_count)
     sigil = False 
     done = False
     while not done:
@@ -209,7 +209,7 @@ def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, u
             done = True
     return heroAttack(curr_hero, curr_attack, scale)
 
-def draw_card(hero_hand, play_deck, shrimp_count, my_shrimp):
+def draw_card(hero_hand, play_deck, shrimp_count):
     """ User chooses a card of shrimp """
     print("1. Draw from deck \n2. Draw a shrimp")
     choice = check_input.range_int("Enter choice: ", 1, 2)
@@ -219,7 +219,9 @@ def draw_card(hero_hand, play_deck, shrimp_count, my_shrimp):
         print(f"\nYou drew a {new_card.name}.")
     elif choice == 2:
         if shrimp_count > 0:
-            hero_hand.append(my_shrimp)
+            new_shrimp = shrimp.Shrimp()
+            hero_hand.append(new_shrimp)
+            print(f"Shrimp ID: {new_shrimp.id}")
             print("\nYou drew a shrimp.")
             shrimp_count -= 1
 
@@ -400,7 +402,7 @@ def battle(hero, villian):
     print("------------- Battle -------------")
     
     shrimp_count = 20
-    my_shrimp = shrimp.Shrimp()
+    #my_shrimp = shrimp.Shrimp()
 
     hero_hand = []
     play_deck = copy.deepcopy(hero._deck)
@@ -435,7 +437,7 @@ def battle(hero, villian):
         # Hero turn
         else:
             print("\n---- Hero Turn ----\n")
-            scale = hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack, hero)
+            scale = hero_turn(hero_hand, play_deck, shrimp_count, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack, hero)
             pause()
             turn = 0
 

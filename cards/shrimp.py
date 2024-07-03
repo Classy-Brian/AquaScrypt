@@ -1,5 +1,6 @@
 import card
 class Shrimp(card.Card):
+    id_counter = 1
 
     def __init__(self):
         name = "Shrimp"
@@ -9,6 +10,9 @@ class Shrimp(card.Card):
         sigil = ["None"]
         barrier = False
         super().__init__(name, cost, power, max_hp, sigil, barrier)
+
+        self.id = Shrimp.id_counter
+        Shrimp.id_counter += 1
 
     def attack(self, entity):
         entity.take_damage(self._power)
