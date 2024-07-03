@@ -1,7 +1,6 @@
 import card
 
 class Kraken(card.Card):
-    id_counter = 1
 
     def __init__(self):
         name = "Kraken"
@@ -11,9 +10,6 @@ class Kraken(card.Card):
         sigil = ["Frenzy"] # Deals double damage when low
         barrier = False
         super().__init__(name, cost, power, max_hp, sigil, barrier)
-
-        self.id = Kraken.id_counter
-        Kraken.id_counter += 1
 
     def attack(self, entity):
         entity.take_damage(self._power)

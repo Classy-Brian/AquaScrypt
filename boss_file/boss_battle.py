@@ -11,9 +11,9 @@ def boss_turn(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, sc
     villian_draw_card(boss, hidden_upcoming)
     return villian_attack(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale) 
 
-def hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack, hero):
+def hero_turn(hero_hand, play_deck, shrimp_count, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack, hero):
     """ Draws and sacerfices cards, and attacks villian """
-    draw_card(hero_hand, play_deck, shrimp_count, my_shrimp)
+    draw_card(hero_hand, play_deck, shrimp_count)
     sigil = False 
     done = False
     while not done:
@@ -158,7 +158,7 @@ def boss_battle(hero, boss):
     print("------------- Boss Battle -------------\n")
     
     shrimp_count = 20
-    my_shrimp = shrimp.Shrimp()
+    #my_shrimp = shrimp.Shrimp()
 
     hero_hand = []
     play_deck = copy.deepcopy(hero._deck)
@@ -254,12 +254,12 @@ def boss_battle(hero, boss):
             
             if scale <= -3:
                 print(boss.attack())
-                scale = hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack, hero)
+                scale = hero_turn(hero_hand, play_deck, shrimp_count, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack, hero)
                 pause()
                 turn = 0
             
             else:
-                scale = hero_turn(hero_hand, play_deck, shrimp_count, my_shrimp, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack, hero)
+                scale = hero_turn(hero_hand, play_deck, shrimp_count, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack, hero)
                 pause()
                 turn = 0
 

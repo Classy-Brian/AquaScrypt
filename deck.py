@@ -27,14 +27,14 @@ class Deck:
                     self._cards.append(temp)
 
             # TEST
-            for card in self._cards:
-                print(f"{card.name} Health: {card.hp} ID: {card.id}")
+            #for card in self._cards:
+            #    print(f"{card.name} Health: {card.hp}")
 
-            self._cards[0].hp += 2
-            print("-----------------------------------------------")
+            #self._cards[0].hp += 2
+            #print("-----------------------------------------------")
 
-            for card in self._cards:
-                print(f"{card.name} Health: {card.hp} ID: {card.id}")
+            #for card in self._cards:
+            #    print(f"{card.name} Health: {card.hp}")
             
     def __iter__(self):
         self._i = 0
@@ -79,9 +79,10 @@ class Deck:
             one_card = []
             seen = set()
             for card in self._cards:
-                if card not in seen:
+                if card.name not in seen:
                     one_card.append(card)
-                    seen.add(card)
+                    seen.add(card.name)  
+            display_cards = one_card
             display_cards = one_card
         else:
             display_cards = self._cards
@@ -115,7 +116,7 @@ class Deck:
         pause()
         clear_terminal()
 
-        card, idx = self.choose_card("Choose a card to sacrifice (You will lose one of this card)",remove_duplicates=False, return_index=True)
+        card, idx = self.choose_card("Choose a card to sacrifice (You will lose one of this card)",remove_duplicates=True, return_index=True)
         # idx *=3
         sac_card = self._cards[idx]
         self.remove_card(idx)
@@ -128,7 +129,7 @@ class Deck:
         pause()
         clear_terminal()
             
-        card, idx = self.choose_card("Now choose a card to gain its new stat or sigil",remove_duplicates=False, return_index=True)
+        card, idx = self.choose_card("Now choose a card to gain its new stat or sigil",remove_duplicates=True, return_index=True)
         gain_card = card
         print()
         clear_terminal()
@@ -172,12 +173,34 @@ class Deck:
         if cards == 1:
             print("You came to visit Aquaman, and he grants you more ... POWER")
             print(f"Your power has been upgraded from {str(card._power)} to {str(card._power + 1)}\n")
-            card._power += 1
+            #idx *= 3
+            new_power = card._power + 1
+            card._power = new_power
+
+            count = 0
+            for idx, card in enumerate(self._cards):
+                if self._cards[idx].name == card.name:
+                    self._cards[idx]._power = new_power
+                    count += 1
+                    if count == 3:
+                        break
         else:
             print("You came to visit Aquaman, and he grants you more ... HEALTH")
             print(f"Your max health has been upgraded from {str(card._max_hp)} to {str(card._max_hp + 2)}\n")
-            card._max_hp += 2
-            card._hp +=2
+            #idx *= 3
+            new_maxhp = card._max_hp + 2
+            new_hp = card.hp + 2
+            card._max_hp = new_maxhp
+            card._hp = new_hp
+
+            count = 0
+            for idx, card in enumerate(self._cards):
+                if self._cards[idx].name == card.name:
+                    self._cards[idx]._hp = new_hp
+                    self._cards[idx]._max_hp = new_maxhp
+                    count += 1
+                    if count == 3:
+                        break
 
         player_choice = check_input.yes_no(f"Aquaman is getting angry\nWould you like to upgrade again? (50% chance)\nIf you're unlucky then you will loss all you cards with the same name. Y/N: ")
         chance = 50
@@ -233,19 +256,42 @@ class Deck:
             print(congrats_text)
             random_num2 = random.randint(1,2)
             if random_num2 == 1:
-                card._power += 1
+                new_power = card._power + 1
+                card._power = new_power
+
+                count = 0
+                for idx, card in enumerate(self._cards):
+                    if self._cards[idx].name == card.name:
+                        self._cards[idx]._power = new_power
+                        count += 1
+                        if count == 3:
+                            break 
                 print("Your power has been upgraded to " + str(card._power) + "\n")
             else:
-                card._max_hp += 2
-                card._hp += 2
+                new_maxhp = card._max_hp + 2
+                new_hp = card.hp + 2
+                card._max_hp = new_maxhp
+                card._hp = new_hp
+
+                count = 0
+                for idx, card in enumerate(self._cards):
+                    if self._cards[idx].name == card.name:
+                        self._cards[idx]._hp = new_hp
+                        self._cards[idx]._max_hp = new_maxhp
+                        count += 1
+                        if count == 3:
+                            break
+
                 print("Your max health has been upgraded to " + str(card._max_hp) + "\n")
             return True
         else:
-            # idx *= 3
-            while idx < len(self._cards):
+            count = 0
+            idx *= 3
+            for idx, card in enumerate(self._cards):
                 if self._cards[idx].name == card.name:
                     self.remove_card(idx)
-                else:
+                    count += 1
+                if count == 3:
                     print(failed_text)
                     return False 
 

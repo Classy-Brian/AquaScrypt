@@ -1,7 +1,6 @@
 import card
 
 class Angler(card.Card):
-    id_counter = 1
 
     def __init__(self):
         name = "Angler"
@@ -11,9 +10,6 @@ class Angler(card.Card):
         sigil = ["Bioluminescence"] # Other abyssal fish gets 1+ stat
         barrier = False
         super().__init__(name, cost, power, max_hp, sigil, barrier)
-
-        self.id = Angler.id_counter
-        Angler.id_counter += 1
 
     def attack(self, entity):
         entity.take_damage(self._power)

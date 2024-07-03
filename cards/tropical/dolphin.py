@@ -1,7 +1,6 @@
 import card
 
 class Dolphin(card.Card):
-    id_counter = 1
 
     def __init__(self):
         name = "Dolphin"
@@ -11,9 +10,6 @@ class Dolphin(card.Card):
         sigil = ["Echolocation"] # See upcoming attack
         barrier = False
         super().__init__(name, cost, power, max_hp, sigil, barrier)
-
-        self.id = Dolphin.id_counter
-        Dolphin.id_counter += 1
 
     def attack(self, entity):
         entity.take_damage(self._power)
