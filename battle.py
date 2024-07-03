@@ -448,6 +448,7 @@ def battle(hero, villian):
         pause()
         choice = check_input.yes_no("Try again? Y/N\n")
         if choice is True:
+            clear_terminal()
             battle(hero, villian)
         else:
             exit()
