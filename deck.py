@@ -6,6 +6,8 @@ from cards.oceanic import leviathan, manta_ray, shark
 from cards.abyssal import angler, jellyfish, kraken
 from terminal_utils import clear_terminal, pause, delay_print, delay_input, delay
 
+import copy
+
 class Deck:
 
     def __init__(self, load=False):
@@ -20,9 +22,20 @@ class Deck:
                         angler.Angler(), jellyfish.Jellyfish(), kraken.Kraken()]
 
             for i in enemies:
+                temp = copy.deepcopy(i)
                 for j in range(3):
-                    self._cards.append(i)
+                    self._cards.append(temp)
 
+            # TEST
+            for card in self._cards:
+                print(f"{card.name} Health: {card.hp}")
+
+            self._cards[0].hp += 2
+            print("-----------------------------------------------")
+
+            for card in self._cards:
+                print(f"{card.name} Health: {card.hp}")
+            
     def __iter__(self):
         self._i = 0
         return self
