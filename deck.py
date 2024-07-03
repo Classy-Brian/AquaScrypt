@@ -6,6 +6,8 @@ from cards.oceanic import leviathan, manta_ray, shark
 from cards.abyssal import angler, jellyfish, kraken
 from terminal_utils import clear_terminal, pause, delay_print, delay_input, delay
 
+import copy
+
 class Deck:
 
     def __init__(self, load=False):
@@ -21,8 +23,19 @@ class Deck:
 
             for i in enemies:
                 for j in range(3):
-                    self._cards.append(i)
+                    temp = copy.deepcopy(i)
+                    self._cards.append(temp)
 
+            # TEST
+            for card in self._cards:
+                print(f"{card.name} Health: {card.hp} ID: {card.id}")
+
+            self._cards[0].hp += 2
+            print("-----------------------------------------------")
+
+            for card in self._cards:
+                print(f"{card.name} Health: {card.hp} ID: {card.id}")
+            
     def __iter__(self):
         self._i = 0
         return self
@@ -102,8 +115,8 @@ class Deck:
         pause()
         clear_terminal()
 
-        card, idx = self.choose_card("Choose a card to sacrifice (You will lose one of this card)",remove_duplicates=True, return_index=True)
-        idx *=3
+        card, idx = self.choose_card("Choose a card to sacrifice (You will lose one of this card)",remove_duplicates=False, return_index=True)
+        # idx *=3
         sac_card = self._cards[idx]
         self.remove_card(idx)
         print(f"You have chosen the {sac_card.name}\n")
@@ -115,7 +128,7 @@ class Deck:
         pause()
         clear_terminal()
             
-        card, idx = self.choose_card("Now choose a card to gain its new stat or sigil",remove_duplicates=True, return_index=True)
+        card, idx = self.choose_card("Now choose a card to gain its new stat or sigil",remove_duplicates=False, return_index=True)
         gain_card = card
         print()
         clear_terminal()
@@ -138,6 +151,13 @@ class Deck:
         
         print(gain_card)
         print()
+
+        # TESTING
+        counter = 1
+        for card in self._cards:
+            print(f"{counter}. {card.name} HEALTH: {card._hp}/{card._max_hp} POWER: {card._power}")
+            counter += 1
+
         pause()
         clear_terminal()
 
@@ -197,7 +217,13 @@ class Deck:
             chance //= 2
             if chance is not 0: 
                 player_choice = check_input.yes_no(f"Would you like to upgrade again? (" + str(chance) + '%' " chance) Y/N: ")
-                         
+
+        # TESTING  
+        counter = 1
+        for card in self._cards:
+            print(f"{counter}. {card.name} HEALTH: {card._hp}/{card._max_hp} POWER: {card._power}")
+            counter += 1
+        
         print()
         pause()
         clear_terminal()
@@ -215,7 +241,7 @@ class Deck:
                 print("Your max health has been upgraded to " + str(card._max_hp) + "\n")
             return True
         else:
-            idx *= 3
+            # idx *= 3
             while idx < len(self._cards):
                 if self._cards[idx].name == card.name:
                     self.remove_card(idx)
