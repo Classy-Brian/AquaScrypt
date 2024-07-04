@@ -173,7 +173,7 @@ class Deck:
         if cards == 1:
             print("You came to visit Aquaman, and he grants you more ... POWER")
             print(f"Your power has been upgraded from {str(card._power)} to {str(card._power + 1)}\n")
-            #idx *= 3
+            idx *= 3
             new_power = card._power + 1
             card._power = new_power
 
@@ -187,7 +187,7 @@ class Deck:
         else:
             print("You came to visit Aquaman, and he grants you more ... HEALTH")
             print(f"Your max health has been upgraded from {str(card._max_hp)} to {str(card._max_hp + 2)}\n")
-            #idx *= 3
+            idx *= 3
             new_maxhp = card._max_hp + 2
             new_hp = card.hp + 2
             card._max_hp = new_maxhp
