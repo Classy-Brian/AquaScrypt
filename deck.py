@@ -115,7 +115,7 @@ class Deck:
         print("Here you will sacrifice a card and either transfer its sigil or one of the its stats to another ...\n")
         pause()
         clear_terminal()
-
+        cards_copy = list(self._cards)
         card, idx = self.choose_card("Choose a card to sacrifice (You will lose one of this card)",remove_duplicates=True, return_index=True)
         idx *=3
         sac_card = self._cards[idx]
@@ -136,19 +136,34 @@ class Deck:
 
         print(gain_card)
         print("\nturned to\n")
-
+        target_card_name = self._cards[idx].name
         if gain_choice == 1:
             if isinstance(gain_card.sigil, list):
-                gain_card.sigil.extend(sac_card.sigil)
+                for i, card in enumerate(cards_copy):
+                    if card.name == target_card_name:
+                        self._cards[idx].sigil.extend(sac_card.sigil)
+                        idx +=1
             else:
-                gain_card.sigil = [gain_card.sigil, sac_card.sigil]
+                for i, card in enumerate(cards_copy):
+                    if card.name == target_card_name:
+                        self._cards[idx].sigil = [gain_card.sigil, sac_card.sigil]
+                        idx +=1
         elif gain_choice == 2:
-            gain_card.cost = sac_card.cost
+            for i, card in enumerate(cards_copy):
+                if card.name == target_card_name:
+                    self._cards[idx].cost = sac_card.cost
+                    idx +=1
         elif gain_choice == 3:
-            gain_card.power = sac_card.power
+            for i, card in enumerate(cards_copy):
+                if card.name == target_card_name:
+                    self._cards[idx].power = sac_card.power
+                    idx +=1
         else:
-            gain_card.hp = sac_card.hp
-            gain_card.max_hp = sac_card.max_hp
+            for i, card in enumerate(cards_copy):
+                if card.name == target_card_name:
+                    self._cards[idx].hp = sac_card.hp
+                    self._cards[idx].max_hp = sac_card.max_hp
+                    idx +=1
         
         print(gain_card)
         print()
@@ -178,8 +193,9 @@ class Deck:
             card._power = new_power
 
             count = 0
+            target_card_name = self._cards[idx].name
             for i, card in enumerate(self._cards):
-                if self._cards[idx].name == card.name:
+                if card.name == target_card_name:
                     self._cards[idx]._power = new_power
                     count += 1
                     idx +=1
@@ -196,8 +212,9 @@ class Deck:
             card._hp = new_hp
 
             count = 0
+            target_card_name = self._cards[idx].name
             for i, card in enumerate(self._cards):
-                if self._cards[idx].name == card.name:
+                if card.name == target_card_name:
                     self._cards[idx]._hp = new_hp
                     self._cards[idx]._max_hp = new_maxhp
                     count += 1
@@ -263,41 +280,44 @@ class Deck:
                 new_power = card._power + 1
                 card._power = new_power
                 count = 0
+                target_card_name = self._cards[idx].name
                 for i, card in enumerate(self._cards):
-                    if self._cards[idx].name == card.name:
+                    if card.name == target_card_name:
                         self._cards[idx]._power = new_power
                         count += 1
                         idx +=1
                         if count == 3:
-                            break 
+                            break
                 print("Your power has been upgraded to " + str(card._power) + "\n")
+
             else:
                 new_maxhp = card._max_hp + 2
                 new_hp = card.hp + 2
                 card._max_hp = new_maxhp
                 card._hp = new_hp
                 count = 0
+                target_card_name = self._cards[idx].name
                 for i, card in enumerate(self._cards):
-                    if self._cards[idx].name == card.name:
+                    if card.name == target_card_name:
                         self._cards[idx]._hp = new_hp
                         self._cards[idx]._max_hp = new_maxhp
                         count += 1
                         idx +=1
                         if count == 3:
                             break
-
                 print("Your max health has been upgraded to " + str(card._max_hp) + "\n")
             return True
         else:
             count = 0
+            target_card_name = self._cards[idx].name
             cards_copy = list(self._cards)
             for i, card in enumerate(cards_copy):
-                if self._cards[idx].name == card.name:
-                    print(idx)
+                if card.name == target_card_name:
                     self.remove_card(idx)
                     count += 1
                     if count == 3:
                         break
+
             print(failed_text)
             return False 
 
