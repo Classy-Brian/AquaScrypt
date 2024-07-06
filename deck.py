@@ -115,9 +115,9 @@ class Deck:
         print("Here you will sacrifice a card and either transfer its sigil or one of the its stats to another ...\n")
         pause()
         clear_terminal()
-        cards_copy = list(self._cards)
         card, idx = self.choose_card("Choose a card to sacrifice (You will lose one of this card)",remove_duplicates=True, return_index=True)
         idx *=3
+        #cards_copy = list(self._cards)
         sac_card = self._cards[idx]
         self.remove_card(idx)
         print(f"You have chosen the {sac_card.name}\n")
@@ -130,36 +130,39 @@ class Deck:
         clear_terminal()
             
         card, idx = self.choose_card("Now choose a card to gain its new stat or sigil",remove_duplicates=True, return_index=True)
-        gain_card = card
+        idx *=3
+        gain_card = self._cards[idx]
         print()
         clear_terminal()
 
         print(gain_card)
         print("\nturned to\n")
         target_card_name = self._cards[idx].name
+        #cards_copy = list(self._cards)
         if gain_choice == 1:
             if isinstance(gain_card.sigil, list):
-                for i, card in enumerate(cards_copy):
+                for i, card in enumerate(self._cards):
                     if card.name == target_card_name:
                         self._cards[idx].sigil.extend(sac_card.sigil)
                         idx +=1
             else:
-                for i, card in enumerate(cards_copy):
+                for i, card in enumerate(self._cards):
                     if card.name == target_card_name:
                         self._cards[idx].sigil = [gain_card.sigil, sac_card.sigil]
                         idx +=1
         elif gain_choice == 2:
-            for i, card in enumerate(cards_copy):
+            for i, card in enumerate(self._cards):
                 if card.name == target_card_name:
                     self._cards[idx].cost = sac_card.cost
                     idx +=1
         elif gain_choice == 3:
-            for i, card in enumerate(cards_copy):
+            for i, card in enumerate(self._cards):
                 if card.name == target_card_name:
+                    print(idx)
                     self._cards[idx].power = sac_card.power
                     idx +=1
         else:
-            for i, card in enumerate(cards_copy):
+            for i, card in enumerate(self._cards):
                 if card.name == target_card_name:
                     self._cards[idx].hp = sac_card.hp
                     self._cards[idx].max_hp = sac_card.max_hp
