@@ -137,7 +137,7 @@ class Deck:
 
         print(gain_card)
         print("\nturned to\n")
-        target_card_name = self._cards[idx].name
+        target_card_name = gain_card.name
         #cards_copy = list(self._cards)
         if gain_choice == 1:
             if isinstance(gain_card.sigil, list):
