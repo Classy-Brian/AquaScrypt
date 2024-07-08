@@ -22,10 +22,10 @@ def hero_turn(hero_hand, play_deck, shrimp_count, curr_hero, scale, upcoming_att
         if choice == 1:
             show_hand(hero_hand)
         elif choice == 2:
-            display_board(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale)
+            display_board(upcoming_attack, curr_attack, curr_hero, scale)
         elif choice == 3:
             placeCard(hero_hand, curr_hero)
-            display_board(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale)
+            display_board(upcoming_attack, curr_attack, curr_hero, scale)
         elif choice == 4:
             if len(hero._items) == 0:
                 print("\nYou have no items")
@@ -56,8 +56,7 @@ def hero_turn(hero_hand, play_deck, shrimp_count, curr_hero, scale, upcoming_att
             else: 
                 print("\nYou can only use one sigil per turn, good luck!")
         else:
-            villian_play_card(upcoming_attack, curr_attack, hidden_upcoming)
-            display_board(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale)
+            display_board(upcoming_attack, curr_attack, curr_hero, scale)
             done = True
     return heroAttack(curr_hero, curr_attack, scale)
 
@@ -159,12 +158,10 @@ def boss_battle(hero, boss):
     print("------------- Boss Battle -------------\n")
     
     shrimp_count = 20
-    #my_shrimp = shrimp.Shrimp()
 
     hero_hand = []
     play_deck = copy.deepcopy(hero._deck)
-    #play_deck = deck.Deck()
-    #str(play_deck)
+
     play_deck.shuffle()
 
     for _ in range(4):
@@ -202,7 +199,6 @@ def boss_battle(hero, boss):
                         else:
                             dmg_mech, bossNum = boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, dmg_mech, bossNum, True)
                         print(boss.power())
-                        # print(f"Boss number: {bossNum}")
                         count += 1
                     else:
                         active = True
@@ -254,7 +250,7 @@ def boss_battle(hero, boss):
                         print("An army of shrimps is heading your way! ")
                         alreadyPrint = True
             
-            display_board(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale)
+            display_board(upcoming_attack, curr_attack, curr_hero, scale)
             
             if scale <= -3:
                 print(boss.attack())
@@ -264,6 +260,7 @@ def boss_battle(hero, boss):
             
             else:
                 scale = hero_turn(hero_hand, play_deck, shrimp_count, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack, hero)
+                villian_play_card(upcoming_attack, curr_attack, hidden_upcoming)
                 pause()
                 turn = 0
 
