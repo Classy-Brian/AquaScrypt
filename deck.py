@@ -115,11 +115,17 @@ class Deck:
         print("Here you will sacrifice a card and either transfer its sigil or one of the its stats to another ...\n")
         pause()
         clear_terminal()
+<<<<<<< HEAD
         cards_copy = list(self._cards) # is this necessary? 
         card, idx = self.choose_card("Choose a card to sacrifice (You will lose one of this card)",remove_duplicates=True, return_index=True) # Set remove_duplicate to False to get exact index tho may not look as nice
         idx *=3 # may work if you remove all 3 cards such as all 3 otters, but won't always work if you only remove one
 
         count = 0
+=======
+        card, idx = self.choose_card("Choose a card to sacrifice (You will lose one of this card)",remove_duplicates=True, return_index=True)
+        idx *=3
+        #cards_copy = list(self._cards)
+>>>>>>> 55083b98dde912a960af0f8b7952fd5ac447ba83
         sac_card = self._cards[idx]
         for i, card in enumerate(cards_copy):
                 if card.name == sac_card.name:
@@ -136,6 +142,7 @@ class Deck:
         print()
         pause()
         clear_terminal()
+<<<<<<< HEAD
         
         # card, idx = self.choose_card("Now choose a card to gain its new stat or sigil",remove_duplicates=True, return_index=True) 
         # gain_card = card # wat dis do? 
@@ -143,35 +150,47 @@ class Deck:
         gain_card, idx = self.choose_card("Now choose a card to gain its new stat or sigil",remove_duplicates=True, return_index=True) 
         idx *= 3
 
+=======
+            
+        card, idx = self.choose_card("Now choose a card to gain its new stat or sigil",remove_duplicates=True, return_index=True)
+        idx *=3
+        gain_card = self._cards[idx]
+>>>>>>> 55083b98dde912a960af0f8b7952fd5ac447ba83
         print()
         clear_terminal()
 
         print(gain_card)
         print("\nturned to\n")
+<<<<<<< HEAD
         target_card_name = self._cards[idx].name # This won't give you the right index if remove_duplicates=True
+=======
+        target_card_name = gain_card.name
+        #cards_copy = list(self._cards)
+>>>>>>> 55083b98dde912a960af0f8b7952fd5ac447ba83
         if gain_choice == 1:
             if isinstance(gain_card.sigil, list):
-                for i, card in enumerate(cards_copy):
+                for i, card in enumerate(self._cards):
                     if card.name == target_card_name:
                         self._cards[idx].sigil.extend(sac_card.sigil)
                         idx +=1
             else:
-                for i, card in enumerate(cards_copy):
+                for i, card in enumerate(self._cards):
                     if card.name == target_card_name:
                         self._cards[idx].sigil = [gain_card.sigil, sac_card.sigil]
                         idx +=1
         elif gain_choice == 2:
-            for i, card in enumerate(cards_copy):
+            for i, card in enumerate(self._cards):
                 if card.name == target_card_name:
                     self._cards[idx].cost = sac_card.cost
                     idx +=1
         elif gain_choice == 3:
-            for i, card in enumerate(cards_copy):
+            for i, card in enumerate(self._cards):
                 if card.name == target_card_name:
+                    print(idx)
                     self._cards[idx].power = sac_card.power
                     idx +=1
         else:
-            for i, card in enumerate(cards_copy):
+            for i, card in enumerate(self._cards):
                 if card.name == target_card_name:
                     self._cards[idx].hp = sac_card.hp
                     self._cards[idx].max_hp = sac_card.max_hp
