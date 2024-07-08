@@ -3,7 +3,7 @@ from cards import shrimp
 import check_input
 from terminal_utils import clear_terminal, pause, delay_print
 import copy
-#from cards.abyssal import angler,jellyfish,kraken
+#from cards.abyssal import angler,jellyfish,kraken <- Testing
 #from cards.oceanic import leviathan, manta_ray, shark
 #from cards.tropical import dolphin,otter, turtle
 
@@ -171,7 +171,7 @@ def boss_battle(hero, boss):
     for _ in range(4):
         hero_hand.append(random_card(play_deck))
 
-    scale = 3
+    scale = 0
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]

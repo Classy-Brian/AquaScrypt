@@ -6,7 +6,7 @@ Sacrificing a card allows you to transfer one of its attributes
 deck’s capabilities.
 
 Select a card from your deck to sacrifice. Note that you will 
-lose one of this card permanently. Decide which attribute of the sacrificed 
+lose all cards permanently. Decide which attribute of the sacrificed 
 card you want to transfer to another card.
 
 Example:

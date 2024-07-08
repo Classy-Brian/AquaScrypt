@@ -78,7 +78,7 @@ def main():
     game_map = map.Map()
     game_map.load_map("map1", "map1.txt")
     next_map = 0
-    boss_def = 2
+    boss_def = 0
 
     pause()
     clear_terminal()
