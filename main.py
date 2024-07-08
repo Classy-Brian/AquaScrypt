@@ -184,7 +184,7 @@ def main():
                 game_map.switch_map("map3",hero)
 
         elif move == "F":
-            print(f"You have reached the end and defeated the boss. Your journey has come to a victorious close. Well done, {hero.name}.")
+            delay_print(f"You have reached the end and defeated the boss.\n Your journey has come to a victorious close. Well done, {hero.name}!!!")
             exit()
                    
         print()
