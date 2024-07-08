@@ -13,7 +13,7 @@ def welcome_message(name):
     delay_print("or will the sea consume you...")
     delay(1.5)
     delay_print(f"\nWell {name}, good luck diving!\n")
-    print("Made by ...")
+    print("Made by Hamster Chips Inc.")
 
 def How_to_play():
     quit = False 
@@ -184,7 +184,7 @@ def main():
                 game_map.switch_map("map3",hero)
 
         elif move == "F":
-            print("You have reached the end and defeated the boss. Your journey has come to a victorious close. Well done, hero.")
+            print(f"You have reached the end and defeated the boss. Your journey has come to a victorious close. Well done, {hero.name}.")
             exit()
                    
         print()
