@@ -44,6 +44,10 @@ def hero_turn(hero_hand, play_deck, shrimp_count, curr_hero, scale, upcoming_att
                             scale = use_item(hero_hand, scale, hero._items[item_choice - 1])
                             hero._items.pop(item_choice - 1)
                             valid = True
+                        else:
+                            go_back = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
+                            if go_back is True:
+                                return
                     else:
                         print("Nothing there! try again")
                         choice_2 = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
@@ -132,7 +136,7 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
         shrimpArmy._hp = 2
 
         kingShrimp = shrimp.Shrimp()
-        kingShrimp._name = "King_Shrimp"
+        kingShrimp._name = "King Shrimp"
         kingShrimp._power = 10
         kingShrimp._max_hp = 1
         kingShrimp._hp = 1
@@ -167,7 +171,7 @@ def boss_battle(hero, boss):
     for _ in range(4):
         hero_hand.append(random_card(play_deck))
 
-    scale = 8
+    scale = 3
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]

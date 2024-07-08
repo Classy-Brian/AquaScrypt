@@ -34,9 +34,6 @@ def choose_card(text, deck, return_index=False, cardhand=False):
         else:
             print("Invalid choice. Please try again.")
 
-        go_back = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
-        if go_back:
-            return
 
 def random_card(deck):
     """ From a deck of cards, pick a random card """
@@ -180,6 +177,10 @@ def hero_turn(hero_hand, play_deck, shrimp_count, curr_hero, scale, upcoming_att
                             scale = use_item(hero_hand, scale, hero._items[item_choice - 1])
                             hero._items.pop(item_choice - 1)
                             valid = True
+                        else:
+                            go_back = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
+                            if go_back is True:
+                                return
                     else:
                         print("Nothing there! try again")
                         choice_2 = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
@@ -383,6 +384,10 @@ def use_sigil(hidden_upcoming, curr_attack, curr_hero):
                     break  
         else:
             print("There are no card in that slot, pick somewhere else.")
+            choice_7 = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
+            if choice_7 is True:
+                return
+
 
 def battle(hero, villian):
     print("------------- Battle -------------")
