@@ -133,6 +133,7 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
         shrimpArmy._hp = 2
 
         kingShrimp = shrimp.Shrimp()
+        kingShrimp._name = "King Shrimp"
         kingShrimp._power = 10
         kingShrimp._max_hp = 1
         kingShrimp._hp = 1
