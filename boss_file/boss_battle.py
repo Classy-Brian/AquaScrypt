@@ -37,12 +37,12 @@ def hero_turn(hero_hand, play_deck, shrimp_count, curr_hero, scale, upcoming_att
                     count += 1
                 valid = False
                 while not valid:
-                    item_choice = check_input.range_int("Choice: ", 1, count)
-                    item_choice -= 1
+                    item_choice = check_input.range_int("Choice: ", 1, len(hero._items))
                     if hero._items[item_choice - 1] is not None:
                         choice_1= check_input.yes_no(f"Are you sure you want to chosse your {hero._items[item_choice - 1]} item?\n")
                         if choice_1 is True:
                             scale = use_item(hero_hand, scale, hero._items[item_choice - 1])
+                            hero._items.pop(item_choice - 1)
                             valid = True
                     else:
                         print("Nothing there! try again")
