@@ -133,7 +133,7 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
         shrimpArmy._hp = 2
 
         kingShrimp = shrimp.Shrimp()
-        kingShrimp._name = "King Shrimp"
+        kingShrimp._name = "King_Shrimp"
         kingShrimp._power = 10
         kingShrimp._max_hp = 1
         kingShrimp._hp = 1
@@ -202,7 +202,7 @@ def boss_battle(hero, boss):
                         else:
                             dmg_mech, bossNum = boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, dmg_mech, bossNum, True)
                         print(boss.power())
-                        print(f"Boss number: {bossNum}")
+                        # print(f"Boss number: {bossNum}")
                         count += 1
                     else:
                         active = True
@@ -221,7 +221,7 @@ def boss_battle(hero, boss):
         else:
             print("\n---- Hero Turn ----\n")
 
-            print(dmg_mech)
+            # print(dmg_mech)
             for i, slot in enumerate(dmg_mech):
 
                 # Bubble Bass damage mechanic
@@ -249,7 +249,10 @@ def boss_battle(hero, boss):
                     dmg_mech[i] = 0
                 
                 if bossNum == 3:
-                    print("An army of shrimps is heading your way! ")
+                    alreadyPrint = False
+                    if not alreadyPrint:
+                        print("An army of shrimps is heading your way! ")
+                        alreadyPrint = True
             
             display_board(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale)
             
