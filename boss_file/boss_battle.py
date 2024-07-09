@@ -85,16 +85,17 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
             if card is not None:
                 temp = "(" + card.name + ")"
                 card.name = temp
-                if phase2 == False:
-                    dmg_mech[i] = 1
-                    print("\nHAHAHAHAHAAAA....... I trapped your cards in my NASTY BUBBLE!")
-                    print("\nAIN'T NOTHIN YOU CAN DO ABOUT IT!")
-                else:
-                    dmg_mech[i] = 2
-                    print("\nOoooooohhh alright ... NOW YOU ARE STARTING TO PISS ME OFF!")
-                    print("\nHave a taste of my CONTAMINATED BUBBLE!")
             else:
                 dmg_mech[i] = 0
+
+        if phase2 == False:
+            dmg_mech[i] = 1
+            print("\nHAHAHAHAHAAAA....... I trapped your cards in my NASTY BUBBLE!")
+            print("\nAIN'T NOTHIN YOU CAN DO ABOUT IT!")
+        else:
+            dmg_mech[i] = 2
+            print("\nOoooooohhh alright ... NOW YOU ARE STARTING TO PISS ME OFF!")
+            print("\nHave a taste of my CONTAMINATED BUBBLE!")
         
         return dmg_mech, bossNum
     
@@ -113,10 +114,14 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
             if card is not None:
                 if phase2 == False:
                     dmg_mech[i] = 1
-                    print("\nI'm gonna speared all your fishes! What chu gonna do bout it???")
                 else:
                     dmg_mech[i] = 2
-                    print("\nAight aight, how about this!")
+
+        if phase2 == False:
+            print("\nI'm gonna speared all your fishes! What chu gonna do bout it???")
+        else:
+            print("\nAight aight, how about this!")
+
         
         return dmg_mech, bossNum
 
