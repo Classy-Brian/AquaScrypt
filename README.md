@@ -19,8 +19,3 @@ This project is a text-based adventure card game inspired by the game Inscryptio
 - The game is a text-based adventure where players navigate through a procedurally generated map.
 - Players encounter various challenges, enemies, and items as they progress.
 - The goal is to reach the end point while overcoming obstacles and battles.
-
-```sh
-git clone https://github.com/yourusername/text-based-card-game.git
-cd text-based-card-game
-
