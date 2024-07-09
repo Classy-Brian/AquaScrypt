@@ -83,17 +83,21 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
         """ Adds a bubble to the curr_hero cards. """
         for i, card in enumerate(curr_hero):
             if card is not None:
-                temp = "(" + card.name + ")"
-                card.name = temp
+                if phase2 == False:
+                    temp = "(" + card.name + ")"
+                    card.name = temp
+                    dmg_mech[i] = 1
+                else:
+                    temp = "{" + card.name + "}"
+                    card.name = temp
+                    dmg_mech[i] = 2
             else:
                 dmg_mech[i] = 0
 
         if phase2 == False:
-            dmg_mech[i] = 1
             print("\nHAHAHAHAHAAAA....... I trapped your cards in my NASTY BUBBLE!")
             print("\nAIN'T NOTHIN YOU CAN DO ABOUT IT!")
         else:
-            dmg_mech[i] = 2
             print("\nOoooooohhh alright ... NOW YOU ARE STARTING TO PISS ME OFF!")
             print("\nHave a taste of my CONTAMINATED BUBBLE!")
         
@@ -236,13 +240,13 @@ def boss_battle(hero, boss):
             for i, slot in enumerate(dmg_mech):
 
                 # Bubble Bass damage mechanic
-                if slot == 1 and bossNum == 1:
+                if slot == 1 and bossNum == 1 and curr_hero[i] is not None:
                     curr_hero[i].take_damage(1)
                     if curr_hero[i]._hp <= 0:
                         print(f"{curr_hero[i]._name} has suffocated from Bubble Bass's NASTY BUBBLE!")
                         curr_hero[i] = None
                         dmg_mech[i] = 0
-                elif slot == 2 and bossNum == 1:
+                elif slot == 2 and bossNum == 1 and curr_hero[i] is not None:
                     curr_hero[i].take_damage(2)
                     if curr_hero[i]._hp <= 0:
                         print(f"{curr_hero[i]._name} has slowly ... painfully ... suffocated from Bubble Bass's CONTAMINATED BUBBLE!")
