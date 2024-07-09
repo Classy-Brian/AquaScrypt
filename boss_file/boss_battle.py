@@ -69,7 +69,7 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
     
     if boss._name == "Bubble Bass":
         pause()
-        print("Bubble Bass Intro")
+        print("\nBubble Bass Intro")
         bossNum = 1
 
         """  dmg_mech is used to keep track of the idx of the card that are bubbled.
@@ -87,12 +87,12 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
                 card.name = temp
                 if phase2 == False:
                     dmg_mech[i] = 1
-                    print("HAHAHAHAHAAAA....... I trapped your cards in my NASTY BUBBLE!")
-                    print("AIN'T NOTHIN YOU CAN DO ABOUT IT!")
+                    print("\nHAHAHAHAHAAAA....... I trapped your cards in my NASTY BUBBLE!")
+                    print("\nAIN'T NOTHIN YOU CAN DO ABOUT IT!")
                 else:
                     dmg_mech[i] = 2
-                    print("Ooooooohhh alright ... NOW YOU ARE STARTING TO PISS ME OFF!")
-                    print("Have a taste of my CONTAMINATED BUBBLE!")
+                    print("\nOoooooohhh alright ... NOW YOU ARE STARTING TO PISS ME OFF!")
+                    print("\nHave a taste of my CONTAMINATED BUBBLE!")
             else:
                 dmg_mech[i] = 0
         
@@ -100,7 +100,7 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
     
     elif boss._name == "Scuba Diver":
         pause()
-        print("Scuba Diver Intro")
+        print("\nScuba Diver Intro")
         bossNum = 2
 
         """  dmg_mech 
@@ -113,16 +113,16 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
             if card is not None:
                 if phase2 == False:
                     dmg_mech[i] = 1
-                    print("I'm gonna speared all your fishes! What chu gonna do bout it???")
+                    print("\nI'm gonna speared all your fishes! What chu gonna do bout it???")
                 else:
                     dmg_mech[i] = 2
-                    print("Aight aight, how about this!")
+                    print("\nAight aight, how about this!")
         
         return dmg_mech, bossNum
 
     elif boss._name == "Seraphina, Empress of the Abyss":
         pause()
-        print("Mermaid Intro")
+        print("\nMermaid Intro")
         bossNum = 3
 
         """  dmg_mech 
@@ -177,7 +177,7 @@ def boss_battle(hero, boss):
     for _ in range(4):
         hero_hand.append(random_card(play_deck))
 
-    scale = 4
+    scale = 2
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
