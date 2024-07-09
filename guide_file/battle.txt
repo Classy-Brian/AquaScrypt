@@ -11,13 +11,16 @@ and hands. The hero draws 4 random cards from their deck. The villain's
 deck is shuffled.
 
 Battle State Initialization: Scale tracks the balance of the battle, 
-ranging from -5 to 5. Victory is determined by the scale reaching 
-either extreme.
+ranging from -5 to 5, and Boss battle ranging from -5 to 10. Victory 
+is determined by the scale reaching either extreme.
+
+Boss Mechanics: Each boss has a unique mechanic that can be used twice.
+Each mechanic can be used ranging from 3 to 8. 
 
 Card Summoning and Sacrificing: Shrimp Can be played for free but must 
 be sacrificed to summon other cards. You must sacrifice shrimp and other 
 cards to summon more powerful cards from your hand. The number of sacrifices 
-required depends on the card’s cost.
+required depends on the card’s cost. 
 
 Attack Board: 
 

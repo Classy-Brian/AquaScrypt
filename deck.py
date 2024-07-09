@@ -115,10 +115,9 @@ class Deck:
         print("Here you will sacrifice a card and either transfer its sigil or one of the its stats to another ...\n")
         pause()
         clear_terminal()
-        cards_copy = list(self._cards) # is this necessary? 
+        cards_copy = list(self._cards) 
         card, idx = self.choose_card("Choose a card to sacrifice (You will lose one of this card)",remove_duplicates=True, return_index=True) # Set remove_duplicate to False to get exact index tho may not look as nice
-        idx *=3 # may work if you remove all 3 cards such as all 3 otters, but won't always work if you only remove one
-
+        idx *=3 
         count = 0
         sac_card = self._cards[idx]
         for i, card in enumerate(cards_copy):
@@ -137,9 +136,6 @@ class Deck:
         pause()
         clear_terminal()
         
-        # card, idx = self.choose_card("Now choose a card to gain its new stat or sigil",remove_duplicates=True, return_index=True) 
-        # gain_card = card # wat dis do? 
-
         gain_card, idx = self.choose_card("Now choose a card to gain its new stat or sigil",remove_duplicates=True, return_index=True) 
         idx *= 3
 
@@ -148,7 +144,7 @@ class Deck:
 
         print(gain_card)
         print("\nturned to\n")
-        target_card_name = self._cards[idx].name # This won't give you the right index if remove_duplicates=True
+        target_card_name = self._cards[idx].name 
         if gain_choice == 1:
             if isinstance(gain_card.sigil, list):
                 for i, card in enumerate(self._cards):
@@ -182,10 +178,10 @@ class Deck:
         print()
 
         # TESTING
-        counter = 1
-        for card in self._cards:
-            print(f"{counter}. {card.name} COST: {card._cost} HEALTH: {card._hp}/{card._max_hp} POWER: {card._power} SIGIL: {card._sigil}")
-            counter += 1
+        #counter = 1
+        #for card in self._cards:
+        #    print(f"{counter}. {card.name} COST: {card._cost} HEALTH: {card._hp}/{card._max_hp} POWER: {card._power} SIGIL: {card._sigil}")
+        #    counter += 1
 
         pause()
         clear_terminal()
@@ -276,10 +272,10 @@ class Deck:
                 player_choice = check_input.yes_no(f"Would you like to upgrade again? (" + str(chance) + '%' " chance) Y/N: ")
 
         # TESTING  
-        counter = 1
-        for card in self._cards:
-            print(f"{counter}. {card.name} HEALTH: {card._hp}/{card._max_hp} POWER: {card._power}")
-            counter += 1
+        #counter = 1
+        #for card in self._cards:
+        #    print(f"{counter}. {card.name} HEALTH: {card._hp}/{card._max_hp} POWER: {card._power}")
+        #    counter += 1
         
         print()
         pause()

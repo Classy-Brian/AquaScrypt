@@ -34,9 +34,6 @@ def choose_card(text, deck, return_index=False, cardhand=False):
         else:
             print("Invalid choice. Please try again.")
 
-        go_back = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
-        if go_back:
-            return
 
 def random_card(deck):
     """ From a deck of cards, pick a random card """
@@ -54,9 +51,6 @@ def show_hand(hand):
     for idx, card in enumerate(hand):
         print(card)
         print()
-    #for card in hand:
-        #print(card)
-        #print()
             
 
 
@@ -71,19 +65,10 @@ def death_messages(curr_attack):
     if last_attack_card is not None:
         print(f"{last_attack_card.death_mess()}")
 
-def display_board(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale):
+def display_board(upcoming_attack, curr_attack, curr_hero, scale):
     """ hows current board """
     print(f"\nScale: {scale}")
     print("~~~~~~~~ The Board ~~~~~~~~")
-
-    #Delete once done test
-    #for index, card in enumerate(hidden_upcoming):
-    #    if card is None:
-    #        print("None", end=" ")
-    #    else:
-    #        print(card.name, end=" ")
-    #print("-> Hidden attack")
-    #print()
 
     for index, card in enumerate(upcoming_attack):
         if card is None:
@@ -151,7 +136,7 @@ def villian_attack(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, sca
                     else:
                         print(f"Your {curr_hero[index].name} has avoid villian {curr_attack[index].name} attack")
                         curr_hero[index].barrier = False
-    display_board(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale)
+    display_board(upcoming_attack, curr_attack, curr_hero, scale)
     return scale 
 
 def villian_turn(villian, upcoming_attack, curr_attack, curr_hero, hidden_upcoming, scale):
@@ -170,10 +155,10 @@ def hero_turn(hero_hand, play_deck, shrimp_count, curr_hero, scale, upcoming_att
         if choice == 1:
             show_hand(hero_hand)
         elif choice == 2:
-            display_board(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale)
+            display_board(upcoming_attack, curr_attack, curr_hero, scale)
         elif choice == 3:
             placeCard(hero_hand, curr_hero)
-            display_board(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale)
+            display_board(upcoming_attack, curr_attack, curr_hero, scale)
         elif choice == 4:
             if len(hero._items) == 0:
                 print("\nYou have no items")
@@ -192,6 +177,10 @@ def hero_turn(hero_hand, play_deck, shrimp_count, curr_hero, scale, upcoming_att
                             scale = use_item(hero_hand, scale, hero._items[item_choice - 1])
                             hero._items.pop(item_choice - 1)
                             valid = True
+                        else:
+                            go_back = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
+                            if go_back is True:
+                                return
                     else:
                         print("Nothing there! try again")
                         choice_2 = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
@@ -204,8 +193,7 @@ def hero_turn(hero_hand, play_deck, shrimp_count, curr_hero, scale, upcoming_att
             else: 
                 print("\nYou can only use one sigil per turn, good luck!")
         else:
-            villian_play_card(upcoming_attack, curr_attack, hidden_upcoming)
-            display_board(hidden_upcoming, upcoming_attack, curr_attack, curr_hero, scale)
+            display_board(upcoming_attack, curr_attack, curr_hero, scale)
             done = True
     return heroAttack(curr_hero, curr_attack, scale)
 
@@ -221,7 +209,6 @@ def draw_card(hero_hand, play_deck, shrimp_count):
         if shrimp_count > 0:
             new_shrimp = shrimp.Shrimp()
             hero_hand.append(new_shrimp)
-            print(f"Shrimp ID: {new_shrimp.id}")
             print("\nYou drew a shrimp.")
             shrimp_count -= 1
 
@@ -397,16 +384,18 @@ def use_sigil(hidden_upcoming, curr_attack, curr_hero):
                     break  
         else:
             print("There are no card in that slot, pick somewhere else.")
+            choice_7 = check_input.yes_no("Do you want to go back to your turn? (y/n):\n")
+            if choice_7 is True:
+                return
+
 
 def battle(hero, villian):
     print("------------- Battle -------------")
     
     shrimp_count = 20
-    #my_shrimp = shrimp.Shrimp()
-
+    
     hero_hand = []
     play_deck = copy.deepcopy(hero._deck)
-    #play_deck = deck.Deck()
 
     play_deck.shuffle()
 
@@ -438,6 +427,7 @@ def battle(hero, villian):
         else:
             print("\n---- Hero Turn ----\n")
             scale = hero_turn(hero_hand, play_deck, shrimp_count, curr_hero, scale, upcoming_attack, hidden_upcoming, curr_attack, hero)
+            villian_play_card(upcoming_attack, curr_attack, hidden_upcoming)
             pause()
             turn = 0
 

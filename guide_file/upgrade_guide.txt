@@ -17,5 +17,5 @@ Optional Additional Upgrades: After the initial guaranteed upgrade,
 you have the option to attempt another upgrade. This decision is 
 risky and involves a halving success chance starting from 50% and 
 keep reduces the success chance by half for each upgrade. If you're
-unlucky then you will loss all you cards with the same name. Are you
+unlucky then you will loss all cards with the same name. Are you
 lucky?
