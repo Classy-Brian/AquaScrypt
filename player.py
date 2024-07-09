@@ -6,9 +6,9 @@ import check_input
 from terminal_utils import clear_terminal, pause
 
 class Player():
-    def __init__(self, load=False):
+    def __init__(self, name, load=False):
         if not load:
-            self._name = input("\nWhat is your name? ")
+            self._name = name
             self._items = []
             self._location = [5, 2]
             self._deck = deck.Deck()

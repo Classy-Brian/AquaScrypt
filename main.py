@@ -14,6 +14,8 @@ def welcome_message(name):
     delay(1.5)
     delay_print(f"\nWell {name}, good luck diving!\n")
     print("Made by Hamster Chips Inc.")
+    pause()
+    clear_terminal()
 
 def How_to_play():
     quit = False 
@@ -51,14 +53,13 @@ def main():
         print("1. New game\n2. Load game\n3. How to play!\n4. Quit")
         choice = check_input.range_int("Choice: ", 1, 4)
         if choice == 1:
-            # delay_print("What is your name, diver? ")
-            # name = input("Name: ")
-            # welcome_message(name)
-            #name = "Joe"
-            hero = player.Player(load=False)
+            delay_print("What is your name, diver? ")
+            name = input("Name: ")
+            welcome_message(name)
+            hero = player.Player(name, load=False)
             vaild = True
         elif choice == 2:
-            hero = player.Player(load=True)
+            hero = player.Player(name, load=True)
             vaild = True
 
         elif choice == 3:
