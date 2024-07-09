@@ -3,6 +3,7 @@ from cards import shrimp
 import check_input
 from terminal_utils import clear_terminal, pause, delay_print
 import copy
+import random
 #from cards.abyssal import angler,jellyfish,kraken <- Testing
 #from cards.oceanic import leviathan, manta_ray, shark
 #from cards.tropical import dolphin,otter, turtle
@@ -112,7 +113,7 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
             if card is not None:
                 if phase2 == False:
                     dmg_mech[i] = 1
-                    print("I have speared all your fishes! What chu gonna do bout it???")
+                    print("I'm gonna speared all your fishes! What chu gonna do bout it???")
                 else:
                     dmg_mech[i] = 2
                     print("Aight aight, how about this!")
@@ -145,7 +146,12 @@ def boss_mechanic(boss, upcoming_attack, curr_attack, curr_hero, hidden_upcoming
             upcoming_attack[i] = shrimpArmy
         
         if phase2 == True:
-            upcoming_attack[0] = kingShrimp
+            random_place = random.randint(0,3)
+            upcoming_attack[random_place] = kingShrimp
+            print("\nBeware! Seraphina, Empress of the Abyss, has unleashed the fearsome King Shrimp to lead her malevolent army!")
+        
+        else:
+            print("\nBow before Seraphina, Empress of the Abyss! Her sinister shrimp army swarms forth to enforce her dark dominion!")
 
         return dmg_mech, bossNum
 
@@ -171,7 +177,7 @@ def boss_battle(hero, boss):
     for _ in range(4):
         hero_hand.append(random_card(play_deck))
 
-    scale = 2
+    scale = 4
     turn = 0
     hidden_upcoming = [None, None, None, None]
     upcoming_attack = [None, None, None, None]
@@ -248,11 +254,11 @@ def boss_battle(hero, boss):
                     curr_hero[i] = None
                     dmg_mech[i] = 0
                 
-                if bossNum == 3:
-                    alreadyPrint = False
-                    if not alreadyPrint:
-                        print("An army of shrimps is heading your way! ")
-                        alreadyPrint = True
+            if bossNum == 3:
+                alreadyPrint = False 
+                if not alreadyPrint:
+                    print("An army of shrimps is heading your way! Run away!")
+                    alreadyPrint = True
             
             display_board(upcoming_attack, curr_attack, curr_hero, scale)
             
