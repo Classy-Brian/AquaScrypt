@@ -9,7 +9,7 @@ class Player():
     def __init__(self, name, load=False):
         if not load:
             self._name = name
-            self._items = []
+            self._items = ["Dagger", "Boulder", "Shrimp Bottle"]
             self._location = [5, 2]
             self._deck = deck.Deck()
         else:
@@ -42,7 +42,7 @@ class Player():
     
     def display_items(self):
         for item in self._items:
-            print(item, end=" ")
+            print(item, end=", ")
 
     def display_deck(self):
         cards = set()

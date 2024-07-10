@@ -6,21 +6,21 @@ import check_input
 from terminal_utils import clear_terminal, pause, delay_print, delay
 from boss_file import boss, boss_battle
 
-def welcome_message(name):
-    
-    delay_print(f"\nWelcome to AquaScrypt {name}! \n")
+def welcome_message():
+    delay_print(f"\nWelcome to AquaScrypt! \n")
     delay_print("Will you make it back to the surface with undiscovered treasures?...")
+    delay(1.7)
     delay_print("or will the sea consume you...")
     delay(1.5)
-    delay_print(f"\nWell {name}, good luck diving!\n")
-    print("Made by Hamster Chips Inc.")
+    delay_print(f"\nWell... good luck diving!\n")
     pause()
     clear_terminal()
 
-def How_to_play():
+def tutorial():
     quit = False 
     while quit is False:
-        print("\n1. Battle Guide\n2. Map Guide\n3. Sigil Guide\n4. Shop Item Guide\n5. Upgrade Guide\n6. Sacrifice Guide\n7. Quit")
+        print("~~~ Guides ~~~")
+        print("1. Battle Guide\n2. Map Guide\n3. Sigil Guide\n4. Shop Item Guide\n5. Upgrade Guide\n6. Sacrifice Guide\n7. Quit")
         choice = check_input.range_int("Choice: ",1,7)
         guide_files = {
             1: 'guide_file/battle.txt',
@@ -32,7 +32,6 @@ def How_to_play():
         }
 
         if choice == 7:
-            print("\nQuitting the guide.\n")
             quit = True 
         
         file = guide_files.get(choice)
@@ -45,30 +44,35 @@ def How_to_play():
                 clear_terminal()
     
 def main():
-    clear_terminal()
-    print("~~~ AquaScrypt ~~~")
     quit = False
     vaild = False 
     while vaild is False:
-        print("1. New game\n2. Load game\n3. How to play!\n4. Quit")
+        clear_terminal()
+        print("𓆟. ° .• .𓆝 .• ° . 𓆟 . ° .• .𓆞\n")
+        print("           AquaScrypt            ")
+        print("1. New game\n2. How to play!\n3. Quit")
+        print("\nMade by Hamster Chips Inc.")
+        print("\n𓆟. ° .• .𓆝 .• ° . 𓆟 . ° .• .𓆞\n")
         choice = check_input.range_int("Choice: ", 1, 4)
         if choice == 1:
+            clear_terminal()
+            welcome_message()
             delay_print("What is your name, diver? ")
             name = input("Name: ")
-            welcome_message(name)
             hero = player.Player(name, load=False)
             vaild = True
-        elif choice == 2:
-            hero = player.Player(name, load=True)
-            vaild = True
+        # elif choice == 2:
+        #     hero = player.Player(name, load=True)
+        #     vaild = True
 
-        elif choice == 3:
-            How_to_play()
+        elif choice == 2:
+            clear_terminal()
+            tutorial()
         else: 
             vaild = True
             exit()
 
-    print(f"\nWell hello, {hero.name}")
+    delay_print(f"\nWell hello, {hero.name}")
     print("\nHere is your current items: ")
     hero.display_items()
     print("\n\nHere is your current deck: ")
